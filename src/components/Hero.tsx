@@ -17,6 +17,10 @@ export function Hero() {
     document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToConnect = () => {
+    window.dispatchEvent(new CustomEvent('open-connect-modal'));
+  };
+
   return (
     <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 relative overflow-hidden bg-[#0a0a0c]">
       {/* Grid Pattern Background */}
@@ -85,15 +89,25 @@ export function Hero() {
             UI/UX Designer crafting interfaces that solve, not just decorate.
           </p>
           
-          <motion.button 
-            onClick={scrollToWork}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-3 bg-white text-black px-9 py-4 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
-          >
-            <span>Explore Work</span>
-            <ArrowRight size={20} className="stroke-[2.5]" />
-          </motion.button>
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <motion.button 
+              onClick={scrollToWork}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center space-x-3 bg-white text-black px-9 py-4 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+            >
+              <span>Explore Work</span>
+              <ArrowRight size={20} className="stroke-[2.5]" />
+            </motion.button>
+            <motion.button 
+              onClick={scrollToConnect}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center space-x-3 bg-transparent border border-white/20 text-white px-9 py-4 rounded-full font-medium hover:bg-white/5 hover:border-white/40 transition-colors"
+            >
+              <span>Connect</span>
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>

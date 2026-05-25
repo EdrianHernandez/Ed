@@ -1,16 +1,59 @@
 import { motion, AnimatePresence } from "motion/react";
-import { MoveRight, X } from "lucide-react";
-import { useState } from "react";
+import { MoveRight, X, Linkedin, Facebook, Instagram, Github, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const socials = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/edrian-hernandez-bab421404/" },
-  { name: "Facebook", href: "https://www.facebook.com/ed.hrnndzzz/" },
-  { name: "Instagram", href: "https://www.instagram.com/ed_hrnndz/" },
-  { name: "GitHub", href: "https://github.com/EdrianHernandez" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/edrian-hernandez-bab421404/", icon: Linkedin },
+  { name: "Facebook", href: "https://www.facebook.com/ed.hrnndzzz/", icon: Facebook },
+  { name: "Instagram", href: "https://www.instagram.com/ed_hrnndz/", icon: Instagram },
+  { name: "GitHub", href: "https://github.com/EdrianHernandez", icon: Github },
 ];
 
 export function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const handleOpenModal = () => setIsModalOpen(true);
+    window.addEventListener("open-connect-modal", handleOpenModal);
+    return () => window.removeEventListener("open-connect-modal", handleOpenModal);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      const formPayload = Object.fromEntries(formData);
+      
+      // Add Web3Forms access key
+      // Get your own access key from https://web3forms.com/ and replace this placeholder
+      // For now, using a test key or your email format won't work without registering.
+      formPayload['access_key'] = "8a2eb872-9bbb-436f-b251-1effceab91f3"; // Replace with your actual Web3Forms access key
+      formPayload['subject'] = "New Message from Portfolio Website";
+
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(formPayload)
+      });
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setTimeout(() => setIsSuccess(false), 300); // reset after modal closes
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -36,7 +79,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col relative z-10 mt-16 md:mt-24">
         
         {/* Split Layout for Connect Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           
           {/* Left Column (Heading) */}
           <motion.div 
@@ -60,13 +103,13 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="lg:col-span-5 flex flex-col lg:pl-10 lg:border-l border-white/10"
+            className="lg:col-span-5 flex flex-col justify-center lg:pl-12 lg:border-l border-white/10 lg:h-full lg:-mt-4"
           >
-            <p className="text-lg md:text-xl text-[#a3a3a3] font-light mb-12 leading-relaxed text-pretty">
+            <p className="text-lg md:text-xl text-[#a3a3a3] font-light mb-8 leading-relaxed text-pretty max-w-md">
               Open for collaborations, freelance opportunities, or simply connecting over exceptional digital experiences.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 mb-16">
+            <div className="flex flex-col sm:flex-row gap-6">
               <motion.button
                 onClick={() => setIsModalOpen(true)}
                 whileHover={{ scale: 1.02 }}
@@ -77,38 +120,30 @@ export function Footer() {
                 <MoveRight size={20} className="stroke-[2.5]" />
               </motion.button>
             </div>
-
-            {/* Social Links List */}
-            <div className="flex flex-col space-y-4">
-              <p className="font-mono text-[0.65rem] text-[#525252] uppercase tracking-[0.2em] font-medium mb-2">Connect Directly //</p>
-              <div className="flex flex-wrap gap-x-8 gap-y-4">
-                {socials.map((platform, i) => (
-                  <motion.a 
-                    key={platform.name}
-                    href={platform.href}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.4 + i * 0.1, ease: "easeOut" }}
-                    className="group flex items-center space-x-2 font-mono text-xs text-[#a3a3a3] uppercase tracking-[0.15em] hover:text-white transition-colors duration-300"
-                  >
-                    <span className="relative overflow-hidden py-1">
-                      {platform.name}
-                      <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
-                    </span>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
           </motion.div>
         </div>
 
         {/* Footer Bottom Metadata */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between mt-auto text-[#525252] text-xs font-mono pt-8 border-t border-white/5 uppercase tracking-[0.1em]">
           <p className="mb-4 md:mb-0">© {new Date().getFullYear()} Edrian Hernandez.</p>
-          <div className="flex space-x-6">
-            <p>Designed in <span className="text-[#a3a3a3]">Figma</span></p>
-            <p>Built with <span className="text-[#a3a3a3]">React</span></p>
+          <div className="flex items-center space-x-6">
+            {socials.map((platform, i) => {
+              const Icon = platform.icon;
+              return (
+                <motion.a 
+                  key={platform.name}
+                  href={platform.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group flex items-center text-[#a3a3a3] hover:text-white transition-colors duration-300"
+                  title={platform.name}
+                >
+                  <Icon size={20} strokeWidth={1.5} />
+                </motion.a>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -150,25 +185,80 @@ export function Footer() {
                 Fill out the form below or reach out via email. I'll get back to you as soon as possible.
               </p>
 
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setIsModalOpen(false); }}>
-                <div>
-                  <input type="text" placeholder="Your Name" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors" />
-                </div>
-                <div>
-                  <input type="email" placeholder="Your Email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors" />
-                </div>
-                <div>
-                  <textarea placeholder="Message" required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors resize-none"></textarea>
-                </div>
-                <motion.button
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
-                  type="submit"
-                  className="w-full bg-white text-black font-medium py-3 rounded-xl hover:bg-white/90 transition-colors mt-2"
+              {isSuccess ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center justify-center py-12 text-center"
                 >
-                  Send Message
-                </motion.button>
-              </form>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", delay: 0.1, damping: 15 }}
+                    className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-4"
+                  >
+                    <CheckCircle2 size={32} className="text-white" />
+                  </motion.div>
+                  <h4 className="text-xl font-bold text-white mb-2">Message Sent!</h4>
+                  <p className="text-[#a3a3a3]">Thanks for reaching out. I'll be in touch soon.</p>
+                </motion.div>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div>
+                    <input name="name" type="text" placeholder="Your Name" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors" />
+                  </div>
+                  <div>
+                    <input name="email" type="email" placeholder="Your Email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors" />
+                  </div>
+                  <div>
+                    <textarea name="message" placeholder="Message" required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors resize-none"></textarea>
+                  </div>
+                  {/* Honeypot to prevent spam */}
+                  <input type="text" name="_honey" style={{ display: 'none' }} />
+                  {/* Disable captcha if you want or leave default behavior */}
+                  <input type="hidden" name="_captcha" value="false" />
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-white text-black font-medium py-3 rounded-xl hover:bg-white/90 transition-colors mt-2 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <span>Send Message</span>
+                    )}
+                  </motion.button>
+                </form>
+              )}
+
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <p className="text-xs text-[#525252] uppercase tracking-[0.15em] font-mono text-center mb-6">Or connect directly</p>
+                <div className="flex justify-center space-x-8">
+                  {socials.map((platform) => {
+                    const Icon = platform.icon;
+                    return (
+                      <motion.a
+                        key={platform.name}
+                        href={platform.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="text-[#a3a3a3] hover:text-white transition-all duration-300"
+                        title={platform.name}
+                      >
+                        <Icon size={22} strokeWidth={1.5} />
+                      </motion.a>
+                    );
+                  })}
+                </div>
+              </div>
             </motion.div>
           </div>
         )}

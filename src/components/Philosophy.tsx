@@ -2,9 +2,9 @@ import { motion } from "motion/react";
 
 export function Philosophy() {
   const lines = [
-    "Find the chaos, pull the weight,",
-    "Clear the paths they navigate,",
-    "Design to solve, not decorate."
+    "Find the chaos, Pull the weight.",
+    "Clear the paths they navigate.",
+    "Design to solve, Not decorate."
   ];
 
   return (
