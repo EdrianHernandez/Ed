@@ -1,0 +1,491 @@
+import { motion, useScroll, useTransform } from "motion/react";
+import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+
+export function FloodguardCaseStudy() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <motion.div 
+      initial={{ y: "100%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: "-100%", opacity: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      ref={containerRef}
+      className="bg-[#050505] min-h-screen text-[#FBFBFB] font-sans selection:bg-[#FBFBFB] selection:text-[#050505]"
+    >
+      {/* 1. Case Study Hero Section */}
+      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-24 overflow-hidden">
+        {/* Cinematic UI Background */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/MAIN%20DASHBOARD%20(LANDING%20PAGE).png" 
+            alt="Floodguard Dashboard Background" 
+            className="w-full h-full object-cover blur-3xl opacity-20 brightness-50 scale-105"
+          />
+          {/* Gradient overlay to fade to solid black at bottom */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
+        </div>
+
+        {/* Navigation */}
+        <div className="absolute top-0 left-0 p-6 md:p-12 z-50">
+          <Link to="/">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="group flex flex-col items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/5 text-white/80 backdrop-blur-sm transition-all duration-300 ease-out hover:bg-white/10 hover:text-white hover:-translate-x-1 cursor-pointer"
+              aria-label="Back to Works"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                className="transition-transform duration-300 group-hover:-translate-x-0.5"
+              >
+                <path d="M19 12H5" />
+                <path d="M12 19l-7-7 7-7" />
+              </svg>
+            </motion.div>
+          </Link>
+        </div>
+
+        {/* Hero Typography */}
+        <div className="flex flex-col items-center justify-center w-full z-10 mt-12 md:mt-0 space-y-12 md:space-y-16">
+          <div className="flex flex-col items-center justify-center">
+            <motion.div className="overflow-hidden py-4 pb-2">
+              <motion.h1 
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-7xl md:text-8xl lg:text-9xl font-montserrat tracking-tighter uppercase leading-none text-center text-white drop-shadow-sm"
+              > 
+                <span className="font-[1000]">FLOOD</span>
+                <span className="font-[50]">GUARD</span>
+              </motion.h1>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-sm md:text-base tracking-[0.3em] font-montserrat text-neutral-400 uppercase mt-2"
+            >
+              PREPARE & PROTECT
+            </motion.div>
+          </div>
+          
+          {/* The Metadata Re-Architecture */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 lg:gap-24"
+          >
+            {/* Metadata Item 1 */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+              <div className="flex items-center space-x-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
+                <span className="text-[#666666] font-mono text-xs tracking-widest uppercase font-semibold">Role</span>
+              </div>
+              <span className="text-[#FBFBFB] font-medium text-sm md:text-base tracking-wide uppercase">Lead UI/UX Designer</span>
+            </div>
+
+            {/* Metadata Item 2 */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+              <div className="flex items-center space-x-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
+                <span className="text-[#666666] font-mono text-xs tracking-widest uppercase font-semibold">Tech Focus</span>
+              </div>
+              <span className="text-[#FBFBFB] font-medium text-sm md:text-base tracking-wide uppercase">AI/ML Data Visualization</span>
+            </div>
+
+            {/* Metadata Item 3 */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+              <div className="flex items-center space-x-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
+                <span className="text-[#666666] font-mono text-xs tracking-widest uppercase font-semibold">Context</span>
+              </div>
+              <span className="text-[#FBFBFB] font-medium text-sm md:text-base tracking-wide uppercase">1st Place, UPLB Warframes</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Invitation */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-10"
+        >
+          <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden flex justify-center">
+            <motion.div 
+              animate={{ y: ["-100%", "200%"] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+              className="w-full h-1/2 bg-gradient-to-b from-transparent via-white to-transparent"
+            />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* 2. The Brief (Finding the Chaos) */}
+      <section className="py-32 md:py-48 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="md:col-span-5 border-l border-[#222222] pl-8"
+          >
+            <h2 className="text-xl md:text-2xl font-bold mb-6 tracking-wide text-[#E0E0E0]">THE PROBLEM</h2>
+            <p className="text-[#A8A8A8] text-lg md:text-xl font-light leading-relaxed text-pretty">
+              Typhoons do not wait for preparedness. In the Philippines, natural disasters routinely strip communities of their infrastructure. The fatal flaw is rarely a lack of data, but a collapse in its distribution: communities struggle relentlessly with fragmented alerts, delayed responses, and a void of real-time intelligence.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ delay: 0.15, duration: 0.7 }}
+            className="md:col-span-7 border-l border-[#222222] pl-8"
+          >
+            <h2 className="text-xl md:text-2xl font-bold mb-6 tracking-wide text-[#E0E0E0]">THE CHALLENGE</h2>
+            <p className="text-[#A8A8A8] text-lg md:text-xl font-light leading-relaxed text-pretty">
+              Transforming raw predictive data into survival currency. The imperative was to conceptualize a web application prototype that didn't just display AI/ML flood risk forecasts, but digested them into immediate, actionable directives. We had to design an interface where complex meteorological algorithms met human urgency—equipping communities to prepare, navigate, and survive high-stakes environmental crises.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. High-Fidelity Execution (The Gallery) */}
+      <section className="relative py-32 md:py-48 bg-[#030305] overflow-hidden">
+        {/* Subtle Technical Grid Background with Mask */}
+        <motion.div 
+          style={{ y: gridY }}
+          className="absolute inset-0 pointer-events-none z-0"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div 
+            className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]" 
+            style={{ 
+              maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+            }} 
+          />
+        </motion.div>
+
+        {/* Subtle global back-glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-white/[0.02] blur-[150px] rounded-full pointer-events-none z-0" />
+
+        <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-24 md:gap-32">
+          
+          {/* 1. The Hero Shot */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true, margin: "-10%" }} 
+            transition={{ duration: 0.8 }} 
+            className="flex flex-col items-center"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-12 uppercase text-center">The Command Center</h2>
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(255,255,255,0.03)] border border-white/5 mb-8 bg-[#0a0a0c] min-h-[400px] flex items-center justify-center">
+              <img src="/MAIN%20DASHBOARD%20(LANDING%20PAGE).png" alt="Main Dashboard" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+              <span className="absolute text-[#333] font-mono text-sm">Image required: /public/MAIN DASHBOARD (LANDING PAGE).png</span>
+            </div>
+            <p className="text-[#A8A8A8] text-base md:text-lg font-light leading-relaxed max-w-3xl text-center">
+              The central hub for real-time precipitation and sector risk statuses, visualized through a stunning 3D isometric map of Batangas province. A masterclass in dark-mode data legibility designed to prevent cognitive overload.
+            </p>
+          </motion.div>
+
+          {/* 1.5 Interactive Granularity & State Logic */}
+          <div className="flex flex-col gap-16 md:gap-24 relative z-20">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.6 }} 
+              className="text-center w-full max-w-[1000px] mx-auto"
+            >
+              <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">Interactive Granularity & State Logic</h3>
+              <p className="text-[#A8A8A8] text-base md:text-lg font-light leading-relaxed text-pretty max-w-3xl mx-auto">
+                The map is a dynamic navigational component, not a static graphic. Selecting a municipality isolates its geometry and fetches localized API data into a unified panel. This strict, color-coded structure reduces cognitive friction during high-stress disaster scenarios.
+              </p>
+            </motion.div>
+
+            {/* 3-Column Cascading State Showcase (The Ladder Layout) */}
+            <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 relative">
+              
+              {/* Column 1: San Juan (Anchored Top) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 50 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, margin: "-10%" }} 
+                transition={{ duration: 0.8, delay: 0.0, ease: "easeOut" }} 
+                className="flex flex-col group"
+              >
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-[#0a0a0c]/80 backdrop-blur-md flex items-center justify-center transition-colors duration-500 mb-6 shrink-0">
+                  <img src="/SAN%20JUAN.png" alt="San Juan Critical State" className="w-full h-full object-cover relative z-10 rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                  <span className="absolute text-[#333] font-mono text-xs z-0">Image required: /public/SAN JUAN.png</span>
+                </div>
+                <div className="pl-5 border-l-2 border-red-500/80 h-fit flex flex-col">
+                  <h4 className="text-white font-bold tracking-wide uppercase text-sm md:text-base mb-2">Critical</h4>
+                  <p className="text-[#888] text-sm md:text-base font-light leading-relaxed">Stark red UI accents and elevated 9mm/hr rainfall data clearly broadcast immediate, escalating danger.</p>
+                </div>
+              </motion.div>
+
+              {/* Column 2: Batangas City (Moderate Drop) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 50 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, margin: "-10%" }} 
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} 
+                className="flex flex-col group mt-0 md:mt-12 lg:mt-16"
+              >
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-[#0a0a0c]/80 backdrop-blur-md flex items-center justify-center transition-colors duration-500 mb-6 shrink-0">
+                  <img src="/BATANGAS%20CITY.png" alt="Batangas City Rising State" className="w-full h-full object-cover relative z-10 rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                  <span className="absolute text-[#333] font-mono text-xs z-0">Image required: /public/BATANGAS CITY.png</span>
+                </div>
+                <div className="pl-5 border-l-2 border-yellow-500/80 h-fit flex flex-col">
+                  <h4 className="text-white font-bold tracking-wide uppercase text-sm md:text-base mb-2">Rising</h4>
+                  <p className="text-[#888] text-sm md:text-base font-light leading-relaxed">Yellow accents indicate escalating risk, maintaining acute situational awareness without inciting panic.</p>
+                </div>
+              </motion.div>
+
+              {/* Column 3: Rosario (Significant Drop) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 50 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, margin: "-10%" }} 
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }} 
+                className="flex flex-col group mt-0 md:mt-24 lg:mt-32"
+              >
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-[#0a0a0c]/80 backdrop-blur-md flex items-center justify-center transition-colors duration-500 mb-6 shrink-0">
+                  <img src="/ROSARIO.png" alt="Rosario Stable State" className="w-full h-full object-cover relative z-10 rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                  <span className="absolute text-[#333] font-mono text-xs z-0">Image required: /public/ROSARIO.png</span>
+                </div>
+                <div className="pl-5 border-l-2 border-green-500/80 h-fit flex flex-col">
+                  <h4 className="text-white font-bold tracking-wide uppercase text-sm md:text-base mb-2">Stable</h4>
+                  <p className="text-[#888] text-sm md:text-base font-light leading-relaxed">Clean green UI elements provide psychological relief and clear data reading for safe sectors.</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* 2. Threat Visualization Split */}
+          <div className="flex flex-col gap-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.6 }} 
+              className="text-center mb-4"
+            >
+              <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-white mb-6">Predictive Threat Modeling</h3>
+              <p className="text-[#A8A8A8] text-base md:text-lg font-light leading-relaxed max-w-3xl mx-auto">
+                Users toggle between satellite cloud density and real-time water levels risk parameters seamlessly within the exact same isometric environment.
+              </p>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8 }} 
+                className="relative rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.02)] border border-white/5 bg-[#0a0a0c] min-h-[300px] flex items-center justify-center"
+              >
+                <img src="/WEATHER.png" alt="Satellite Weather" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                <span className="absolute text-[#333] font-mono text-xs">Image required: /public/WEATHER.png</span>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8, delay: 0.2 }} 
+                className="relative rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.02)] border border-white/5 bg-[#0a0a0c] min-h-[300px] flex items-center justify-center"
+              >
+                <img src="/FLOOD%20MAPS.png" alt="Flood Maps" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                <span className="absolute text-[#333] font-mono text-xs">Image required: /public/FLOOD MAPS.png</span>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* 3. AI Logic Parallax */}
+          <motion.div className="flex flex-col items-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.8 }} 
+              className="w-full mb-12"
+            >
+              <div className="relative w-full rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.04)] border border-white/5 bg-[#0a0a0c] min-h-[400px] flex items-center justify-center">
+                <img src="/EVACUATION%20CENTER.png" alt="AI Evacuation Logic" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                <span className="absolute text-[#333] font-mono text-sm">Image required: /public/EVACUATION CENTER.png</span>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.6, delay: 0.2 }} 
+              className="text-center max-w-4xl"
+            >
+              <h3 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-6">AI-Driven Evacuation Logic</h3>
+              <p className="text-[#A8A8A8] text-lg md:text-xl font-light leading-relaxed text-pretty">
+                The core of the system. The 'AI Evacuation Recommendation' dynamically calculates shelter capacity, imminent flood pathways, and real-time transit duration to instantly route users safely to the Batangas City Sports Complex and other viable safe zones.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* 4. Deep Data Offset */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.8 }} 
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+          >
+            <div className="lg:col-span-8 relative rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.03)] border border-white/5 bg-[#0a0a0c] min-h-[400px] flex items-center justify-center">
+              <img src="/ANALYTICS.png" alt="Demographic Impact Analysis" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+              <span className="absolute text-[#333] font-mono text-sm">Image required: /public/ANALYTICS.png</span>
+            </div>
+            <div className="lg:col-span-4 flex flex-col justify-center">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">Demographic Impact Analysis</h3>
+              <p className="text-[#A8A8A8] text-base md:text-lg font-light leading-relaxed">
+                Complex charts, circular graphs, and demographic impact datasets are unified under a highly disciplined dark-mode aesthetic. This precise data hierarchy allows macroscopic emergency information to remain highly legible and profoundly urgent without ever causing cognitive overload.
+              </p>
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* 4. Award & Recognition */}
+      <section className="relative py-24 md:py-48 px-6 md:px-12 lg:px-24 w-full mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto w-full"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center relative">
+            
+            {/* The Huge "1ST" Watermark Background */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 font-black text-[12rem] md:text-[20rem] lg:text-[24rem] leading-none pointer-events-none select-none z-0 translate-x-[-15%] lg:translate-x-[-10%] opacity-10 bg-clip-text text-transparent bg-gradient-to-b from-white/40 to-transparent">
+              1ST
+            </div>
+
+            {/* Left Column: Typography */}
+            <div className="relative z-10 flex flex-col pt-12 md:pt-0">
+              <div className="text-[#888888] font-mono text-xs md:text-sm tracking-widest uppercase mb-6 flex items-center gap-4">
+                <span className="w-8 h-[1px] bg-[#555]"></span>
+                [ AWARD: 1ST PLACE — UPLB WARFRAMES ]
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter text-white">VALIDATED BY RESULTS</h2>
+              <p className="text-[#A8A8A8] text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                The FLOODGUARD architecture was built to withstand rigorous technical scrutiny. Awarded 1st Place at the UPLB Warframes Competition during the 42nd Computer Science Week, this project validates the methodology of bridging complex AI data with intuitive, life-saving UI design.
+              </p>
+            </div>
+            
+            {/* Right Column: Floating Certificate */}
+            <div className="relative z-10 flex justify-center lg:justify-end w-full">
+              {/* Soft environmental glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 rounded-full blur-[80px] pointer-events-none z-0"></div>
+              
+              <img 
+                src="/WARFRAMES_CERT.png" 
+                alt="UPLB Warframes 1st Place Certificate" 
+                className="w-full max-w-lg lg:max-w-xl h-auto object-cover rounded-xl border border-white/10 shadow-2xl shadow-white/5 relative z-10 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-700 ease-out cursor-pointer"
+                onError={(e) => e.currentTarget.style.opacity = '0'}
+              />
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* 5. Final CTA / Prototype Link */}
+      <section className="relative w-full py-24 md:py-32 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden">
+        
+        {/* Atmospheric Radial Glow Behind Content */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent pointer-events-none z-0"></div>
+        
+        {/* Subtle ambient light separator */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent z-10"></div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 flex flex-col items-center py-16 px-6 sm:px-8 md:p-16 lg:p-24 w-full max-w-5xl"
+        >
+          {/* Minimalist Corner Brackets / Crosshairs */}
+          <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t border-l border-white/20"></div>
+          <div className="absolute top-0 right-0 w-4 h-4 md:w-6 md:h-6 border-t border-r border-white/20"></div>
+          <div className="absolute bottom-0 left-0 w-4 h-4 md:w-6 md:h-6 border-b border-l border-white/20"></div>
+          <div className="absolute bottom-0 right-0 w-4 h-4 md:w-6 md:h-6 border-b border-r border-white/20"></div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter uppercase leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500 px-2 md:px-0">
+            EXPERIENCE THE ARCHITECTURE
+          </h2>
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light max-w-lg mt-5 md:mt-6 text-pretty px-4 md:px-0">
+            Explore the raw Figma file, auto-layout architecture, and interactive flows.
+          </p>
+
+          <a 
+            href="https://www.figma.com/proto/B1UjOsVvHbwFxXg1secx5W/FloodGuard?node-id=0-1&t=ZlYfqzFFxf5WG11I-1" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group mt-10 md:mt-12 px-6 sm:px-8 py-3.5 sm:py-4 w-full max-w-[280px] sm:max-w-max rounded-full bg-black/50 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 transition-all duration-500 ease-out hover:ring-white/40 hover:bg-white/10 hover:shadow-[0_0_40px_0px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95"
+          >
+            <svg 
+              className="w-5 h-5 transition-transform duration-500 group-hover:scale-110" 
+              viewBox="0 0 38 57" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M19 28.5C19 33.7467 14.7467 38 9.5 38C4.25329 38 0 33.7467 0 28.5C0 23.2533 4.25329 19 9.5 19H19V28.5Z" fill="#0ACF83"/>
+              <path d="M0 9.5C0 4.25329 4.25329 0 9.5 0H19V19H9.5C4.25329 19 0 14.7467 0 9.5Z" fill="#F24E1E"/>
+              <path d="M19 0H28.5C33.7467 0 38 4.25329 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="#FF7262"/>
+              <path d="M38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5C19 23.2533 23.2533 19 28.5 19H38V28.5Z" fill="#1ABCFE"/>
+              <path d="M19 47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5C0 42.2533 4.25329 38 9.5 38C14.7467 38 19 42.2533 19 47.5Z" fill="#A259FF"/>
+            </svg>
+            <span className="text-white text-sm font-medium tracking-wide uppercase transition-colors duration-500">Interact with Prototype</span>
+          </a>
+        </motion.div>
+
+        {/* The Page Anchor Base */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="relative z-10 w-full flex flex-col items-center mt-20 md:mt-28"
+        >
+          <div className="w-full max-w-sm h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+          <span className="mt-6 text-[10px] md:text-xs font-mono tracking-[0.3em] text-neutral-600 uppercase">
+            END OF CASE STUDY
+          </span>
+        </motion.div>
+      </section>
+    </motion.div>
+  );
+}

@@ -12,6 +12,7 @@ import { Process } from "./components/Process";
 import { Philosophy } from "./components/Philosophy";
 import { Footer } from "./components/Footer";
 import { Projects } from "./pages/Projects";
+import { FloodguardCaseStudy } from "./pages/FloodguardCaseStudy";
 
 function Home() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/floodguard" element={<FloodguardCaseStudy />} />
         </Routes>
         <Footer />
       </main>

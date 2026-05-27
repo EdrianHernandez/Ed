@@ -8,6 +8,7 @@ const projects = [
     title: "FLOODGUARD",
     description: "My 1st place winning piece from the Warframes Competition at UPLB. A masterful blend of high-stakes problem-solving and flawless, intuitive interface design drafted entirely in Figma. The crown jewel.",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2",
+    link: "/projects/floodguard"
   },
   {
     title: "ShoreThing",
@@ -42,35 +43,46 @@ export function BentoGrid() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[280px] md:auto-rows-[320px] gap-4 md:gap-6">
-        {projects.map((project, i) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            whileHover={{ y: -8, scale: 0.98 }}
-            className={cn(
-              "group relative flex flex-col justify-end p-6 md:p-8 rounded-[1.5rem] bg-card border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] cursor-pointer",
-              project.span
-            )}
-          >
-            {/* Subtle inner radial gradient on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="relative z-20 w-full">
-              <div className="flex justify-between items-end w-full mb-3 md:mb-4">
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight">
-                  {project.title}
-                </h3>
+        {projects.map((project, i) => {
+          const content = (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -8, scale: 0.98 }}
+              className={cn(
+                "group relative flex flex-col justify-end p-6 md:p-8 rounded-[1.5rem] bg-card border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] cursor-pointer h-full w-full"
+              )}
+            >
+              {/* Subtle inner radial gradient on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-20 w-full">
+                <div className="flex justify-between items-end w-full mb-3 md:mb-4">
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight">
+                    {project.title}
+                  </h3>
+                </div>
+                <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-3 group-hover:line-clamp-none transition-all duration-500 text-pretty">
+                  {project.description}
+                </p>
               </div>
-              <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-3 group-hover:line-clamp-none transition-all duration-500 text-pretty">
-                {project.description}
-              </p>
+            </motion.div>
+          );
+
+          return project.link ? (
+            <Link key={project.title} to={project.link} className={cn("block h-full", project.span)}>
+              {content}
+            </Link>
+          ) : (
+            <div key={project.title} className={cn("block h-full", project.span)}>
+              {content}
             </div>
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
 
       <motion.div
