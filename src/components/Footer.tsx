@@ -57,7 +57,7 @@ export function Footer() {
 
   return (
     <>
-      <footer id="connect" className="relative pt-32 pb-12 px-6 md:px-12 lg:px-24 overflow-hidden bg-[#0a0a0c]">
+      <footer id="connect" className="relative pt-16 md:pt-20 pb-12 px-6 md:px-12 lg:px-24 overflow-hidden bg-[#0a0a0c]">
       {/* Top border with gradient glow */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       
@@ -76,7 +76,7 @@ export function Footer() {
       {/* Top Radial Glow for Depth */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#ffffff]/5 to-transparent rounded-full blur-[140px] pointer-events-none z-0" />
 
-      <div className="max-w-7xl mx-auto flex flex-col relative z-10 mt-16 md:mt-24">
+      <div className="max-w-7xl mx-auto flex flex-col relative z-10 mt-8 md:mt-12">
         
         {/* Split Layout for Connect Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
