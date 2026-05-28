@@ -8,7 +8,7 @@ export function Philosophy() {
   ];
 
   return (
-    <section id="manifesto" className="py-24 md:py-40 px-4 sm:px-6 md:px-12 lg:px-24 flex items-center justify-center relative overflow-hidden bg-[#0a0a0c]">
+    <section id="manifesto" className="py-24 md:py-50 px-4 sm:px-6 md:px-12 lg:px-24 flex items-center justify-center relative overflow-hidden bg-[#0a0a0c]">
       <div className="w-full text-center flex flex-col items-center cursor-default group z-10">
         <motion.div
            initial={{ opacity: 0, y: -20 }}

@@ -17,7 +17,7 @@ export function Experience() {
               02 // Experience
             </span>
             <h2 className="font-display text-4xl md:text-5xl lg:text-[4rem] font-bold tracking-tighter text-white leading-[1.1] mb-8 md:mb-10">
-              Professional Exposure.
+              Professional Exposure
             </h2>
           </div>
           
@@ -54,7 +54,7 @@ export function Experience() {
         >
           <div className="mb-10 lg:mb-12 pt-0 lg:pt-[5.5rem]">
              <h2 className="font-display text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tighter text-white leading-[1.1]">
-              The Trophy Room.
+              The Trophy Room
             </h2>
           </div>
 

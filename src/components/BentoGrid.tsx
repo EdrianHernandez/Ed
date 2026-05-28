@@ -8,7 +8,8 @@ const projects = [
     title: "FLOODGUARD",
     description: "My 1st place winning piece from the Warframes Competition at UPLB. A masterful blend of high-stakes problem-solving and flawless, intuitive interface design drafted entirely in Figma. The crown jewel.",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2",
-    link: "/projects/floodguard"
+    link: "/projects/floodguard",
+    image: "/MAIN%20DASHBOARD%20(LANDING%20PAGE).png"
   },
   {
     title: "ShoreThing",
@@ -35,7 +36,7 @@ export function BentoGrid() {
           01 // Work
         </span>
         <h2 className="font-display text-4xl md:text-6xl lg:text-[5.5rem] font-bold tracking-tighter mb-4 md:mb-6 text-white leading-none">
-          Featured Studies.
+          Featured Studies
         </h2>
         <p className="text-[#8a8a8a] text-base md:text-xl font-light max-w-2xl text-pretty leading-relaxed">
           A showcase of pixel-perfect interfaces where aesthetic depth meets seamless functionality.
@@ -56,15 +57,29 @@ export function BentoGrid() {
                 "group relative flex flex-col justify-end p-6 md:p-8 rounded-[1.5rem] bg-card border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] cursor-pointer h-full w-full"
               )}
             >
-              {/* Subtle inner radial gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {project.image && (
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="absolute inset-0 w-full h-full object-cover z-0 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" 
+                />
+              )}
+              {/* Text readability vignette (bottom only) */}
+              <div className="absolute inset-x-0 bottom-0 h-2/4 bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c]/80 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               
               <div className="relative z-20 w-full">
                 <div className="flex justify-between items-end w-full mb-3 md:mb-4">
-                  <h3 className="font-display text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight">
-                    {project.title}
-                  </h3>
+                  {project.title === "FLOODGUARD" ? (
+                    <h3 className="font-montserrat text-2xl md:text-3xl text-white group-hover:text-white/95 transition-colors tracking-tight">
+                      <span className="font-[1000]">FLOOD</span>
+                      <span className="font-[200]">GUARD</span>
+                    </h3>
+                  ) : (
+                    <h3 className="font-display text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight">
+                      {project.title}
+                    </h3>
+                  )}
                 </div>
                 <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-3 group-hover:line-clamp-none transition-all duration-500 text-pretty">
                   {project.description}
@@ -97,7 +112,7 @@ export function BentoGrid() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center space-x-3 bg-white/10 hover:bg-white/20 border border-white/10 text-white px-8 py-4 rounded-full font-medium transition-all duration-300"
           >
-            <span>View All Projects</span>
+            <span>View All Works</span>
             <ArrowUpRight size={18} />
           </motion.div>
         </Link>

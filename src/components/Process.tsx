@@ -126,7 +126,7 @@ export function Process() {
             03 // Process
           </span>
           <h2 className="font-display text-4xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter text-white leading-none">
-            Engineered Aesthetics.
+            Engineered Aesthetics
           </h2>
         </motion.div>
 
