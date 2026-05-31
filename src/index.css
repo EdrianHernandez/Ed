@@ -20,6 +20,22 @@
   display: none;
 }
 
+@keyframes marquee-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee-ltr {
+  animation: marquee-ltr 40s linear infinite;
+}
+.marquee-pause-on-hover:hover .animate-marquee-ltr {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-ltr {
+    animation: none;
+  }
+}
+
 body {
   @apply bg-background text-foreground font-sans antialiased overflow-x-hidden selection:bg-white selection:text-black;
 }

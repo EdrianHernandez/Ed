@@ -1,6 +1,57 @@
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect } from 'react';
 
 const BahanihanCaseStudy = () => {
+  interface ScreenshotData {
+    src: string;
+    alt: string;
+    title: string;
+    description: string;
+  }
+  const [hoveredImage, setHoveredImage] = useState<ScreenshotData | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setHoveredImage(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const mobileScreenshots: ScreenshotData[] = [
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (MOBILE LANDING PAGE).png",
+      alt: "Mobile Landing Page",
+      title: "Landing Page",
+      description: "The volunteer's entry point\u2014clear mission status and immediate action prompts."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (MISSION OVERVIEW).png",
+      alt: "Mission Overview",
+      title: "Mission Overview",
+      description: "Active mission parameters and supply routing at a glance."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (MAP SECTION).png",
+      alt: "Map Section",
+      title: "Live Map",
+      description: "Algorithmic disaster mapping for navigating active zones."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (SUPPLY LOGS).png",
+      alt: "Supply Logs",
+      title: "Supply Logs",
+      description: "Real-time supply logging to eliminate logistical bottlenecks."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (PROFILE SECTION).png",
+      alt: "Profile Section",
+      title: "Volunteer Profile",
+      description: "Personal dashboard for tracking contributions and status."
+    }
+  ];
+
   return (
     <div className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30">
       {/* Background Visuals: Dual-platform framing */}
@@ -101,24 +152,30 @@ const BahanihanCaseStudy = () => {
         </div>
 
         {/* The Brief Section */}
-        <section className="max-w-7xl mx-auto w-full py-24 md:py-32">
-          <span className="text-neutral-500 tracking-widest text-xs font-semibold uppercase mb-12 block">[ THE BRIEF ]</span>
+        <section className="max-w-7xl mx-auto w-full py-32 md:py-40">
+          <span className="text-neutral-600 tracking-widest text-[10px] font-semibold uppercase mb-8 block">[ THE BRIEF ]</span>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             <div className="lg:col-span-5">
-              <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]">
+              <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">
                 Bridging the gap between command and ground zero.
               </h2>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-12">
+            <div className="lg:col-span-6 lg:col-start-7 lg:border-l lg:border-white/10 lg:pl-12 flex flex-col gap-16">
               <div>
-                <h3 className="font-montserrat font-bold text-xl text-white mb-4">The Problem</h3>
-                <p className="text-neutral-400 leading-relaxed md:text-lg">
+                <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-4 flex items-center gap-4">
+                  <span>The Problem</span>
+                  <span className="w-5 h-px bg-white/20" />
+                </h3>
+                <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light max-w-xl">
                   During critical disaster response scenarios in Batangas province, communication becomes heavily fragmented. Local Government Unit (LGU) administrators lack real-time visibility into supply chains, while on-the-ground volunteers are forced to rely on chaotic group chats—leading to severe logistical bottlenecks and delayed relief efforts.
                 </p>
               </div>
               <div>
-                <h3 className="font-montserrat font-bold text-xl text-white mb-4">The Objective</h3>
-                <p className="text-neutral-400 leading-relaxed md:text-lg">
+                <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-4 flex items-center gap-4">
+                  <span>The Objective</span>
+                  <span className="w-5 h-px bg-white/20" />
+                </h3>
+                <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light max-w-xl">
                   Architect a centralized, dual-platform ecosystem. We needed to translate high-density logistical and geographic data into a comprehensive macro-view for dispatchers, while simultaneously delivering a hyper-focused, friction-free mobile experience for volunteers executing critical supply drops in active zones.
                 </p>
               </div>
@@ -127,7 +184,7 @@ const BahanihanCaseStudy = () => {
         </section>
 
         {/* Ecosystem Showcase Section */}
-        <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-32 md:py-48 bg-[#030305] overflow-hidden">
+        <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-5 md:py-4 bg-[#030305] overflow-hidden">
           {/* Technical Grid Background */}
           <div className="absolute inset-0 pointer-events-none z-0">
             <div 
@@ -144,15 +201,15 @@ const BahanihanCaseStudy = () => {
 
           <section className="max-w-7xl mx-auto w-full pb-32 relative z-10">
           {/* Section Intro */}
-          <div className="text-center py-24 md:py-32">
+          <div className="text-center py-32 md:py-32">
             <span className="text-neutral-500 tracking-widest text-xs font-semibold">[ SYSTEM ARCHITECTURE ]</span>
-            <h2 className="font-montserrat font-black text-4xl md:text-5xl text-white mt-4">
+            <h2 className="font-montserrat font-black text-4xl md:text-5xl text-white mt-2">
               TWO INTERFACES. ONE RESPONSE.
             </h2>
           </div>
 
           {/* Core Interfaces Visual Lockup */}
-          <div className="flex justify-center mt-0 md:mt-0 mb-24 md:mb-32 px-4 sm:px-0">
+          <div className="flex justify-center mt-1 md:mt-0 mb-24 md:mb-32 px-2 sm:px-0">
             <div className="relative w-[90%] max-w-5xl">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[50%] bg-white/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
@@ -167,49 +224,45 @@ const BahanihanCaseStudy = () => {
           </div>
 
           {/* Block A: Mobile Showcase */}
-          <div className="border-l-[3px] border-white/20 pl-6 mb-12 max-w-3xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="text-center mx-auto mb-10 max-w-3xl"
+          >
+            <div className="w-12 h-px bg-white/30 mx-auto mb-6" />
             <h3 className="font-montserrat font-bold text-3xl md:text-4xl text-white tracking-tight mb-4">
               Volunteer Mobile Application
             </h3>
             <p className="text-neutral-400 leading-relaxed md:text-lg">
               Engineered for high-stress environments. The mobile application acts as the tip of the spear for on-the-ground execution. By stripping away administrative noise, it focuses purely on active mission parameters, real-time supply logging, and algorithmic disaster mapping—drastically reducing cognitive friction for volunteers navigating active zones.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {/* Item 1: Hero (col-span-2 row-span-2) */}
-            <div className="col-span-2 row-span-2">
-              <div className="rounded-[2rem] border-[6px] border-neutral-900 shadow-2xl overflow-hidden aspect-[9/16]">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (MOBILE LANDING PAGE).png" alt="Mobile Landing Page" className="w-full h-full object-cover" />
-              </div>
-            </div>
-
-            {/* Item 2 */}
-            <div className="col-span-1 md:translate-y-8">
-              <div className="rounded-[2rem] border-[6px] border-neutral-900 shadow-2xl overflow-hidden aspect-[9/16]">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (MISSION OVERVIEW).png" alt="Mission Overview" className="w-full h-full object-cover" />
-              </div>
-            </div>
-
-            {/* Item 3 */}
-            <div className="col-span-1">
-              <div className="rounded-[2rem] border-[6px] border-neutral-900 shadow-2xl overflow-hidden aspect-[9/16]">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (MAP SECTION).png" alt="Map Section" className="w-full h-full object-cover" />
-              </div>
-            </div>
-
-            {/* Item 4 */}
-            <div className="col-span-1 md:translate-y-8">
-              <div className="rounded-[2rem] border-[6px] border-neutral-900 shadow-2xl overflow-hidden aspect-[9/16]">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (SUPPLY LOGS).png" alt="Supply Logs" className="w-full h-full object-cover" />
-              </div>
-            </div>
-
-            {/* Item 5 */}
-            <div className="col-span-1">
-              <div className="rounded-[2rem] border-[6px] border-neutral-900 shadow-2xl overflow-hidden aspect-[9/16]">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (PROFILE SECTION).png" alt="Profile Section" className="w-full h-full object-cover" />
-              </div>
+          {/* Volunteer Mobile Screenshots — Auto-Scroll Marquee */}
+          <div className="marquee-pause-on-hover relative w-full overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none" />
+            <div className="flex w-max animate-marquee-ltr">
+              {[...mobileScreenshots, ...mobileScreenshots].map((item, i) => (
+                <div
+                  key={i}
+                  className="relative h-[340px] sm:h-[400px] md:h-[460px] lg:h-[520px] mx-2 sm:mx-3 lg:mx-5 flex-shrink-0 rounded-[2rem] overflow-hidden border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_60px_rgba(255,255,255,0.12)] hover:scale-[1.03] cursor-pointer group"
+                  onClick={() => setHoveredImage(item)}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="h-full w-auto relative z-10"
+                    onError={(e) => { e.currentTarget.style.opacity = '0'; }}
+                  />
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-500 z-20 pointer-events-none" />
+                  <span className="absolute inset-0 flex items-center justify-center text-[#333] font-mono text-[10px] sm:text-xs z-0 pointer-events-none">
+                    Image required: {item.src}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -241,6 +294,54 @@ const BahanihanCaseStudy = () => {
           </div>
           </section>
         </section>
+
+        {/* Click-Activated Floating Modal */}
+        <AnimatePresence>
+          {hoveredImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
+              onClick={() => setHoveredImage(null)}
+            >
+              <div
+                className="relative flex flex-col md:flex-row max-w-5xl w-full max-h-[88vh] bg-[#0a0a0c]/95 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.9)]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setHoveredImage(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 transition-all duration-300 z-20"
+                  aria-label="Close preview"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/80">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+
+                <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-10 min-h-[35vh] md:min-h-0 bg-neutral-900/50">
+                  <img
+                    src={hoveredImage.src}
+                    alt={hoveredImage.alt}
+                    className="max-h-[70vh] w-auto object-contain rounded-2xl shadow-2xl"
+                  />
+                </div>
+
+                <div className="w-full md:w-[380px] border-t md:border-t-0 md:border-l border-white/10 p-6 sm:p-8 md:p-10 flex flex-col justify-center bg-[#0a0a0c]">
+                  <h4 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">
+                    {hoveredImage.title}
+                  </h4>
+                  <div className="w-12 h-1 bg-white/20 mb-6 rounded-full" />
+                  <p className="text-neutral-400 text-base md:text-lg font-light leading-relaxed">
+                    {hoveredImage.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>
