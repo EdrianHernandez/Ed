@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const BahanihanCaseStudy = () => {
   interface ScreenshotData {
@@ -10,6 +10,44 @@ const BahanihanCaseStudy = () => {
     description: string;
   }
   const [hoveredImage, setHoveredImage] = useState<ScreenshotData | null>(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [galleryComplete, setGalleryComplete] = useState(false);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const galleryIndexRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+
+  useEffect(() => {
+    galleryIndexRef.current = galleryIndex;
+  }, [galleryIndex]);
+
+  useEffect(() => {
+    const el = galleryRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isAnimatingRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      if (e.deltaY > 0 && galleryIndexRef.current < 3) {
+        e.preventDefault();
+        isAnimatingRef.current = true;
+        setGalleryIndex(prev => prev + 1);
+        setTimeout(() => { isAnimatingRef.current = false; }, 600);
+      } else if (e.deltaY < 0 && galleryIndexRef.current > 0) {
+        e.preventDefault();
+        setGalleryComplete(false);
+        isAnimatingRef.current = true;
+        setGalleryIndex(prev => prev - 1);
+        setTimeout(() => { isAnimatingRef.current = false; }, 600);
+      }
+      // At bounds: don't preventDefault → page scrolls normally
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    return () => el.removeEventListener('wheel', handleWheel);
+  }, [galleryComplete]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -49,6 +87,33 @@ const BahanihanCaseStudy = () => {
       alt: "Profile Section",
       title: "Volunteer Profile",
       description: "Personal dashboard for tracking contributions and status."
+    }
+  ];
+
+  const desktopScreenshots: ScreenshotData[] = [
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (HOMEPAGE).png",
+      alt: "Admin Homepage",
+      title: "Admin Homepage",
+      description: "Central command hub for real-time status overview across all evacuation centers and volunteer deployments."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (ADMINS MAP SECTION).png",
+      alt: "Map Dispatch",
+      title: "Map Dispatch",
+      description: "Geographic visualization of evacuation zones, active volunteer locations, and resource distribution across Batangas province."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (SUPPLY INVENTORY PAGE).png",
+      alt: "Supply Inventory",
+      title: "Supply Inventory",
+      description: "Live tracking of relief goods across all LGU warehouses with real-time stock levels and inter-LGU transfer status."
+    },
+    {
+      src: "/BAHANIHAN ASSETS/BAHANIHAN (VOLUNTEERS PAGE).png",
+      alt: "Volunteer Registry",
+      title: "Volunteer Registry",
+      description: "Complete volunteer roster with deployment history, skill mapping, and real-time availability status."
     }
   ];
 
@@ -267,29 +332,113 @@ const BahanihanCaseStudy = () => {
           </div>
 
           {/* Block B: Desktop Showcase */}
-          <div className="border-l-[3px] border-white/20 pl-6 mb-12 max-w-3xl mt-40">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="text-center mx-auto mb-10 max-w-3xl mt-40"
+          >
+            <div className="w-12 h-px bg-white/30 mx-auto mb-6" />
             <h3 className="font-montserrat font-bold text-3xl md:text-4xl text-white tracking-tight mb-4">
               LGU Admin Dashboard
             </h3>
             <p className="text-neutral-400 leading-relaxed md:text-lg">
               The macro-level command center. In direct contrast to the mobile app, the desktop environment is engineered for extreme data density. Dispatchers require a god's-eye view of evacuation centers and volunteer deployments across Batangas province. This interface facilitates complex logistics, from broadcasting immediate alerts to executing critical inter-LGU supply requests.
             </p>
+          </motion.div>
+
+          {/* Desktop Card Stack Gallery (md+) */}
+          <div 
+            ref={galleryRef}
+            className="relative h-screen overflow-hidden hidden md:flex items-center justify-center"
+          >
+            {desktopScreenshots.map((item, i) => {
+              const isActive = i === galleryIndex;
+              const isLeftPeek = i === galleryIndex - 1;
+              const isRightPeek = i === galleryIndex + 1;
+              const isPeek = isLeftPeek || isRightPeek;
+
+              return (
+                <motion.div
+                  key={i}
+                  className="absolute w-full max-w-4xl px-6"
+                  initial={false}
+                  animate={{
+                    x: isLeftPeek 
+                      ? '-16%' 
+                      : isRightPeek 
+                        ? '16%' 
+                        : isActive 
+                          ? 0 
+                          : i < galleryIndex 
+                            ? '-130%' 
+                            : '130%',
+                    rotate: isLeftPeek 
+                      ? -5 
+                      : isRightPeek 
+                        ? 5 
+                        : isActive 
+                          ? 0 
+                          : i < galleryIndex 
+                            ? -20 
+                            : 20,
+                    scale: isPeek ? 0.92 : 1,
+                    opacity: isActive ? 1 : isPeek ? 0.5 : 0,
+                    zIndex: isActive ? 10 : isPeek ? 9 : 0,
+                  }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div 
+                    className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(255,255,255,0.06)] bg-[#0a0a0c] cursor-pointer"
+                    onClick={() => setHoveredImage(item)}
+                  >
+                    <div className="relative aspect-[16/10]">
+                      <img 
+                        src={item.src} 
+                        alt={item.alt} 
+                        className={`w-full h-full object-cover transition-all duration-500 ${isPeek ? 'blur-sm' : ''}`}
+                      />
+                    </div>
+                  </div>
+                  <motion.div 
+                    className="text-center mt-6"
+                    initial={false}
+                    animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
+                    transition={{ duration: 0.4, delay: isActive ? 0.3 : 0 }}
+                  >
+                    <h4 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-2">
+                      {item.title}
+                    </h4>
+                    <p className="text-neutral-400 text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto">
+                      {item.description}
+                    </p>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
-            <div className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-12 hide-scrollbar" style={{ paddingLeft: 'max(calc((100vw - 80rem) / 2), 2rem)', paddingRight: 'max(calc((100vw - 80rem) / 2), 2rem)' }}>
-              <div className="w-[85vw] md:w-[70vw] flex-shrink-0 snap-center rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.05)] bg-white/5 overflow-hidden aspect-video">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (HOMEPAGE).png" alt="Admin Homepage" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-[85vw] md:w-[70vw] flex-shrink-0 snap-center rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.05)] bg-white/5 overflow-hidden aspect-video">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (ADMINS MAP SECTION).png" alt="Admin Map Section" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-[85vw] md:w-[70vw] flex-shrink-0 snap-center rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.05)] bg-white/5 overflow-hidden aspect-video">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (SUPPLY INVENTORY PAGE).png" alt="Supply Inventory" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-[85vw] md:w-[70vw] flex-shrink-0 snap-center rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.05)] bg-white/5 overflow-hidden aspect-video">
-                <img src="/BAHANIHAN ASSETS/BAHANIHAN (VOLUNTEERS PAGE).png" alt="Volunteers Page" className="w-full h-full object-cover" />
-              </div>
+          {/* Mobile Horizontal Swipe Carousel (< md) */}
+          <div className="md:hidden relative w-full overflow-hidden py-8">
+            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none" />
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 hide-scrollbar">
+              {desktopScreenshots.map((item, i) => (
+                <div
+                  key={i}
+                  className="w-[85vw] sm:w-[75vw] flex-shrink-0 snap-center cursor-pointer group"
+                  onClick={() => setHoveredImage(item)}
+                >
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-lg transition-all duration-300 hover:shadow-[0_0_60px_rgba(255,255,255,0.12)] hover:scale-[1.02] mb-4">
+                    <img src={item.src} alt={item.alt} className="w-full h-auto object-cover" />
+                  </div>
+                  <div className="text-center px-2">
+                    <h4 className="text-white font-bold tracking-wide text-sm mb-1">{item.title}</h4>
+                    <p className="text-[#888] text-xs font-light leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
           </section>
