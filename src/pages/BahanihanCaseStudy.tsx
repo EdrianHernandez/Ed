@@ -8,6 +8,7 @@ const BahanihanCaseStudy = () => {
     alt: string;
     title: string;
     description: string;
+    category: string;
   }
   const [hoveredImage, setHoveredImage] = useState<ScreenshotData | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -66,31 +67,36 @@ const BahanihanCaseStudy = () => {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (MOBILE LANDING PAGE).png",
       alt: "Mobile Landing Page",
       title: "Landing Page",
-      description: "The volunteer's entry point\u2014clear mission status and immediate action prompts."
+      description: "The volunteer's entry point—clear mission status and immediate action prompts.",
+      category: "MOBILE SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (MISSION OVERVIEW).png",
       alt: "Mission Overview",
       title: "Mission Overview",
-      description: "Active mission parameters and supply routing at a glance."
+      description: "Active mission parameters and supply routing at a glance.",
+      category: "MOBILE SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (MAP SECTION).png",
       alt: "Map Section",
       title: "Live Map",
-      description: "Algorithmic disaster mapping for navigating active zones."
+      description: "Algorithmic disaster mapping for navigating active zones.",
+      category: "MOBILE SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (SUPPLY LOGS).png",
       alt: "Supply Logs",
       title: "Supply Logs",
-      description: "Real-time supply logging to eliminate logistical bottlenecks."
+      description: "Real-time supply logging to eliminate logistical bottlenecks.",
+      category: "MOBILE SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (PROFILE SECTION).png",
       alt: "Profile Section",
       title: "Volunteer Profile",
-      description: "Personal dashboard for tracking contributions and status."
+      description: "Personal dashboard for tracking contributions and status.",
+      category: "MOBILE SCREEN"
     }
   ];
 
@@ -99,25 +105,29 @@ const BahanihanCaseStudy = () => {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (HOMEPAGE).png",
       alt: "Admin Homepage",
       title: "Admin Homepage",
-      description: "Central command hub for real-time status overview across all evacuation centers and volunteer deployments."
+      description: "Central command hub for real-time status overview across all evacuation centers and volunteer deployments.",
+      category: "DESKTOP SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (ADMINS MAP SECTION).png",
       alt: "Map Dispatch",
       title: "Map Dispatch",
-      description: "Geographic visualization of evacuation zones, active volunteer locations, and resource distribution across Batangas province."
+      description: "Geographic visualization of evacuation zones, active volunteer locations, and resource distribution across Batangas province.",
+      category: "DESKTOP SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (SUPPLY INVENTORY PAGE).png",
       alt: "Supply Inventory",
       title: "Supply Inventory",
-      description: "Live tracking of relief goods across all LGU warehouses with real-time stock levels and inter-LGU transfer status."
+      description: "Live tracking of relief goods across all LGU warehouses with real-time stock levels and inter-LGU transfer status.",
+      category: "DESKTOP SCREEN"
     },
     {
       src: "/BAHANIHAN ASSETS/BAHANIHAN (VOLUNTEERS PAGE).png",
       alt: "Volunteer Registry",
       title: "Volunteer Registry",
-      description: "Complete volunteer roster with deployment history, skill mapping, and real-time availability status."
+      description: "Complete volunteer roster with deployment history, skill mapping, and real-time availability status.",
+      category: "DESKTOP SCREEN"
     }
   ];
 
@@ -252,7 +262,7 @@ const BahanihanCaseStudy = () => {
         </div>
 
         {/* The Brief Section */}
-        <section className="max-w-7xl mx-auto w-full py-32 md:py-40">
+        <section className="max-w-7xl mx-auto w-full py-24 md:py-32">
           <span className="text-neutral-600 tracking-widest text-[10px] font-semibold uppercase mb-8 block">[ THE BRIEF ]</span>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             <div className="lg:col-span-5">
@@ -284,7 +294,7 @@ const BahanihanCaseStudy = () => {
         </section>
 
         {/* Ecosystem Showcase Section */}
-        <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-5 md:py-4 bg-[#030305] overflow-hidden">
+        <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-16 md:py-20 bg-[#030305] overflow-hidden">
           {/* Technical Grid Background */}
           <div className="absolute inset-0 pointer-events-none z-0">
             <div 
@@ -299,9 +309,9 @@ const BahanihanCaseStudy = () => {
           {/* Global back-glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-white/[0.02] blur-[150px] rounded-full pointer-events-none z-0" />
 
-          <section className="max-w-7xl mx-auto w-full pb-32 relative z-10">
+          <section className="max-w-7xl mx-auto w-full pb-24 md:pb-32 relative z-10">
           {/* Section Intro */}
-          <div className="text-center py-32 md:py-32">
+          <div className="text-center py-20 md:py-24">
             <span className="text-neutral-500 tracking-widest text-xs font-semibold">[ SYSTEM ARCHITECTURE ]</span>
             <h2 className="font-montserrat font-black text-4xl md:text-5xl text-white mt-2">
               TWO INTERFACES. ONE RESPONSE.
@@ -309,7 +319,7 @@ const BahanihanCaseStudy = () => {
           </div>
 
           {/* Core Interfaces Visual Lockup */}
-          <div className="flex justify-center mt-1 md:mt-0 mb-24 md:mb-32 px-2 sm:px-0">
+          <div className="flex justify-center mt-1 md:mt-0 mb-16 md:mb-24 px-2 sm:px-0">
             <div className="relative w-[90%] max-w-5xl">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[50%] bg-white/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
@@ -329,19 +339,19 @@ const BahanihanCaseStudy = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7 }}
-            className="text-center mx-auto mb-10 max-w-3xl"
+            className="text-center mx-auto mb-6 sm:mb-8 max-w-3xl px-4 sm:px-0"
           >
-            <div className="w-12 h-px bg-white/30 mx-auto mb-6" />
-            <h3 className="font-montserrat font-bold text-3xl md:text-4xl text-white tracking-tight mb-4">
+            <div className="w-8 sm:w-12 h-px bg-white/30 mx-auto mb-5 sm:mb-6" />
+            <h3 className="font-montserrat font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-tight mb-3 sm:mb-4">
               Volunteer Mobile Application
             </h3>
-            <p className="text-neutral-400 leading-relaxed md:text-lg">
-              Engineered for high-stress environments. The mobile application acts as the tip of the spear for on-the-ground execution. By stripping away administrative noise, it focuses purely on active mission parameters, real-time supply logging, and algorithmic disaster mapping—drastically reducing cognitive friction for volunteers navigating active zones.
+            <p className="text-neutral-400 leading-relaxed text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              Built for high-stress field execution. Strips away administrative noise to focus on active missions, real-time supply logging, and disaster mapping—reducing cognitive friction for volunteers in active zones.
             </p>
           </motion.div>
 
           {/* Volunteer Mobile Screenshots — Auto-Scroll Marquee */}
-          <div className="marquee-pause-on-hover relative w-full overflow-hidden py-8 px-4 sm:px-6 lg:px-8">
+          <div className="marquee-pause-on-hover relative w-full overflow-hidden py-6 px-4 sm:px-6 lg:px-8">
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none" />
             <div className="flex w-max animate-marquee-ltr">
@@ -372,14 +382,14 @@ const BahanihanCaseStudy = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7 }}
-            className="text-center mx-auto mb-10 max-w-3xl mt-40"
+            className="text-center mx-auto mb-6 sm:mb-8 max-w-3xl px-4 sm:px-0 mt-16 sm:mt-20 md:mt-24"
           >
-            <div className="w-12 h-px bg-white/30 mx-auto mb-6" />
-            <h3 className="font-montserrat font-bold text-3xl md:text-4xl text-white tracking-tight mb-4">
+            <div className="w-8 sm:w-12 h-px bg-white/30 mx-auto mb-5 sm:mb-6" />
+            <h3 className="font-montserrat font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-tight mb-3 sm:mb-4">
               LGU Admin Dashboard
             </h3>
-            <p className="text-neutral-400 leading-relaxed md:text-lg">
-              The macro-level command center. In direct contrast to the mobile app, the desktop environment is engineered for extreme data density. Dispatchers require a god's-eye view of evacuation centers and volunteer deployments across Batangas province. This interface facilitates complex logistics, from broadcasting immediate alerts to executing critical inter-LGU supply requests.
+            <p className="text-neutral-400 leading-relaxed text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              The macro-level command center. engineered for extreme data density—giving dispatchers a god's-eye view of evacuation centers, volunteer deployments, and supply chains across Batangas province.
             </p>
           </motion.div>
 
@@ -453,7 +463,7 @@ const BahanihanCaseStudy = () => {
           </div>
 
           {/* Mobile Horizontal Swipe Carousel (< md) */}
-          <div className="md:hidden relative w-full overflow-hidden py-8">
+          <div className="md:hidden relative w-full overflow-hidden py-6">
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 bg-gradient-to-r from-[#030305] to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 bg-gradient-to-l from-[#030305] to-transparent z-10 pointer-events-none" />
             <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 hide-scrollbar">
@@ -478,7 +488,7 @@ const BahanihanCaseStudy = () => {
         </section>
 
         {/* Final CTA / Prototype Link */}
-        <section className="relative w-full py-24 md:py-32 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden">
+        <section className="relative w-full py-20 md:py-28 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden">
           
           {/* Atmospheric Radial Glow Behind Content */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent pointer-events-none z-0"></div>
@@ -491,7 +501,7 @@ const BahanihanCaseStudy = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex flex-col items-center py-16 px-6 sm:px-8 md:p-16 lg:p-24 w-full max-w-5xl"
+            className="relative z-10 flex flex-col items-center py-12 sm:py-14 md:p-16 lg:p-20 w-full max-w-5xl"
           >
             {/* Minimalist Corner Brackets */}
             <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t border-l border-white/20"></div>
@@ -534,7 +544,7 @@ const BahanihanCaseStudy = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative z-10 w-full flex flex-col items-center mt-20 md:mt-28"
+            className="relative z-10 w-full flex flex-col items-center mt-16 md:mt-24"
           >
             <div className="w-full max-w-sm h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             <span className="mt-6 text-[10px] md:text-xs font-mono tracking-[0.3em] text-neutral-600 uppercase">
@@ -547,47 +557,89 @@ const BahanihanCaseStudy = () => {
         <AnimatePresence>
           {hoveredImage && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
-              onClick={() => setHoveredImage(null)}
-            >
-              <div
-                className="relative flex flex-col md:flex-row max-w-5xl w-full max-h-[88vh] bg-[#0a0a0c]/95 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.9)]"
-                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
+                onClick={() => setHoveredImage(null)}
               >
-                <button
-                  onClick={() => setHoveredImage(null)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 transition-all duration-300 z-20"
-                  aria-label="Close preview"
+                {/* Frosted glass backdrop */}
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-xl" />
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  className="relative flex flex-col md:flex-row max-w-5xl w-full max-h-[90vh] sm:max-h-[88vh] rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_0_80px_rgba(255,255,255,0.04)]"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/80">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </button>
+                  {/* Gradient border glow */}
+                  <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.08] via-transparent to-white/[0.03] pointer-events-none" />
 
-                <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-10 min-h-[35vh] md:min-h-0 bg-neutral-900/50">
-                  <img
-                    src={hoveredImage.src}
-                    alt={hoveredImage.alt}
-                    className="max-h-[70vh] w-auto object-contain rounded-2xl shadow-2xl"
-                  />
-                </div>
+                  {/* Corner brackets */}
+                  <div className="absolute top-2 left-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-t border-l border-white/15 pointer-events-none" />
+                  <div className="absolute top-2 right-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-t border-r border-white/15 pointer-events-none" />
+                  <div className="absolute bottom-2 left-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-b border-l border-white/15 pointer-events-none" />
+                  <div className="absolute bottom-2 right-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-b border-r border-white/15 pointer-events-none" />
 
-                <div className="w-full md:w-[380px] border-t md:border-t-0 md:border-l border-white/10 p-6 sm:p-8 md:p-10 flex flex-col justify-center bg-[#0a0a0c]">
-                  <h4 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">
-                    {hoveredImage.title}
-                  </h4>
-                  <div className="w-12 h-1 bg-white/20 mb-6 rounded-full" />
-                  <p className="text-neutral-400 text-base md:text-lg font-light leading-relaxed">
-                    {hoveredImage.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+                  {/* Close button */}
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3, type: "spring", damping: 20 }}
+                    onClick={() => setHoveredImage(null)}
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:rotate-90 transition-all duration-300 z-20"
+                    aria-label="Close preview"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/70 sm:w-4 sm:h-4">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </motion.button>
+
+                  {/* Image Panel */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex-1 flex items-center justify-center p-3 sm:p-4 md:p-10 min-h-[30vh] sm:min-h-[35vh] md:min-h-0 bg-gradient-to-br from-neutral-900/80 to-neutral-950/80"
+                  >
+                    <img
+                      src={hoveredImage.src}
+                      alt={hoveredImage.alt}
+                      className="max-h-[45vh] sm:max-h-[55vh] md:max-h-[70vh] w-auto object-contain rounded-xl sm:rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.06)] ring-1 ring-white/5"
+                    />
+                  </motion.div>
+
+                  {/* Info Panel */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full md:w-[380px] border-t md:border-t-0 md:border-l border-white/10 p-5 sm:p-6 md:p-10 flex flex-col justify-center bg-[#0a0a0c]/90 backdrop-blur-md"
+                  >
+                    {/* Category pill */}
+                    <span className="inline-block self-start text-[9px] sm:text-[10px] font-mono tracking-[0.2em] text-white/40 uppercase px-2.5 sm:px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-4 sm:mb-5">
+                      {hoveredImage.category}
+                    </span>
+
+                    {/* Title */}
+                    <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-2 sm:mb-3">
+                      {hoveredImage.title}
+                    </h4>
+
+                    {/* Animated gradient divider */}
+                    <div className="w-full h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent mb-4 sm:mb-5" />
+
+                    {/* Description */}
+                    <p className="text-neutral-400 text-xs sm:text-sm md:text-base font-light leading-relaxed">
+                      {hoveredImage.description}
+                    </p>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
           )}
         </AnimatePresence>
 
