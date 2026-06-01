@@ -21,6 +21,7 @@ const projects = [
     description: "Commissioned design highlighting engaging visual storytelling. A user-friendly layout sculpted for purpose-driven interaction.",
     span: "col-span-1 row-span-1",
     link: "/projects/bahanihan",
+    image: "/BAHANIHAN ASSETS/Bahanihan Thumbnail.png"
   }
 ];
 

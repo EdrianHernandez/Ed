@@ -17,6 +17,10 @@ const BahanihanCaseStudy = () => {
   const isAnimatingRef = useRef(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     galleryIndexRef.current = galleryIndex;
   }, [galleryIndex]);
 
@@ -118,7 +122,13 @@ const BahanihanCaseStudy = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30">
+    <motion.div 
+      initial={{ y: "100%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: "-100%", opacity: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30"
+    >
       {/* Background Visuals: Dual-platform framing */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         
@@ -147,25 +157,32 @@ const BahanihanCaseStudy = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950/60 via-transparent to-neutral-950/60 pointer-events-none" />
 
       {/* Icon-Only Back Button */}
-      <Link 
-        to="/" 
-        className="absolute top-6 left-6 md:top-12 md:left-12 z-50 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:-translate-x-1 transition-all duration-300 group"
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="absolute top-6 left-6 md:top-12 md:left-12 z-50"
       >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="20" 
-          height="20" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-          className="text-white/60 group-hover:text-white transition-colors duration-300"
+        <Link 
+          to="/" 
+          className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:-translate-x-1 transition-all duration-300 group"
         >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </Link>
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            className="text-white/60 group-hover:text-white transition-colors duration-300"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </Link>
+      </motion.div>
 
       {/* Content Wrapper */}
       <div className="relative z-20 flex flex-col min-h-screen px-6 md:px-12 lg:px-24">
@@ -176,27 +193,45 @@ const BahanihanCaseStudy = () => {
           <div className="flex flex-col items-center text-center max-w-4xl">
             
             {/* Project Logo */}
-            <img 
+            <motion.img 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               src="/BAHANIHAN ASSETS/BAHANIHAN LOGO (2).png" 
               alt="Bahanihan Logo"
               className="h-35 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
             />
 
             {/* Unified Montserrat Title */}
-            <h1 
-              className="text-5xl md:text-7xl lg:text-[10rem] font-black tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] text-white leading-none"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              BAHANIHAN
-            </h1>
+            <motion.div className="overflow-hidden py-4 pb-2">
+              <motion.h1 
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl md:text-7xl lg:text-[10rem] font-black tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] text-white leading-none"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                BAHANIHAN
+              </motion.h1>
+            </motion.div>
 
             {/* Cinematic Tagline */}
-            <p className="text-neutral-400 uppercase text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] mt-8 mb-16 md:mb-20">
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-neutral-400 uppercase text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] mt-8 mb-16 md:mb-20"
+            >
               BAYANIHAN SA AKSYON, AGARAN SA PAGTULONG
-            </p>
+            </motion.p>
 
             {/* Metadata: Stacked mobile, row on tablet+ */}
-            <div className="flex flex-col gap-6 md:flex-row md:gap-12 ">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col gap-6 md:flex-row md:gap-12 "
+            >
               <div className="flex flex-col items-center gap-2">
                 <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">Role</span>
                 <span className="text-sm md:text-base text-white/90 font-medium tracking-wide">UI/UX DESIGNER</span>
@@ -211,7 +246,7 @@ const BahanihanCaseStudy = () => {
                 <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">Focus</span>
                 <span className="text-sm md:text-base text-white/90 font-medium tracking-wide">DISASTER RESPONSE COORDINATION</span>
               </div>
-            </div>
+            </motion.div>
             
           </div>
         </div>
@@ -491,7 +526,7 @@ const BahanihanCaseStudy = () => {
         </AnimatePresence>
 
       </div>
-    </div>
+    </motion.div>
   );
 };
 
