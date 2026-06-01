@@ -166,33 +166,34 @@ const BahanihanCaseStudy = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent pointer-events-none" />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950/60 via-transparent to-neutral-950/60 pointer-events-none" />
 
-      {/* Icon-Only Back Button */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="absolute top-6 left-6 md:top-12 md:left-12 z-50"
-      >
-        <Link 
-          to="/" 
-          className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:-translate-x-1 transition-all duration-300 group"
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-            className="text-white/60 group-hover:text-white transition-colors duration-300"
+      {/* Sticky Back Button — hidden, slides in on hover */}
+      <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
+        <div className="relative">
+          {/* Hover zone — always at viewport edge */}
+          <div className="h-10 w-10 sm:h-12 sm:w-12" />
+          {/* Button — slides in from left */}
+          <Link
+            to="/"
+            className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
+            aria-label="Back to Works"
           >
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </Link>
-      </motion.div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-white/60 group-hover/back:text-white transition-colors duration-300"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </Link>
+        </div>
+      </div>
 
       {/* Content Wrapper */}
       <div className="relative z-20 flex flex-col min-h-screen px-6 md:px-12 lg:px-24">

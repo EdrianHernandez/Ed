@@ -43,35 +43,6 @@ export function FloodguardCaseStudy() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
         </div>
 
-        {/* Navigation */}
-        <div className="absolute top-0 left-0 p-6 md:p-12 z-50">
-          <Link to="/">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="group flex flex-col items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/5 text-white/80 backdrop-blur-sm transition-all duration-300 ease-out hover:bg-white/10 hover:text-white hover:-translate-x-1 cursor-pointer"
-              aria-label="Back to Works"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-                className="transition-transform duration-300 group-hover:-translate-x-0.5"
-              >
-                <path d="M19 12H5" />
-                <path d="M12 19l-7-7 7-7" />
-              </svg>
-            </motion.div>
-          </Link>
-        </div>
-
         {/* Hero Typography */}
         <div className="flex flex-col items-center justify-center w-full z-10 mt-12 md:mt-0 space-y-12 md:space-y-16">
           <div className="flex flex-col items-center justify-center">
@@ -142,6 +113,36 @@ export function FloodguardCaseStudy() {
           </motion.div>
         </div>
       </section>
+
+      {/* Sticky Back Button — hidden, slides in on hover */}
+      <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
+        <div className="relative">
+          {/* Hover zone — always at viewport edge */}
+          <div className="h-10 w-10 sm:h-12 sm:w-12" />
+          {/* Button — slides in from left */}
+          <Link
+            to="/"
+            className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
+            aria-label="Back to Works"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-white/60 group-hover/back:text-white transition-colors duration-300"
+            >
+              <path d="M19 12H5" />
+              <path d="M12 19l-7-7 7-7" />
+            </svg>
+          </Link>
+        </div>
+      </div>
 
       {/* 2. The Brief (Finding the Chaos) */}
       <section className="py-16 sm:py-24 md:py-32 lg:py-48 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
