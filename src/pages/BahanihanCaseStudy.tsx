@@ -393,13 +393,11 @@ const BahanihanCaseStudy = () => {
                     className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(255,255,255,0.06)] bg-[#0a0a0c] cursor-pointer"
                     onClick={() => setHoveredImage(item)}
                   >
-                    <div className="relative aspect-[16/10]">
-                      <img 
-                        src={item.src} 
-                        alt={item.alt} 
-                        className={`w-full h-full object-cover transition-all duration-500 ${isPeek ? 'blur-sm' : ''}`}
-                      />
-                    </div>
+                    <img 
+                      src={item.src} 
+                      alt={item.alt} 
+                      className={`w-full h-auto transition-all duration-500 ${isPeek ? 'blur-sm' : ''}`}
+                    />
                   </div>
                   <motion.div 
                     className="text-center mt-6"
