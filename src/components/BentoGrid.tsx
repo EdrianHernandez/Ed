@@ -9,7 +9,7 @@ const projects = [
     description: "My 1st place winning piece from the Warframes Competition at UPLB. A masterful blend of high-stakes problem-solving and flawless, intuitive interface design drafted entirely in Figma. The crown jewel.",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2",
     link: "/projects/floodguard",
-    image: "/MAIN%20DASHBOARD%20(LANDING%20PAGE).png"
+    image: "/FLOODGUARD ASSETS/Floodguard thumbnail.png"
   },
   {
     title: "ShoreThing",

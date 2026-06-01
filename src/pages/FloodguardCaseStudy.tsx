@@ -31,11 +31,11 @@ export function FloodguardCaseStudy() {
       className="bg-[#050505] min-h-screen text-[#FBFBFB] font-sans selection:bg-[#FBFBFB] selection:text-[#050505]"
     >
       {/* 1. Case Study Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-24 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">
         {/* Cinematic UI Background */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/MAIN%20DASHBOARD%20(LANDING%20PAGE).png" 
+            src="/FLOODGUARD%20ASSETS/MAIN%20DASHBOARD%20(LANDING%20PAGE).png" 
             alt="Floodguard Dashboard Background" 
             className="w-full h-full object-cover blur-3xl opacity-20 brightness-50 scale-105"
           />
@@ -75,7 +75,16 @@ export function FloodguardCaseStudy() {
         {/* Hero Typography */}
         <div className="flex flex-col items-center justify-center w-full z-10 mt-12 md:mt-0 space-y-12 md:space-y-16">
           <div className="flex flex-col items-center justify-center">
-            <motion.div className="overflow-hidden py-4 pb-2">
+            <motion.div className="overflow-hidden py-4 pb-2 flex flex-col items-center">
+              <motion.img
+                src="/FLOODGUARD%20ASSETS/FLOODGUARD%20LOGO.png"
+                alt="Floodguard logo"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="h-65 w-auto mb-4 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                onError={(e) => (e.currentTarget as HTMLImageElement).style.opacity = '0'}
+              />
               <motion.h1 
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -199,8 +208,8 @@ export function FloodguardCaseStudy() {
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-6 sm:mb-8 md:mb-12 uppercase text-center px-2">The Command Center</h2>
             <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(255,255,255,0.03)] border border-white/5 mb-6 sm:mb-8 bg-[#0a0a0c] min-h-[200px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center">
-              <img src="/MAIN%20DASHBOARD%20(LANDING%20PAGE).png" alt="Main Dashboard" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
-              <span className="absolute text-[#333] font-mono text-xs sm:text-sm text-center px-4">Image required: /public/MAIN DASHBOARD (LANDING PAGE).png</span>
+              <img src="/FLOODGUARD%20ASSETS/MAIN%20DASHBOARD%20(LANDING%20PAGE).png" alt="Main Dashboard" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+              <span className="absolute text-[#333] font-mono text-xs sm:text-sm text-center px-4">Image required: /FLOODGUARD ASSETS/MAIN DASHBOARD (LANDING PAGE).png</span>
             </div>
             <p className="text-[#A8A8A8] text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-3xl text-center px-2 sm:px-0">
               The central hub for real-time precipitation and sector risk statuses, visualized through a stunning 3D isometric map of Batangas province. A masterclass in dark-mode data legibility designed to prevent cognitive overload.
@@ -239,7 +248,7 @@ export function FloodguardCaseStudy() {
                   className="flex flex-col group min-w-[85vw] sm:min-w-[65vw] md:min-w-[50vw] snap-center lg:min-w-0 lg:w-full"
                 >
                   <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-[#0a0a0c]/80 backdrop-blur-md flex items-center justify-center transition-colors duration-500 mb-4 sm:mb-6 shrink-0">
-                    <img src="/SAN%20JUAN.png" alt="San Juan Critical State" className="w-full h-full object-cover relative z-10 rounded-xl sm:rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                    <img src="/FLOODGUARD%20ASSETS/SAN%20JUAN.png" alt="San Juan Critical State" className="w-full h-full object-cover relative z-10 rounded-xl sm:rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
                     <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs z-0">Image required: /public/SAN JUAN.png</span>
                   </div>
                   <div className="pl-4 sm:pl-5 border-l-2 border-red-500/80 h-fit flex flex-col">
@@ -257,7 +266,7 @@ export function FloodguardCaseStudy() {
                   className="flex flex-col group min-w-[85vw] sm:min-w-[65vw] md:min-w-[50vw] snap-center lg:min-w-0 lg:w-full mt-0 lg:mt-16"
                 >
                   <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-[#0a0a0c]/80 backdrop-blur-md flex items-center justify-center transition-colors duration-500 mb-4 sm:mb-6 shrink-0">
-                    <img src="/BATANGAS%20CITY.png" alt="Batangas City Rising State" className="w-full h-full object-cover relative z-10 rounded-xl sm:rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                    <img src="/FLOODGUARD%20ASSETS/BATANGAS%20CITY.png" alt="Batangas City Rising State" className="w-full h-full object-cover relative z-10 rounded-xl sm:rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
                     <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs z-0">Image required: /public/BATANGAS CITY.png</span>
                   </div>
                   <div className="pl-4 sm:pl-5 border-l-2 border-yellow-500/80 h-fit flex flex-col">
@@ -275,7 +284,7 @@ export function FloodguardCaseStudy() {
                   className="flex flex-col group min-w-[85vw] sm:min-w-[65vw] md:min-w-[50vw] snap-center lg:min-w-0 lg:w-full mt-0 lg:mt-32 max-w-sm sm:max-w-none mx-auto sm:mx-0 w-full"
                 >
                   <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-[#0a0a0c]/80 backdrop-blur-md flex items-center justify-center transition-colors duration-500 mb-4 sm:mb-6 shrink-0">
-                    <img src="/ROSARIO.png" alt="Rosario Stable State" className="w-full h-full object-cover relative z-10 rounded-xl sm:rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                    <img src="/FLOODGUARD%20ASSETS/ROSARIO.png" alt="Rosario Stable State" className="w-full h-full object-cover relative z-10 rounded-xl sm:rounded-2xl" onError={(e) => e.currentTarget.style.opacity = '0'} />
                     <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs z-0">Image required: /public/ROSARIO.png</span>
                   </div>
                   <div className="pl-4 sm:pl-5 border-l-2 border-green-500/80 h-fit flex flex-col">
@@ -326,7 +335,7 @@ export function FloodguardCaseStudy() {
                 transition={{ duration: 0.8 }} 
                 className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.02)] border border-white/5 bg-[#0a0a0c] min-h-[200px] sm:min-h-[250px] md:min-h-[300px] flex items-center justify-center mr-6 sm:mr-12 md:mr-0"
               >
-                <img src="/WEATHER.png" alt="Satellite Weather" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                <img src="/FLOODGUARD%20ASSETS/WEATHER.png" alt="Satellite Weather" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
                 <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs text-center">Image required: /public/WEATHER.png</span>
               </motion.div>
               <motion.div 
@@ -336,7 +345,7 @@ export function FloodguardCaseStudy() {
                 transition={{ duration: 0.8, delay: 0.2 }} 
                 className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.02)] border border-white/5 bg-[#0a0a0c] min-h-[200px] sm:min-h-[250px] md:min-h-[300px] flex items-center justify-center ml-6 sm:ml-12 md:ml-0"
               >
-                <img src="/FLOOD%20MAPS.png" alt="Flood Maps" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                <img src="/FLOODGUARD%20ASSETS/FLOOD%20MAPS.png" alt="Flood Maps" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
                 <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs text-center">Image required: /public/FLOOD MAPS.png</span>
               </motion.div>
             </div>
@@ -352,7 +361,7 @@ export function FloodguardCaseStudy() {
               className="w-full mb-8 sm:mb-10 md:mb-12"
             >
               <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.04)] border border-white/5 bg-[#0a0a0c] min-h-[200px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center">
-                <img src="/EVACUATION%20CENTER.png" alt="AI Evacuation Logic" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+                <img src="/FLOODGUARD%20ASSETS/EVACUATION%20CENTER.png" alt="AI Evacuation Logic" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
                 <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs md:text-sm text-center">Image required: /public/EVACUATION CENTER.png</span>
               </div>
             </motion.div>
@@ -379,7 +388,7 @@ export function FloodguardCaseStudy() {
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center"
           >
             <div className="lg:col-span-8 relative rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.03)] border border-white/5 bg-[#0a0a0c] min-h-[200px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center">
-              <img src="/ANALYTICS.png" alt="Demographic Impact Analysis" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
+              <img src="/FLOODGUARD%20ASSETS/ANALYTICS.png" alt="Demographic Impact Analysis" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
               <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs md:text-sm text-center">Image required: /public/ANALYTICS.png</span>
             </div>
             <div className="lg:col-span-4 flex flex-col justify-center px-4 sm:px-6 lg:px-0">
@@ -427,7 +436,7 @@ export function FloodguardCaseStudy() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 rounded-full blur-[80px] pointer-events-none z-0"></div>
               
               <img 
-                src="/WARFRAMES_CERT.png" 
+                src="/FLOODGUARD%20ASSETS/WARFRAMES_CERT.png" 
                 alt="UPLB Warframes 1st Place Certificate" 
                 className="w-full max-w-lg lg:max-w-xl h-auto object-cover rounded-xl border border-white/10 shadow-2xl shadow-white/5 relative z-10 grayscale-0 opacity-100 lg:grayscale lg:opacity-70 hover:grayscale-0 hover:opacity-100 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-700 ease-out cursor-pointer"
                 onError={(e) => e.currentTarget.style.opacity = '0'}
