@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-montserrat: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --color-background: #0a0a0a;
   --color-foreground: #ededed;
@@ -30,8 +31,22 @@
 .marquee-pause-on-hover:hover .animate-marquee-ltr {
   animation-play-state: paused;
 }
+
+@keyframes lockup-scroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(var(--lockup-distance, -50%)); }
+}
+
+.animate-lockup-scroll {
+  animation: lockup-scroll var(--lockup-duration, 40s) linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-ltr {
+    animation: none;
+  }
+
+  .animate-lockup-scroll {
     animation: none;
   }
 }

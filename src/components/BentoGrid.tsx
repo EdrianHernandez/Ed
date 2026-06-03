@@ -15,6 +15,7 @@ const projects = [
     title: "ShoreThing",
     description: "Commissioned design project. Focused entirely on crafting a client-centric, aesthetically captivating, and highly responsive digital experience from the ground up.",
     span: "col-span-1 row-span-1",
+    link: "/projects/shorething",
   },
   {
     title: "Bahanihan",
