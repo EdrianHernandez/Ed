@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties, type ReactNode } from "react";
+﻿import { useEffect, type CSSProperties } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { cn } from "../lib/utils";
@@ -76,44 +76,107 @@ function AutoScrollLockup({
   );
 }
 
-type FlowSectionProps = {
-  eyebrow: string;
-  description: string;
-  children: ReactNode;
+type MediaPanelProps = {
+  src: string;
+  alt: string;
+  className?: string;
+  imageClassName?: string;
 };
 
-function FlowSection({ eyebrow, description, children }: FlowSectionProps) {
+function MediaPanel({ src, alt, className, imageClassName }: MediaPanelProps) {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-12 lg:gap-16 items-start">
-      <div className="lg:sticky lg:top-24 lg:self-start h-fit max-w-sm space-y-6">
-        <span className="font-montserrat text-[0.7rem] md:text-xs uppercase tracking-[0.35em] text-neutral-500 block mb-5">
-          {eyebrow}
-        </span>
-        <p className="text-neutral-400 text-base md:text-lg leading-relaxed font-light text-pretty max-w-2xl">
-          {description}
-        </p>
-        <div className="flex flex-wrap gap-3 pt-2">
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-neutral-300 font-montserrat">
-            Luxury UI
-          </span>
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-neutral-300 font-montserrat">
-            Premium Motion
-          </span>
-        </div>
-      </div>
+    <figure
+      className={cn(
+        "group overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/80 shadow-[0_0_60px_rgba(255,255,255,0.04)] transition-transform duration-500 ease-[0.16,1,0.3,1] hover:scale-[1.02]",
+        className
+      )}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className={cn("h-full w-full object-cover transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.04]", imageClassName)}
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  );
+}
 
-      <div className="space-y-8 md:space-y-12">
-        {children}
-      </div>
-    </section>
+function SectionLabel({ index, title, description }: { index: string; title: string; description: string; }) {
+  return (
+    <div className="max-w-4xl space-y-4">
+      <span className="font-montserrat text-[0.7rem] md:text-xs uppercase tracking-[0.4em] text-neutral-500 block">
+        {index}
+      </span>
+      <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-white text-balance">
+        {title}
+      </h3>
+      <p className="max-w-3xl text-base md:text-lg leading-relaxed text-neutral-400 text-pretty font-light">
+        {description}
+      </p>
+    </div>
   );
 }
 
 export function ShoreThingEcosystemShowcase() {
   return (
-    <section className="bg-neutral-950 py-32 md:py-40 text-white overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-24">
-        <div className="space-y-32 md:space-y-40">
+    <section className="relative bg-[#030305] py-32 md:py-40 text-white overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-size-[40px_40px]"
+          style={{
+            maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)"
+          }}
+        />
+      </div>
+
+      <div className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-250 w-250 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/2 blur-[150px]" />
+
+      <div className="relative mx-auto max-w-7xl px-6 md:px-12 lg:px-24 z-10">
+        <div className="space-y-40 md:space-y-48">
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 px-6 py-10 md:px-10 md:py-14 lg:px-12 lg:py-16"
+          >
+            <div
+              className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.12)_18%,rgba(255,255,255,0.04)_36%,transparent_72%)] blur-[70px] opacity-70 md:h-[120%] md:w-[120%] md:blur-[110px] lg:h-full lg:w-full"
+            />
+            <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 items-start">
+              <div className="lg:col-span-4 space-y-4 md:space-y-6">
+                <span className="font-montserrat text-[0.7rem] md:text-xs uppercase tracking-[0.45em] text-neutral-500 block">
+                  PROJECT OVERVIEW / THE BRIEF
+                </span>
+                <h3 className="max-w-md font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white text-balance">
+                  Digitizing the luxury of San Juan&apos;s coastline.
+                </h3>
+              </div>
+
+              <div className="lg:col-span-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+                <div className="space-y-3">
+                  <span className="font-montserrat text-[0.7rem] uppercase tracking-[0.35em] text-neutral-500 block">
+                    The Problem
+                  </span>
+                  <p className="text-base md:text-lg leading-relaxed text-neutral-300 font-light text-pretty">
+                    Despite being a premier destination, San Juan&apos;s coastal booking experience remains highly fragmented. Traditional property showcases fail to capture the true exclusivity of the locale, forcing users through high-friction, disjointed reservation flows.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <span className="font-montserrat text-[0.7rem] uppercase tracking-[0.35em] text-neutral-500 block">
+                    The Objective
+                  </span>
+                  <p className="text-base md:text-lg leading-relaxed text-neutral-300 font-light text-pretty">
+                    Architect an immersive, frictionless web application exclusively for San Juan&apos;s elite resorts. The goal was to translate high-fidelity property imagery into an effortless digital journey—converting inspiration directly into confirmed bookings without cognitive overload.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+
           <motion.header
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -141,91 +204,144 @@ export function ShoreThingEcosystemShowcase() {
           </motion.header>
 
           <div className="space-y-40 md:space-y-48">
-            <FlowSection
-              eyebrow="01 // DISCOVERY FLOW (Home & Explore)."
-              description="Architected to translate the luxury of San Juan, Batangas into an immediate digital experience. From the high-impact homepage to the curated property explore engine, the flow emphasizes high-fidelity visual immersion."
+            <motion.section
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-10"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.7, delay: 0 }}
-                  className="md:translate-y-0"
-                >
-                  <AutoScrollLockup
-                    src="/SHORETHING ASSETS/SHORETHING HOME FULL.png"
-                    alt="ShoreThing home page full-length design"
-                    duration={50}
-                    variant="home"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.7, delay: 0.15 }}
-                  className="md:translate-y-14"
-                >
-                  <AutoScrollLockup
-                    src="/SHORETHING ASSETS/SHORETHING EXPLORE FULL.png"
-                    alt="ShoreThing explore page full-length design"
-                    duration={56}
-                    variant="home"
-                  />
-                </motion.div>
-              </div>
-            </FlowSection>
+              <SectionLabel
+                index="01 // The Landing Experience"
+                title="Engineered for immediate visual impact."
+                description="The homepage breaks away from standard booking templates, acting as an immersive gateway. It establishes high-end brand trust within seconds, seamlessly transitioning users from initial inspiration to targeted property discovery."
+              />
 
-            <FlowSection
-              eyebrow="02 // PROPERTY SHOWCASE (Rooms & Details)."
-              description="Engineered to convert interest into bookings without cognitive friction. Detailed room amenities and intuitive reservation data are presented as a frictionless, immersive journey."
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.7, delay: 0 }}
-                  className="md:translate-y-0"
-                >
-                  <AutoScrollLockup
-                    src="/SHORETHING ASSETS/SHORETHING ROOMS PAGE FULL.png"
-                    alt="ShoreThing rooms page full-length design"
-                    duration={52}
-                    variant="rooms"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.7, delay: 0.15 }}
-                  className="md:translate-y-14"
-                >
-                  <AutoScrollLockup
-                    src="/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE FULL.png"
-                    alt="ShoreThing rooms detailed page full-length design"
-                    duration={58}
-                    variant="detail"
-                  />
-                </motion.div>
-              </div>
-            </FlowSection>
+              <MediaPanel
+                src="/SHORETHING ASSETS/SHORETHING HOME.png"
+                alt="ShoreThing homepage top fold"
+                className="w-full"
+                imageClassName="h-[clamp(22rem,58vw,44rem)] w-full"
+              />
 
-            <FlowSection
-              eyebrow="03 // BRAND STORY (About)."
-              description="Establishing trust and high-end positioning through localized narratives."
-            >
-              <div className="md:max-w-6xl md:mx-auto md:pt-8">
-                <AutoScrollLockup
-                  src="/SHORETHING ASSETS/SHORETHING ABOUT FULL.png"
-                  alt="ShoreThing about page full-length design"
-                  duration={54}
-                  variant="about"
+              <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-12 md:gap-8">
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING HOME 2.png"
+                  alt="ShoreThing homepage supporting feature section"
+                  className="md:col-span-7 aspect-4/3"
+                />
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING HOME 3.png"
+                  alt="ShoreThing homepage staggered support panel"
+                  className="md:col-span-5 md:mt-24 aspect-3/4"
                 />
               </div>
-            </FlowSection>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="relative mx-auto max-w-4xl space-y-10"
+            >
+              <SectionLabel
+                index="02 // THE DISCOVERY ENGINE."
+                title="A frictionless, highly visual infinite scroll to explore San Juan's premium properties."
+                description="The retained auto-scroll lockup becomes the only animated system in the showcase, centered as a luminous discovery engine with diffuse atmosphere and minimal chrome."
+              />
+
+              <div className="relative mx-auto max-w-4xl pt-4">
+                <AutoScrollLockup
+                  src="/SHORETHING ASSETS/SHORETHING EXPLORE FULL.png"
+                  alt="ShoreThing explore page full-length design"
+                  duration={56}
+                  variant="about"
+                  className="mx-auto"
+                />
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start"
+            >
+              <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit space-y-6">
+                <SectionLabel
+                  index="03 // PROPERTY CONVERSION."
+                  title="Engineered to convert interest into bookings without cognitive friction."
+                  description="Amenities and reservation data are presented as an immersive journey, so the content reads like a guided product story instead of a static list of rooms."
+                />
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-neutral-300 font-montserrat">
+                    Sticky Narrative
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-neutral-300 font-montserrat">
+                    Conversion Focus
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8 flex flex-col gap-12">
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ROOMS PAGE.png"
+                  alt="ShoreThing rooms page overview"
+                  className="aspect-16/11"
+                />
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE.png"
+                  alt="ShoreThing rooms detailed page"
+                  className="aspect-4/5 lg:w-[92%]"
+                />
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE 2.png"
+                  alt="ShoreThing rooms detail close-up"
+                  className="aspect-16/10 lg:w-[82%] lg:self-end"
+                />
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE 3.png"
+                  alt="ShoreThing rooms final detail panel"
+                  className="aspect-4/5 lg:w-[74%]"
+                />
+              </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start"
+            >
+              <div className="lg:col-span-5 space-y-6 lg:pt-8">
+                <SectionLabel
+                  index="04 // THE BRAND STORY."
+                  title="Establishing trust and high-end positioning through localized narratives."
+                  description="The brand mosaic uses tight editorial offsets and layered framing to feel closer to a luxury magazine spread than a standard case study block."
+                />
+              </div>
+
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:pt-10">
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ABOUT.png"
+                  alt="ShoreThing about page anchor"
+                  className="sm:mt-10 aspect-4/5"
+                />
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ABOUT 2.png"
+                  alt="ShoreThing about page staggered detail"
+                  className="sm:-mt-10 sm:ml-4 aspect-3/4"
+                />
+                <MediaPanel
+                  src="/SHORETHING ASSETS/SHORETHING ABOUT 3.png"
+                  alt="ShoreThing about page supporting feature"
+                  className="sm:col-span-2 sm:-mt-8 sm:ml-16 aspect-video"
+                />
+              </div>
+            </motion.section>
           </div>
         </div>
       </div>
@@ -247,13 +363,21 @@ export default function ShoreThingCaseStudy() {
       className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30"
     >
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/SHORETHING ASSETS/SHORETHING HOME FULL.png"
-            alt="ShoreThing home design background"
-            className="w-full h-full object-cover blur-3xl opacity-20 brightness-50 scale-105"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
+        <div className="absolute inset-0 z-0 overflow-hidden bg-neutral-950">
+          <div className="absolute inset-[-8%] bg-neutral-950">
+            <div
+              className="absolute inset-0 scale-110 bg-cover bg-center opacity-30 blur-2xl"
+              style={{
+                backgroundImage: "url('/SHORETHING ASSETS/SHORETHING HOME FULL.png')",
+                maskImage: "radial-gradient(circle at center, black 0%, black 34%, transparent 78%)",
+                WebkitMaskImage: "radial-gradient(circle at center, black 0%, black 34%, transparent 78%)"
+              }}
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.07)_18%,rgba(255,255,255,0.02)_35%,transparent_66%)] opacity-75 mix-blend-screen" />
+          </div>
+
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,10,0.18)_48%,rgba(10,10,10,0.78)_78%,#0a0a0a_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-linear-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
         </div>
 
         <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
@@ -284,16 +408,26 @@ export default function ShoreThingCaseStudy() {
         </div>
 
         <div className="flex flex-col items-center justify-center w-full z-10 mt-12 md:mt-0 space-y-12 md:space-y-16">
+
+          {/* Project Logo */}
+            <motion.img 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              src="/SHORETHING ASSETS/SHORETHING LOGO.png" 
+              alt="Shorething Logo"
+              className="h-55 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+            />
+
           <div className="flex flex-col items-center justify-center">
             <motion.div className="overflow-hidden py-4 pb-2 flex flex-col items-center">
               <motion.h1
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[11vw] sm:text-6xl md:text-8xl lg:text-9xl font-montserrat tracking-tighter uppercase leading-none text-center text-white drop-shadow-sm w-full"
+                className="text-[11vw] sm:text-6xl md:text-8xl lg:text-9xl font-montserrat font-black tracking-tighter uppercase leading-none text-center text-white drop-shadow-sm w-full"
               >
-                <span className="font-extrabold">SHORE</span>
-                <span className="font-extralight">THING</span>
+                SHORETHING
               </motion.h1>
             </motion.div>
 
@@ -303,7 +437,7 @@ export default function ShoreThingCaseStudy() {
               transition={{ delay: 0.45, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-xs sm:text-sm md:text-base tracking-[0.2em] sm:tracking-[0.3em] font-montserrat text-neutral-400 uppercase mt-2 md:mt-4 text-center px-4"
             >
-              TECHNICAL LUXURY STAY EXPERIENCE
+              SURE DESTINATION, SURE FUN
             </motion.div>
           </div>
 

@@ -208,9 +208,9 @@ const BahanihanCaseStudy = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              src="/BAHANIHAN ASSETS/BAHANIHAN LOGO (2).png" 
+              src="/BAHANIHAN ASSETS/BAHANIHAN LOGO.png" 
               alt="Bahanihan Logo"
-              className="h-35 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              className="h-55 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
             />
 
             {/* Unified Montserrat Title */}
