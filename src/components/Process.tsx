@@ -46,7 +46,7 @@ function ProcessCard({ step, index }: { step: typeof processes[0], index: number
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className="group relative flex flex-col md:flex-row items-start -ml-4 md:-ml-12 p-5 md:p-12 rounded-[2rem] overflow-hidden"
+      className="group relative flex flex-col md:flex-row items-start -ml-4 md:-ml-12 p-4 md:p-8 rounded-[2rem] overflow-hidden"
     >
       {/* Background Hover Effect - Spotlight */}
       <motion.div
@@ -77,10 +77,10 @@ function ProcessCard({ step, index }: { step: typeof processes[0], index: number
       
       {/* Content */}
       <div className="flex-1">
-        <h3 className="font-display text-xl md:text-[2rem] leading-tight text-white font-bold mb-3 md:mb-6 tracking-tight transition-colors duration-700">
+        <h3 className="font-display text-lg md:text-2xl leading-tight text-white font-bold mb-3 md:mb-6 tracking-tight transition-colors duration-700">
           {step.title}
         </h3>
-        <p className="font-sans text-base md:text-xl text-[#737373] font-light leading-relaxed max-w-2xl transition-all duration-700 group-hover:text-white group-hover:drop-shadow-[0_0_1px_rgba(255,255,255,0.2)]">
+        <p className="font-sans text-sm md:text-base text-[#737373] font-light leading-relaxed max-w-2xl transition-all duration-700 group-hover:text-white group-hover:drop-shadow-[0_0_1px_rgba(255,255,255,0.2)]">
           {step.description}
         </p>
       </div>
@@ -98,7 +98,7 @@ export function Process() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="process" className="py-24 md:py-48 px-6 md:px-12 lg:px-24 bg-[#0a0a0c] relative overflow-hidden">
+    <section id="process" className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-[#0a0a0c] relative overflow-hidden">
       {/* Background ambient radial glow (Cool Silver-Grey) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-[#ffffff]/5 to-[#a3a3a3]/5 rounded-full blur-[150px] pointer-events-none z-0" />
 
@@ -120,12 +120,12 @@ export function Process() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-40 pl-0 md:pl-12"
+          className="mb-10 md:mb-20 pl-0 md:pl-12"
         >
           <span className="font-mono text-xs md:text-sm text-[#525252] font-semibold uppercase tracking-[0.25em] mb-4 md:mb-6 block">
             03 // Process
           </span>
-          <h2 className="font-display text-4xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter text-white leading-none">
+          <h2 className="font-display text-3xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-none">
             Engineered Aesthetics
           </h2>
         </motion.div>
@@ -140,7 +140,7 @@ export function Process() {
             style={{ height: lineHeight }}
           />
 
-          <div className="space-y-8 md:space-y-20">
+          <div className="space-y-6 md:space-y-12">
             {processes.map((step, index) => (
               <ProcessCard key={step.num} step={step} index={index} />
             ))}

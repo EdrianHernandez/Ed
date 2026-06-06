@@ -81,8 +81,8 @@ export function BentoGrid() {
               <div className="absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               
               <div className="relative z-20 w-full">
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
+                {/* Tags - hidden by default, reveal on hover */}
+                <div className="flex flex-wrap gap-2 mb-0 group-hover:mb-3 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-12 transition-all duration-500">
                   {project.tags.map((tag) => (
                     <span key={tag} className="bg-white/10 backdrop-blur-sm text-white/70 text-[10px] md:text-xs font-medium px-2.5 py-1 rounded-full border border-white/10">
                       {tag}
@@ -90,7 +90,8 @@ export function BentoGrid() {
                   ))}
                 </div>
 
-                <div className="flex justify-between items-end w-full mb-3 md:mb-4">
+                {/* Title - shifts up on hover to make room */}
+                <div className="flex justify-between items-end w-full mb-0 group-hover:mb-4 transition-all duration-500">
                   {project.title === "FLOODGUARD" ? (
                     <h3 className="font-montserrat text-2xl md:text-3xl text-white group-hover:text-white/95 transition-colors tracking-tight">
                       <span className="font-[1000]">FLOOD</span>
@@ -106,12 +107,14 @@ export function BentoGrid() {
                     </h3>
                   )}
                 </div>
-                <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-2 group-hover:line-clamp-none transition-all duration-500 text-pretty mb-4">
+
+                {/* Description - hidden by default, reveal on hover */}
+                <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-2 transition-all duration-500 text-pretty mb-0 group-hover:mb-4 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-24">
                   {project.description}
                 </p>
 
-                {/* Hover CTA */}
-                <div className="flex items-center gap-2 text-white/0 group-hover:text-white/90 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                {/* View Project CTA - hidden by default, reveal on hover */}
+                <div className="flex items-center gap-2 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-10 transition-all duration-500">
                   <span className="text-sm font-medium">View Project</span>
                   <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
