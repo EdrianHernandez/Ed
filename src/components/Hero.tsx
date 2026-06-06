@@ -22,7 +22,7 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 relative overflow-hidden bg-[#0a0a0c]">
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-16 md:pt-24 relative overflow-hidden bg-[#0a0a0c]">
       {/* Grid Pattern Background */}
       <div 
         className="absolute inset-0 pointer-events-none z-0"
