@@ -76,10 +76,20 @@
   }
 }
 
-/* Bento Grid Card Enhancements */
+/* Works Section Enhancements */
 @keyframes shimmer {
   0% { transform: translateX(-100%) skewX(-15deg); }
   100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 4s ease infinite;
 }
 
 @keyframes gradient-border {

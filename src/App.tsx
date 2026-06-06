@@ -6,7 +6,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { Hero } from "./components/Hero";
-import { BentoGrid } from "./components/BentoGrid";
+import { Works } from "./components/Works";
 import { Experience } from "./components/Experience";
 import { Process } from "./components/Process";
 import { Philosophy } from "./components/Philosophy";
@@ -25,7 +25,7 @@ function Home() {
       <Hero />
       <ToolsMarquee />
       <About />
-      <BentoGrid />
+      <Works />
       <Experience />
       <Process />
       <Philosophy />
