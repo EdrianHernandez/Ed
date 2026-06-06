@@ -11,6 +11,7 @@ import { Experience } from "./components/Experience";
 import { Process } from "./components/Process";
 import { Philosophy } from "./components/Philosophy";
 import { ToolsMarquee } from "./components/ToolsMarquee";
+import { About } from "./components/About";
 import { Footer } from "./components/Footer";
 import { Projects } from "./pages/Projects";
 import { FloodguardCaseStudy } from "./pages/FloodguardCaseStudy";
@@ -23,6 +24,7 @@ function Home() {
       <NavBar />
       <Hero />
       <ToolsMarquee />
+      <About />
       <BentoGrid />
       <Experience />
       <Process />
