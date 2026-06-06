@@ -313,7 +313,7 @@ export function ShoreThingEcosystemShowcase() {
                   <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                 </div>
 
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">The Landing Experience.</h3>
+                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">The Landing Experience</h3>
 
                 <p className="text-neutral-400 leading-relaxed text-base md:text-lg max-w-2xl font-light">Engineered for immediate visual impact. The homepage breaks away from standard booking templates, acting as an immersive gateway that establishes high-end brand trust within seconds.</p>
               </div>
@@ -367,7 +367,7 @@ export function ShoreThingEcosystemShowcase() {
                   <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                 </div>
 
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">Visualizing the Coast.</h3>
+                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">Visualizing the Coast</h3>
 
                 <p className="text-neutral-400 leading-relaxed text-base md:text-lg max-w-2xl font-light">A frictionless, highly visual infinite scroll. The Explore engine strips away cluttered search filters, replacing them with a curated, immersive browsing experience that lets the properties speak for themselves.</p>
               </div>
@@ -454,7 +454,7 @@ export function ShoreThingEcosystemShowcase() {
                     <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                   </div>
 
-                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Curated Selection.</h3>
+                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Curated Selection</h3>
 
                   <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">A highly visual browsing experience designed to remove cognitive load. The catalog focuses purely on high-fidelity imagery and upfront amenity data, allowing the properties to command attention before the user even clicks.</p>
                 </div>
@@ -478,7 +478,7 @@ export function ShoreThingEcosystemShowcase() {
                     <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                   </div>
 
-                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">The Deep Dive.</h3>
+                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">The Deep Dive</h3>
 
                   <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">Engineered to convert interest into confirmed reservations. The detailed property page immerses the user in the space, transparently displaying amenities, pricing, and a frictionless booking flow without taking them out of the experience.</p>
                 </div>
@@ -533,7 +533,7 @@ export function ShoreThingEcosystemShowcase() {
                   <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
                 </div>
 
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">Establishing Trust.</h3>
+                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">Establishing Trust</h3>
 
                 <p className="text-neutral-400 leading-relaxed text-base md:text-lg max-w-2xl font-light">A localized narrative that positions the platform not just as a utility, but as a premium digital concierge for San Juan's finest coastal resorts. It builds immediate credibility through clean typography and immersive photography.</p>
               </div>
