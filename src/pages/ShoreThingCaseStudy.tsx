@@ -11,6 +11,19 @@ type EcosystemImage = {
   category: string;
 };
 
+type LockupData = {
+  src: string;
+  alt: string;
+};
+
+const lockups: LockupData[] = [
+  { src: "/SHORETHING ASSETS/SHORETHING HOME FULL.png", alt: "ShoreThing Home Full Flow" },
+  { src: "/SHORETHING ASSETS/SHORETHING EXPLORE FULL.png", alt: "ShoreThing Explore Full Flow" },
+  { src: "/SHORETHING ASSETS/SHORETHING ROOMS PAGE FULL.png", alt: "Rooms Catalog Flow" },
+  { src: "/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE FULL.png", alt: "Detailed Property Flow" },
+  { src: "/SHORETHING ASSETS/SHORETHING ABOUT FULL.png", alt: "ShoreThing Brand Story" },
+];
+
 type AutoScrollLockupProps = {
   src: string;
   alt: string;
@@ -54,8 +67,8 @@ function AutoScrollLockup({
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="h-150 lg:h-200 rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
-        <div className="absolute inset-x-0 top-0 h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
         <div className="absolute inset-0 overflow-hidden">
           <div
@@ -181,18 +194,78 @@ function ImageModal({
   );
 }
 
+function LockupModal({
+  lockup,
+  onClose,
+}: {
+  lockup: LockupData;
+  onClose: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-xl" />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        exit={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-neutral-900 ring-1 ring-white/10 shadow-[0_0_80px_rgba(255,255,255,0.04)]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.08] via-transparent to-white/[0.03] pointer-events-none" />
+        <div className="absolute top-2 left-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-t border-l border-white/15 pointer-events-none" />
+        <div className="absolute top-2 right-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-t border-r border-white/15 pointer-events-none" />
+        <div className="absolute bottom-2 left-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-b border-l border-white/15 pointer-events-none" />
+        <div className="absolute bottom-2 right-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 border-b border-r border-white/15 pointer-events-none" />
+
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, type: "spring", damping: 20 }}
+          onClick={onClose}
+          className="sticky top-3 right-3 sm:left-full sm:ml-2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:rotate-90 transition-all duration-300 z-20"
+          aria-label="Close preview"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/70 sm:w-4 sm:h-4">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </motion.button>
+
+        <img
+          src={lockup.src}
+          alt={lockup.alt}
+          className="w-full h-auto block"
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export function ShoreThingEcosystemShowcase() {
   const [selectedImage, setSelectedImage] = useState<EcosystemImage | null>(null);
+  const [selectedLockup, setSelectedLockup] = useState<LockupData | null>(null);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedImage(null);
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+        setSelectedLockup(null);
+      }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
   return (
-    <section className="relative bg-[#030305] py-32 md:py-40 text-white overflow-hidden">
+    <section className="relative bg-[#030305] py-20 md:py-32 lg:py-40 text-white overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-size-[40px_40px]"
@@ -207,24 +280,23 @@ export function ShoreThingEcosystemShowcase() {
 
       <div className="relative mx-auto max-w-7xl px-6 md:px-12 lg:px-24 z-10">
         <div className="space-y-40 md:space-y-48">
-          <section className="relative w-full max-w-[1400px] mx-auto px-6 py-32 md:py-40 overflow-hidden lg:overflow-visible">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[70%] h-[100%] md:h-[80%] bg-white/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none -z-10"></div>
+          <section className="relative w-full max-w-[1400px] mx-auto py-16 md:py-24 lg:py-32">
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative z-10 items-center">
-              <div className="lg:col-span-6">
-                <span className="block text-neutral-600 text-[10px] tracking-[0.2em] uppercase mb-8">[ THE BRIEF ]</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 relative z-10 items-center">
+              <div className="lg:col-span-6 text-center lg:text-left">
+                <span className="block text-neutral-600 text-[10px] tracking-[0.2em] uppercase mb-4 md:mb-6 lg:mb-8">[ THE BRIEF ]</span>
                 <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Digitizing the luxury of San Juan&apos;s coastline.</h2>
               </div>
 
-              <div className="lg:col-span-5 lg:col-start-8">
-                <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-6">THE OBJECTIVE</h3>
+              <div className="lg:col-span-5 lg:col-start-8 text-center lg:text-left">
+                <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-3 md:mb-4 lg:mb-6">THE OBJECTIVE</h3>
                 <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">Architect an immersive, frictionless web application exclusively for San Juan&apos;s elite resorts. The goal was to translate high-fidelity property imagery into an effortless digital journey—converting inspiration directly into confirmed bookings without cognitive overload.</p>
               </div>
             </div>
           </section>
 
          
-          <div className="space-y-40 md:space-y-48">
+        <div className="space-y-24 md:space-y-32 lg:space-y-40">
             <motion.section
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -249,9 +321,9 @@ export function ShoreThingEcosystemShowcase() {
               <div className="max-w-5xl mx-auto relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
-                <div className="h-[500px] md:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
-                  <div className="absolute inset-x-0 top-0 h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
+                <div onClick={() => setSelectedLockup(lockups[0])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                  <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
                   <div className="absolute inset-0 overflow-hidden">
                     <div
@@ -284,7 +356,7 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-12 mt-40 md:mt-56"
+              className="space-y-12 mt-20 md:mt-32 lg:mt-40"
             >
               <div className="flex flex-col items-center text-center gap-6 mb-16 md:mb-24 relative z-10">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
@@ -303,9 +375,9 @@ export function ShoreThingEcosystemShowcase() {
               <div className="max-w-5xl mx-auto relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
-                <div className="h-[500px] md:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
-                  <div className="absolute inset-x-0 top-0 h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
+                <div onClick={() => setSelectedLockup(lockups[1])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                  <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
                   <div className="absolute inset-0 overflow-hidden">
                     <div
@@ -338,14 +410,14 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-40 md:mt-56 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative items-start"
+              className="mt-20 md:mt-32 lg:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 relative items-center"
             >
               <div className="lg:col-span-7 relative order-last lg:order-first">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div className="h-[500px] lg:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
-                  <div className="absolute inset-x-0 top-0 h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
+                <div onClick={() => setSelectedLockup(lockups[2])} className="cursor-pointer lockup-static-lg lockup-pause-on-hover aspect-[16/10] lg:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                  <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
                   <div className="absolute inset-0 overflow-hidden">
                     <div
@@ -373,7 +445,7 @@ export function ShoreThingEcosystemShowcase() {
               </div>
 
               <div className="lg:col-span-5">
-                <div className="lg:sticky lg:top-32 flex flex-col gap-6 relative z-10">
+                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-left lg:items-start">
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
 
                   <div className="flex items-center gap-3">
@@ -394,10 +466,10 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-40 md:mt-56 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative items-start"
+              className="mt-20 md:mt-32 lg:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 relative items-center"
             >
               <div className="lg:col-span-5">
-                <div className="lg:sticky lg:top-32 flex flex-col gap-6 relative z-10">
+                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-left lg:items-start">
                   <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[120%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
 
                   <div className="flex items-center gap-3">
@@ -415,9 +487,9 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div className="h-[500px] lg:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
-                  <div className="absolute inset-x-0 top-0 h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
+                <div onClick={() => setSelectedLockup(lockups[3])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                  <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
                   <div className="absolute inset-0 overflow-hidden">
                     <div
@@ -450,7 +522,7 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-12 mt-40 md:mt-56"
+              className="space-y-12 mt-20 md:mt-32 lg:mt-40"
             >
               <div className="flex flex-col items-center text-center gap-6 mb-16 md:mb-24 relative z-10">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
@@ -469,9 +541,9 @@ export function ShoreThingEcosystemShowcase() {
               <div className="max-w-6xl mx-auto relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-white/5 blur-[130px] rounded-full pointer-events-none -z-10" />
 
-                <div className="h-[500px] md:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_60px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
-                  <div className="absolute inset-x-0 top-0 h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
+                <div onClick={() => setSelectedLockup(lockups[4])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] lg:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_60px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                  <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
                   <div className="absolute inset-0 overflow-hidden">
                     <div
@@ -506,7 +578,7 @@ export function ShoreThingEcosystemShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full py-20 md:py-28 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden mt-16"
+          className="relative w-full py-14 sm:py-16 md:py-20 lg:py-28 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden mt-16"
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent pointer-events-none z-0" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-10" />
@@ -516,7 +588,7 @@ export function ShoreThingEcosystemShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex flex-col items-center py-12 sm:py-14 md:p-16 lg:p-20 w-full max-w-5xl"
+            className="relative z-10 flex flex-col items-center py-8 sm:py-10 md:p-16 lg:p-20 w-full max-w-5xl"
           >
             <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t border-l border-white/20" />
             <div className="absolute top-0 right-0 w-4 h-4 md:w-6 md:h-6 border-t border-r border-white/20" />
@@ -534,7 +606,7 @@ export function ShoreThingEcosystemShowcase() {
               href="https://www.figma.com/proto/[PLACEHOLDER]"
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-10 md:mt-12 px-6 sm:px-8 py-3.5 sm:py-4 w-full max-w-[280px] sm:max-w-max rounded-full bg-black/50 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 transition-all duration-500 ease-out hover:ring-white/40 hover:bg-white/10 hover:shadow-[0_0_40px_0px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95"
+              className="group mt-8 sm:mt-10 md:mt-12 px-6 sm:px-8 py-3.5 sm:py-4 w-full max-w-[280px] sm:max-w-max rounded-full bg-black/50 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 transition-all duration-500 ease-out hover:ring-white/40 hover:bg-white/10 hover:shadow-[0_0_40px_0px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95"
             >
               <svg
                 className="w-5 h-5 transition-transform duration-500 group-hover:scale-110"
@@ -572,6 +644,12 @@ export function ShoreThingEcosystemShowcase() {
           <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {selectedLockup && (
+          <LockupModal lockup={selectedLockup} onClose={() => setSelectedLockup(null)} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -589,7 +667,7 @@ export default function ShoreThingCaseStudy() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30"
     >
-      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-8 md:px-12 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden bg-neutral-950">
           <div className="absolute inset-[-8%] bg-neutral-950">
             <div
@@ -612,7 +690,7 @@ export default function ShoreThingCaseStudy() {
             <div className="h-10 w-10 sm:h-12 sm:w-12" />
             <Link
               to="/"
-              className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
+              className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 translate-x-3 md:-translate-x-full md:group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
               aria-label="Back to Works"
             >
               <svg
@@ -634,7 +712,7 @@ export default function ShoreThingCaseStudy() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full z-10 mt-12 md:mt-0 space-y-12 md:space-y-16">
+        <div className="flex flex-col items-center justify-center w-full z-10 mt-12 md:mt-0 space-y-8 sm:space-y-10 md:space-y-16">
 
           {/* Project Logo */}
             <motion.img 
@@ -643,7 +721,7 @@ export default function ShoreThingCaseStudy() {
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               src="/SHORETHING ASSETS/SHORETHING LOGO.png" 
               alt="Shorething Logo"
-              className="h-55 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+              className="h-32 sm:h-40 md:h-55 w-auto mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
             />
 
           <div className="flex flex-col items-center justify-center">
@@ -652,7 +730,7 @@ export default function ShoreThingCaseStudy() {
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[11vw] sm:text-6xl md:text-8xl lg:text-9xl font-montserrat font-black tracking-tighter uppercase leading-none text-center text-white drop-shadow-sm w-full"
+                className="text-[11vw] sm:text-6xl md:text-7xl lg:text-9xl font-montserrat font-black tracking-tighter uppercase leading-none text-center text-white drop-shadow-sm w-full"
               >
                 SHORETHING
               </motion.h1>
@@ -672,7 +750,7 @@ export default function ShoreThingCaseStudy() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start w-full gap-8 sm:gap-6 md:gap-16 lg:gap-24 mt-4 px-4 sm:px-0"
+            className="flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start w-full gap-6 sm:gap-6 md:gap-12 lg:gap-24 mt-4 px-4 sm:px-0"
           >
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
               <div className="flex items-center space-x-2">

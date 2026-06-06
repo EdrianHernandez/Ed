@@ -32,6 +32,10 @@
   animation-play-state: paused;
 }
 
+.lockup-pause-on-hover:hover .animate-lockup-scroll {
+  animation-play-state: paused;
+}
+
 @keyframes lockup-scroll {
   from { transform: translateY(0); }
   to { transform: translateY(var(--lockup-distance, -50%)); }
@@ -39,6 +43,12 @@
 
 .animate-lockup-scroll {
   animation: lockup-scroll var(--lockup-duration, 40s) linear infinite;
+}
+
+@media (min-width: 1024px) {
+  .lockup-static-lg .animate-lockup-scroll {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
