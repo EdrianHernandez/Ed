@@ -6,21 +6,21 @@ import { Link } from "react-router-dom";
 const projects = [
   {
     title: "FLOODGUARD",
-    description: "My 1st place winning piece from the Warframes Competition at UPLB. A masterful blend of high-stakes problem-solving and flawless, intuitive interface design drafted entirely in Figma. The crown jewel.",
+    description: "Flood monitoring and disaster response dashboard for Batangas",
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2",
     link: "/projects/floodguard",
     image: "/FLOODGUARD ASSETS/Floodguard thumbnail.png"
   },
   {
     title: "ShoreThing",
-    description: "Commissioned design project. Focused entirely on crafting a client-centric, aesthetically captivating, and highly responsive digital experience from the ground up.",
+    description: "Coastal travel booking platform for Batangas destinations",
     span: "col-span-1 row-span-1",
     link: "/projects/shorething",
     image: "/SHORETHING ASSETS/Shorething Thumbnail.png",
   },
   {
     title: "Bahanihan",
-    description: "Commissioned design highlighting engaging visual storytelling. A user-friendly layout sculpted for purpose-driven interaction.",
+    description: "Community disaster response command center with live data",
     span: "col-span-1 row-span-1",
     link: "/projects/bahanihan",
     image: "/BAHANIHAN ASSETS/Bahanihan Thumbnail.png"
@@ -79,8 +79,12 @@ export function BentoGrid() {
                       <span className="font-[1000]">FLOOD</span>
                       <span className="font-[200]">GUARD</span>
                     </h3>
+                  ) : project.title === "ShoreThing" ? (
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight uppercase">
+                      {project.title}
+                    </h3>
                   ) : (
-                    <h3 className="font-display text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight">
+                    <h3 className="font-montserrat text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight uppercase">
                       {project.title}
                     </h3>
                   )}
