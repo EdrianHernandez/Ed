@@ -7,6 +7,8 @@ const projects = [
   {
     title: "FLOODGUARD",
     description: "Flood monitoring and disaster response dashboard for Batangas",
+    tags: ["UI/UX Design", "Dashboard"],
+    tech: ["Figma"],
     span: "col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2",
     link: "/projects/floodguard",
     image: "/FLOODGUARD ASSETS/Floodguard thumbnail.png"
@@ -14,6 +16,8 @@ const projects = [
   {
     title: "ShoreThing",
     description: "Coastal travel booking platform for Batangas destinations",
+    tags: ["UI/UX Design", "Booking Platform"],
+    tech: ["Figma"],
     span: "col-span-1 row-span-1",
     link: "/projects/shorething",
     image: "/SHORETHING ASSETS/Shorething Thumbnail.png",
@@ -21,6 +25,8 @@ const projects = [
   {
     title: "Bahanihan",
     description: "Community disaster response command center with live data",
+    tags: ["UI/UX Design", "Community Platform"],
+    tech: ["Figma"],
     span: "col-span-1 row-span-1",
     link: "/projects/bahanihan",
     image: "/BAHANIHAN ASSETS/Bahanihan Thumbnail.png"
@@ -56,23 +62,34 @@ export function BentoGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8, scale: 0.98 }}
+              whileHover={{ y: -12, scale: 0.98 }}
               className={cn(
-                "group relative flex flex-col justify-end p-6 md:p-8 rounded-[1.5rem] bg-card border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] cursor-pointer h-full w-full"
+                "bento-card group relative flex flex-col justify-end p-6 md:p-8 rounded-[1.5rem] overflow-hidden transition-all duration-500 cursor-pointer h-full w-full",
+                "shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_50px_rgba(99,102,241,0.15)]"
               )}
             >
               {project.image && (
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="absolute inset-0 w-full h-full object-cover z-0 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" 
+                  className="absolute inset-0 w-full h-full object-cover z-0 opacity-70 group-hover:opacity-90 group-hover:scale-110 transition-all duration-700 ease-out" 
                 />
               )}
-              {/* Text readability vignette (bottom only) */}
-              <div className="absolute inset-x-0 bottom-0 h-2/4 bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c]/80 to-transparent z-10 pointer-events-none" />
+              {/* Stronger vignette for text readability */}
+              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 z-10 pointer-events-none" />
               <div className="absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               
               <div className="relative z-20 w-full">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="bg-white/10 backdrop-blur-sm text-white/70 text-[10px] md:text-xs font-medium px-2.5 py-1 rounded-full border border-white/10">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
                 <div className="flex justify-between items-end w-full mb-3 md:mb-4">
                   {project.title === "FLOODGUARD" ? (
                     <h3 className="font-montserrat text-2xl md:text-3xl text-white group-hover:text-white/95 transition-colors tracking-tight">
@@ -89,9 +106,17 @@ export function BentoGrid() {
                     </h3>
                   )}
                 </div>
-                <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-3 group-hover:line-clamp-none transition-all duration-500 text-pretty">
+                <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-2 group-hover:line-clamp-none transition-all duration-500 text-pretty mb-4">
                   {project.description}
                 </p>
+
+                {/* Hover CTA */}
+                <div className="flex items-center gap-2 text-white/0 group-hover:text-white/90 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                  <span className="text-sm font-medium">View Project</span>
+                  <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
               </div>
             </motion.div>
           );
