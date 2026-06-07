@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "../lib/utils";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const projects = [
   {
@@ -28,55 +28,47 @@ const projects = [
     tech: ["Figma"],
     link: "/projects/bahanihan",
     image: "/BAHANIHAN ASSETS/Bahanihan Thumbnail.png"
+  },
+  {
+    title: "PhilHealth",
+    description: "Redesigned the PhilHealth website for Technofusion 2025 at Batangas State University, winning 2nd Place",
+    tags: ["UI/UX Redesign"],
+    tech: ["Figma"],
+    link: "#",
+    image: null
   }
 ];
 
-function getGridPlacement(title: string, hoveredCard: string | null, isLg: boolean, isMd: boolean): React.CSSProperties {
-  if (!isMd) {
-    return { gridColumn: "span 1", gridRow: "span 1" };
-  }
+function getNumber(index: number) {
+  return String(index + 1).padStart(2, "0");
+}
 
-  if (!isLg) {
-    if (title === "FLOODGUARD") return { gridColumn: "span 2", gridRow: "span 1" };
-    return { gridColumn: "span 1", gridRow: "span 1" };
+function TitleFont({ title, className }: { title: string; className?: string }) {
+  if (title === "FLOODGUARD") {
+    return (
+      <h3 className={cn("font-montserrat tracking-tight", className)}>
+        <span className="font-[1000]">FLOOD</span>
+        <span className="font-[200]">GUARD</span>
+      </h3>
+    );
   }
-
-  if (hoveredCard === "ShoreThing") {
-    if (title === "FLOODGUARD") return { gridColumn: "1", gridRow: "1" };
-    if (title === "ShoreThing") return { gridColumn: "2 / 4", gridRow: "1 / 3" };
-    return { gridColumn: "1", gridRow: "2" };
+  if (title === "ShoreThing") {
+    return (
+      <h3 className={cn("font-serif font-bold tracking-tight uppercase", className)}>
+        {title}
+      </h3>
+    );
   }
-
-  if (hoveredCard === "Bahanihan") {
-    if (title === "FLOODGUARD") return { gridColumn: "1", gridRow: "1" };
-    if (title === "ShoreThing") return { gridColumn: "1", gridRow: "2" };
-    return { gridColumn: "2 / 4", gridRow: "1 / 3" };
-  }
-
-  if (title === "FLOODGUARD") return { gridColumn: "1 / 3", gridRow: "1 / 3" };
-  if (title === "ShoreThing") return { gridColumn: "3", gridRow: "1" };
-  return { gridColumn: "3", gridRow: "2" };
+  return (
+    <h3 className={cn("font-montserrat font-bold tracking-tight uppercase", className)}>
+      {title}
+    </h3>
+  );
 }
 
 export function Works() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [isLg, setIsLg] = useState(false);
-  const [isMd, setIsMd] = useState(false);
-
-  useEffect(() => {
-    const mqLg = window.matchMedia("(min-width: 1024px)");
-    const mqMd = window.matchMedia("(min-width: 768px)");
-    setIsLg(mqLg.matches);
-    setIsMd(mqMd.matches);
-    const handlerLg = (e: MediaQueryListEvent) => setIsLg(e.matches);
-    const handlerMd = (e: MediaQueryListEvent) => setIsMd(e.matches);
-    mqLg.addEventListener("change", handlerLg);
-    mqMd.addEventListener("change", handlerMd);
-    return () => {
-      mqLg.removeEventListener("change", handlerLg);
-      mqMd.removeEventListener("change", handlerMd);
-    };
-  }, []);
+  const navigate = useNavigate();
 
   return (
     <section id="work" className="py-24 md:py-32 px-6 md:px-12 lg:px-24 relative z-10 bg-[#0a0a0c]">
@@ -127,87 +119,179 @@ export function Works() {
         </motion.p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[280px] gap-4 md:gap-6">
+      {/* Mobile: Vertical Stack */}
+      <div className="lg:hidden flex flex-col gap-3">
         {projects.map((project, i) => {
-          const content = (
+          const isExpanded = hoveredCard === project.title;
+          return (
             <motion.div
               key={project.title}
               layout
               onMouseEnter={() => setHoveredCard(project.title)}
               onMouseLeave={() => setHoveredCard(null)}
-              style={getGridPlacement(project.title, hoveredCard, isLg, isMd)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ layout: { duration: 0.45, bounce: 0.12, type: "spring" }, opacity: { duration: 0.5, delay: i * 0.1 }, y: { duration: 0.5, delay: i * 0.1 } }}
-              className="h-full"
+              transition={{
+                layout: { duration: 0.4, type: "spring", bounce: 0.1 },
+                opacity: { duration: 0.5, delay: i * 0.1 },
+                y: { duration: 0.5, delay: i * 0.1 }
+              }}
+              className="relative overflow-hidden rounded-2xl cursor-pointer"
+              style={{ background: "rgba(255,255,255,0.03)" }}
             >
-              <Link to={project.link} className="block h-full">
-                <div
-                  className={cn(
-                    "bento-card group relative flex flex-col justify-end p-6 md:p-8 rounded-[1.5rem] overflow-hidden transition-all duration-500 cursor-pointer h-full w-full",
-                    "shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_50px_rgba(99,102,241,0.15)]"
-                  )}
+              {/* Collapsed Header */}
+              <div className="flex items-center gap-4 p-5">
+                <span className="text-2xl font-bold text-white/20 font-display">{getNumber(i)}</span>
+                <TitleFont title={project.title} className="text-lg text-white/90 flex-1" />
+                <motion.span
+                  animate={{ rotate: isExpanded ? 90 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-white/30 text-xl"
                 >
-                  {project.image && (
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="absolute inset-0 w-full h-full object-cover z-0 opacity-70 group-hover:opacity-90 group-hover:scale-110 transition-all duration-700 ease-out" 
-                    />
-                  )}
-                  {/* Stronger vignette for text readability */}
-                  <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10 pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 z-10 pointer-events-none" />
-                  <div className="absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
-                  
-                  <div className="relative z-20 w-full">
-                    {/* Tags - hidden by default, reveal on hover */}
-                    <div className="flex flex-wrap gap-2 mb-0 group-hover:mb-3 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-12 transition-all duration-500">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="bg-white/10 backdrop-blur-sm text-white/70 text-[10px] md:text-xs font-medium px-2.5 py-1 rounded-full border border-white/10">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  ›
+                </motion.span>
+              </div>
 
-                    {/* Title - shifts up on hover to make room */}
-                    <div className="flex justify-between items-end w-full mb-0 group-hover:mb-4 transition-all duration-500">
-                      {project.title === "FLOODGUARD" ? (
-                        <h3 className="font-montserrat text-2xl md:text-3xl text-white group-hover:text-white/95 transition-colors tracking-tight">
-                          <span className="font-[1000]">FLOOD</span>
-                          <span className="font-[200]">GUARD</span>
-                        </h3>
-                      ) : project.title === "ShoreThing" ? (
-                        <h3 className="font-serif text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight uppercase">
-                          {project.title}
-                        </h3>
-                      ) : (
-                        <h3 className="font-montserrat text-2xl md:text-3xl font-bold text-white group-hover:text-white/95 transition-colors tracking-tight uppercase">
-                          {project.title}
-                        </h3>
+              {/* Expanded Content */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 pb-5 pt-0">
+                      {project.image && (
+                        <div className="relative w-full h-40 rounded-xl overflow-hidden mb-4">
+                          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        </div>
                       )}
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="bg-white/10 backdrop-blur-sm text-white/70 text-[10px] md:text-xs font-medium px-2.5 py-1 rounded-full border border-white/10">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-[#a3a3a3] text-sm leading-relaxed font-light line-clamp-3 mb-4 text-pretty">
+                        {project.description}
+                      </p>
+                      <Link to={project.link} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
+                        <span>View Project</span>
+                        <ArrowUpRight size={14} />
+                      </Link>
                     </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-                    {/* Description - hidden by default, reveal on hover */}
-                    <p className="text-[#a3a3a3] text-sm md:text-base leading-relaxed font-light line-clamp-2 transition-all duration-500 text-pretty mb-0 group-hover:mb-4 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-24">
-                      {project.description}
-                    </p>
-
-                    {/* View Project CTA - hidden by default, reveal on hover */}
-                    <div className="flex items-center gap-2 opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-10 transition-all duration-500">
-                      <span className="text-sm font-medium">View Project</span>
-                      <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              {/* Border */}
+              <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
             </motion.div>
           );
+        })}
+      </div>
 
-          return content;
+      {/* Desktop: Horizontal Accordion */}
+      <div className="hidden lg:flex h-[500px]">
+        {projects.map((project, i) => {
+          const isExpanded = hoveredCard === project.title;
+          return (
+            <motion.div
+              key={project.title}
+              layout
+              onMouseEnter={() => setHoveredCard(project.title)}
+              onMouseLeave={() => setHoveredCard(null)}
+              onClick={() => {
+                if (isExpanded) {
+                  navigate(project.link);
+                } else {
+                  setHoveredCard(project.title);
+                }
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                layout: { duration: 0.45, type: "spring", bounce: 0.12 },
+                opacity: { duration: 0.5, delay: i * 0.1 },
+                y: { duration: 0.5, delay: i * 0.1 }
+              }}
+              className={cn(
+                "relative overflow-hidden cursor-pointer transition-colors duration-300",
+                isExpanded ? "bg-[#111114]" : "bg-[#0d0d10] hover:bg-[#111114]"
+              )}
+              style={{
+                flex: isExpanded ? 5 : 1,
+                borderRight: i < projects.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none"
+              }}
+            >
+              {/* Collapsed Content */}
+              <motion.div
+                animate={{ opacity: isExpanded ? 0 : 1 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 flex flex-col p-7 pointer-events-none"
+              >
+                <span className="text-5xl font-bold text-white/15 font-display select-none">{getNumber(i)}</span>
+                <div className="flex-1 flex items-center justify-center">
+                  <span className="-rotate-90 whitespace-nowrap text-xl font-bold uppercase tracking-[0.15em] text-white/50 select-none">
+                    {project.title}
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Expanded Content */}
+              <motion.div
+                animate={{ opacity: isExpanded ? 1 : 0 }}
+                transition={{ duration: 0.3, delay: isExpanded ? 0.15 : 0 }}
+                className="absolute inset-0 flex flex-col p-8 pointer-events-none"
+                style={{ pointerEvents: isExpanded ? "auto" : "none" }}
+              >
+                {/* Background image */}
+                {project.image && (
+                  <div className="absolute inset-0 z-0">
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-30" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#111114] via-[#111114]/90 to-[#111114]/60" />
+                  </div>
+                )}
+
+                {/* Text content */}
+                <div className="relative z-10 flex-1 flex flex-col">
+                  <div className="flex items-start gap-4 mb-4">
+                    <span className="text-5xl font-bold text-white/15 font-display select-none">{getNumber(i)}</span>
+                  </div>
+                  <TitleFont title={project.title} className="text-4xl xl:text-5xl text-white leading-tight mb-5" />
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="bg-white/10 backdrop-blur-sm text-white/70 text-xs font-medium px-3 py-1 rounded-full border border-white/10">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-[#a3a3a3] text-base leading-relaxed font-light line-clamp-4 text-pretty mb-6">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-auto">
+                    <Link
+                      to={project.link}
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white px-6 py-3 rounded-full text-sm font-medium transition-all duration-300"
+                    >
+                      <span>View Project</span>
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          );
         })}
       </div>
 
