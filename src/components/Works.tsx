@@ -31,7 +31,11 @@ const projects = [
   }
 ];
 
-function getGridPlacement(title: string, hoveredCard: string | null, isLg: boolean): React.CSSProperties {
+function getGridPlacement(title: string, hoveredCard: string | null, isLg: boolean, isMd: boolean): React.CSSProperties {
+  if (!isMd) {
+    return { gridColumn: "span 1", gridRow: "span 1" };
+  }
+
   if (!isLg) {
     if (title === "FLOODGUARD") return { gridColumn: "span 2", gridRow: "span 1" };
     return { gridColumn: "span 1", gridRow: "span 1" };
@@ -57,13 +61,21 @@ function getGridPlacement(title: string, hoveredCard: string | null, isLg: boole
 export function Works() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isLg, setIsLg] = useState(false);
+  const [isMd, setIsMd] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    setIsLg(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    const mqLg = window.matchMedia("(min-width: 1024px)");
+    const mqMd = window.matchMedia("(min-width: 768px)");
+    setIsLg(mqLg.matches);
+    setIsMd(mqMd.matches);
+    const handlerLg = (e: MediaQueryListEvent) => setIsLg(e.matches);
+    const handlerMd = (e: MediaQueryListEvent) => setIsMd(e.matches);
+    mqLg.addEventListener("change", handlerLg);
+    mqMd.addEventListener("change", handlerMd);
+    return () => {
+      mqLg.removeEventListener("change", handlerLg);
+      mqMd.removeEventListener("change", handlerMd);
+    };
   }, []);
 
   return (
@@ -123,11 +135,11 @@ export function Works() {
               layout
               onMouseEnter={() => setHoveredCard(project.title)}
               onMouseLeave={() => setHoveredCard(null)}
-              style={getGridPlacement(project.title, hoveredCard, isLg)}
+              style={getGridPlacement(project.title, hoveredCard, isLg, isMd)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ layout: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }, opacity: { duration: 0.5, delay: i * 0.1 }, y: { duration: 0.5, delay: i * 0.1 } }}
+              transition={{ layout: { duration: 0.45, bounce: 0.12, type: "spring" }, opacity: { duration: 0.5, delay: i * 0.1 }, y: { duration: 0.5, delay: i * 0.1 } }}
               className="h-full"
             >
               <Link to={project.link} className="block h-full">

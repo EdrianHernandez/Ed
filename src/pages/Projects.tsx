@@ -28,7 +28,11 @@ const allProjects = [
   }
 ];
 
-function getGridPlacement(title: string, hoveredCard: string | null, isLg: boolean): React.CSSProperties {
+function getGridPlacement(title: string, hoveredCard: string | null, isLg: boolean, isMd: boolean): React.CSSProperties {
+  if (!isMd) {
+    return { gridColumn: "span 1", gridRow: "span 1" };
+  }
+
   if (!isLg) {
     if (title === "FLOODGUARD") return { gridColumn: "span 2", gridRow: "span 1" };
     return { gridColumn: "span 1", gridRow: "span 1" };
@@ -51,7 +55,7 @@ function getGridPlacement(title: string, hoveredCard: string | null, isLg: boole
   return { gridColumn: "3", gridRow: "2" };
 }
 
-function ArchiveCard({ project, hoveredCard, setHoveredCard, isLg }: { project: typeof allProjects[0]; hoveredCard: string | null; setHoveredCard: (title: string | null) => void; isLg: boolean }) {
+function ArchiveCard({ project, hoveredCard, setHoveredCard, isLg, isMd }: { project: typeof allProjects[0]; hoveredCard: string | null; setHoveredCard: (title: string | null) => void; isLg: boolean; isMd: boolean }) {
   return (
     <motion.div
       layout
@@ -59,10 +63,10 @@ function ArchiveCard({ project, hoveredCard, setHoveredCard, isLg }: { project: 
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0 }
       }}
-      transition={{ layout: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } }}
+      transition={{ layout: { duration: 0.45, bounce: 0.12, type: "spring" } }}
       onMouseEnter={() => setHoveredCard(project.title)}
       onMouseLeave={() => setHoveredCard(null)}
-      style={getGridPlacement(project.title, hoveredCard, isLg)}
+      style={getGridPlacement(project.title, hoveredCard, isLg, isMd)}
       className="h-full"
     >
       <Link to={project.link} className="block h-full">
@@ -134,17 +138,25 @@ function ArchiveCard({ project, hoveredCard, setHoveredCard, isLg }: { project: 
 export function Projects() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isLg, setIsLg] = useState(false);
+  const [isMd, setIsMd] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    setIsLg(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    const mqLg = window.matchMedia("(min-width: 1024px)");
+    const mqMd = window.matchMedia("(min-width: 768px)");
+    setIsLg(mqLg.matches);
+    setIsMd(mqMd.matches);
+    const handlerLg = (e: MediaQueryListEvent) => setIsLg(e.matches);
+    const handlerMd = (e: MediaQueryListEvent) => setIsMd(e.matches);
+    mqLg.addEventListener("change", handlerLg);
+    mqMd.addEventListener("change", handlerMd);
+    return () => {
+      mqLg.removeEventListener("change", handlerLg);
+      mqMd.removeEventListener("change", handlerMd);
+    };
   }, []);
 
   return (
@@ -221,6 +233,7 @@ export function Projects() {
               hoveredCard={hoveredCard}
               setHoveredCard={setHoveredCard}
               isLg={isLg}
+              isMd={isMd}
             />
           ))}
         </motion.div>
