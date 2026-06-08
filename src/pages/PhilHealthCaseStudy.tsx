@@ -59,7 +59,7 @@ export function PhilHealthCaseStudy() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/5 blur-[120px] rounded-full pointer-events-none" />
 
         {/* Hero Content */}
-        <div className="flex flex-col items-center justify-center w-full z-10 space-y-8">
+        <div className="flex flex-col items-center justify-center w-full z-10 space-y-6">
           {/* PhilHealth Logo */}
           <motion.img
             src="/PHILHEALTH ASSETS/PHILHEALTH LOGO.png"
@@ -88,7 +88,7 @@ export function PhilHealthCaseStudy() {
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 text-neutral-400 text-lg md:text-xl tracking-widest uppercase font-light text-center max-w-2xl mx-auto"
           >
-            A Civic Tech Redesign for the Modern Filipino.
+            Your Partner in Health.
           </motion.p>
         </div>
       </section>

@@ -14,14 +14,16 @@ type EcosystemImage = {
 type LockupData = {
   src: string;
   alt: string;
+  title: string;
+  description: string;
 };
 
 const lockups: LockupData[] = [
-  { src: "/SHORETHING ASSETS/SHORETHING HOME FULL.png", alt: "ShoreThing Home Full Flow" },
-  { src: "/SHORETHING ASSETS/SHORETHING EXPLORE FULL.png", alt: "ShoreThing Explore Full Flow" },
-  { src: "/SHORETHING ASSETS/SHORETHING ROOMS PAGE FULL.png", alt: "Rooms Catalog Flow" },
-  { src: "/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE FULL.png", alt: "Detailed Property Flow" },
-  { src: "/SHORETHING ASSETS/SHORETHING ABOUT FULL.png", alt: "ShoreThing Brand Story" },
+  { src: "/SHORETHING ASSETS/SHORETHING HOME FULL.png", alt: "ShoreThing Home Full Flow", title: "The Landing Experience", description: "Engineered for immediate visual impact. The homepage breaks away from standard booking templates, acting as an immersive gateway that establishes high-end brand trust within seconds." },
+  { src: "/SHORETHING ASSETS/SHORETHING EXPLORE FULL.png", alt: "ShoreThing Explore Full Flow", title: "Visualizing the Coast", description: "A frictionless, highly visual infinite scroll. The Explore engine strips away cluttered search filters, replacing them with a curated, immersive browsing experience that lets the properties speak for themselves." },
+  { src: "/SHORETHING ASSETS/SHORETHING ROOMS PAGE FULL.png", alt: "Rooms Catalog Flow", title: "Curated Selection", description: "A highly visual browsing experience designed to remove cognitive load. The catalog focuses purely on high-fidelity imagery and upfront amenity data, allowing the properties to command attention." },
+  { src: "/SHORETHING ASSETS/SHORETHING ROOMS DETAILED PAGE FULL.png", alt: "Detailed Property Flow", title: "The Deep Dive", description: "Engineered to convert interest into confirmed reservations. The detailed property page immerses the user in the space, transparently displaying amenities, pricing, and a frictionless booking flow." },
+  { src: "/SHORETHING ASSETS/SHORETHING ABOUT FULL.png", alt: "ShoreThing Brand Story", title: "Establishing Trust", description: "A localized narrative that positions the platform not just as a utility, but as a premium digital concierge for San Juan's finest coastal resorts. It builds immediate credibility through clean typography and immersive photography." },
 ];
 
 type AutoScrollLockupProps = {
@@ -60,7 +62,7 @@ function AutoScrollLockup({
   // prefer explicit travel prop if provided, otherwise variant default
   if (!travel && picked.travel) animationStyle["--lockup-distance"] = picked.travel;
 
-  const outerClass = cn("relative", picked.frame, className);
+  const outerClass = cn("group relative", picked.frame, className);
 
   return (
     <div className={outerClass}>
@@ -90,6 +92,18 @@ function AutoScrollLockup({
               loading="eager"
               decoding="async"
             />
+          </div>
+        </div>
+
+        <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.2)] group-hover:scale-100 scale-95 transition-all duration-300 delay-75">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+              <polyline points="15 3 21 3 21 9" />
+              <polyline points="9 21 3 21 3 15" />
+              <line x1="21" y1="3" x2="14" y2="10" />
+              <line x1="3" y1="21" x2="10" y2="14" />
+            </svg>
+            <span className="text-white/90 text-xs font-medium tracking-wide">Click to expand</span>
           </div>
         </div>
       </div>
@@ -207,7 +221,7 @@ function LockupModal({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-xl" />
@@ -217,7 +231,7 @@ function LockupModal({
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
         exit={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-neutral-900 ring-1 ring-white/10 shadow-[0_0_80px_rgba(255,255,255,0.04)]"
+        className="relative flex flex-col md:flex-row max-w-5xl w-full max-h-[90vh] rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_0_80px_rgba(255,255,255,0.04)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.08] via-transparent to-white/[0.03] pointer-events-none" />
@@ -231,7 +245,7 @@ function LockupModal({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, type: "spring", damping: 20 }}
           onClick={onClose}
-          className="sticky top-3 right-3 sm:left-full sm:ml-2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:rotate-90 transition-all duration-300 z-20"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:rotate-90 transition-all duration-300 z-20"
           aria-label="Close preview"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/70 sm:w-4 sm:h-4">
@@ -240,11 +254,36 @@ function LockupModal({
           </svg>
         </motion.button>
 
-        <img
-          src={lockup.src}
-          alt={lockup.alt}
-          className="w-full h-auto block"
-        />
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex-1 flex items-start justify-center p-3 sm:p-4 md:px-10 py-6 sm:py-8 md:py-12 min-h-[30vh] sm:min-h-[35vh] md:min-h-0 bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 overflow-y-auto"
+        >
+          <img
+            src={lockup.src}
+            alt={lockup.alt}
+            className="w-auto object-contain rounded-xl sm:rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.06)] ring-1 ring-white/5"
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full md:w-[380px] border-t md:border-t-0 md:border-l border-white/10 p-5 sm:p-6 md:p-10 flex flex-col justify-center bg-[#0a0a0c]/90 backdrop-blur-md"
+        >
+          <span className="inline-block self-start text-[9px] sm:text-[10px] font-mono tracking-[0.2em] text-white/40 uppercase px-2.5 sm:px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-4 sm:mb-5">
+            Full Flow Preview
+          </span>
+          <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-2 sm:mb-3">
+            {lockup.title}
+          </h4>
+          <div className="w-full h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent mb-4 sm:mb-5" />
+          <p className="text-neutral-400 text-xs sm:text-sm md:text-base font-light leading-relaxed">
+            {lockup.description}
+          </p>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
@@ -297,6 +336,26 @@ export function ShoreThingEcosystemShowcase() {
         </div>
       </section>
 
+      <div className="relative mx-auto max-w-7xl px-6 md:px-12 lg:px-24 z-10 pt-18 md:pt-24 lg:pt-20 pb-8 md:pb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto space-y-6"
+        >
+          <span className="block text-neutral-600 text-[10px] tracking-[0.2em] uppercase">
+            [ UI ARCHITECTURE ]
+          </span>
+          <h2 className="font-montserrat font-black text-3xl md:text-4xl lg:text-5xl text-white tracking-tighter leading-[1.1]">
+            Deconstructing the Experience
+          </h2>
+          <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light text-pretty max-w-2xl mx-auto">
+            The screens that bring San Juan&apos;s shore to life.
+          </p>
+        </motion.div>
+      </div>
+
       <div className="relative mx-auto max-w-7xl px-6 md:px-12 lg:px-24 z-10">
         <div className="space-y-24 md:space-y-32 lg:space-y-40">
             <motion.section
@@ -309,7 +368,7 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative order-last lg:order-first">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div onClick={() => setSelectedLockup(lockups[0])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[0])} className="group cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -333,6 +392,18 @@ export function ShoreThingEcosystemShowcase() {
                         loading="eager"
                         decoding="async"
                       />
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.2)] group-hover:scale-100 scale-95 transition-all duration-300 delay-75">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                        <polyline points="15 3 21 3 21 9" />
+                        <polyline points="9 21 3 21 3 15" />
+                        <line x1="21" y1="3" x2="14" y2="10" />
+                        <line x1="3" y1="21" x2="10" y2="14" />
+                      </svg>
+                      <span className="text-white/90 text-xs font-medium tracking-wide">Click to expand</span>
                     </div>
                   </div>
                 </div>
@@ -381,7 +452,7 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div onClick={() => setSelectedLockup(lockups[1])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[1])} className="group cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -407,6 +478,18 @@ export function ShoreThingEcosystemShowcase() {
                       />
                     </div>
                   </div>
+
+                  <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.2)] group-hover:scale-100 scale-95 transition-all duration-300 delay-75">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                        <polyline points="15 3 21 3 21 9" />
+                        <polyline points="9 21 3 21 3 15" />
+                        <line x1="21" y1="3" x2="14" y2="10" />
+                        <line x1="3" y1="21" x2="10" y2="14" />
+                      </svg>
+                      <span className="text-white/90 text-xs font-medium tracking-wide">Click to expand</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.section>
@@ -421,7 +504,7 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative order-last lg:order-first">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div onClick={() => setSelectedLockup(lockups[2])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[2])} className="group cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -445,6 +528,18 @@ export function ShoreThingEcosystemShowcase() {
                         loading="eager"
                         decoding="async"
                       />
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.2)] group-hover:scale-100 scale-95 transition-all duration-300 delay-75">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                        <polyline points="15 3 21 3 21 9" />
+                        <polyline points="9 21 3 21 3 15" />
+                        <line x1="21" y1="3" x2="14" y2="10" />
+                        <line x1="3" y1="21" x2="10" y2="14" />
+                      </svg>
+                      <span className="text-white/90 text-xs font-medium tracking-wide">Click to expand</span>
                     </div>
                   </div>
                 </div>
@@ -493,7 +588,7 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div onClick={() => setSelectedLockup(lockups[3])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[3])} className="group cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -519,6 +614,18 @@ export function ShoreThingEcosystemShowcase() {
                       />
                     </div>
                   </div>
+
+                  <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.2)] group-hover:scale-100 scale-95 transition-all duration-300 delay-75">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                        <polyline points="15 3 21 3 21 9" />
+                        <polyline points="9 21 3 21 3 15" />
+                        <line x1="21" y1="3" x2="14" y2="10" />
+                        <line x1="3" y1="21" x2="10" y2="14" />
+                      </svg>
+                      <span className="text-white/90 text-xs font-medium tracking-wide">Click to expand</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.section>
@@ -533,7 +640,7 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative order-last lg:order-first">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div onClick={() => setSelectedLockup(lockups[4])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[4])} className="group cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -557,6 +664,18 @@ export function ShoreThingEcosystemShowcase() {
                         loading="eager"
                         decoding="async"
                       />
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.2)] group-hover:scale-100 scale-95 transition-all duration-300 delay-75">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                        <polyline points="15 3 21 3 21 9" />
+                        <polyline points="9 21 3 21 3 15" />
+                        <line x1="21" y1="3" x2="14" y2="10" />
+                        <line x1="3" y1="21" x2="10" y2="14" />
+                      </svg>
+                      <span className="text-white/90 text-xs font-medium tracking-wide">Click to expand</span>
                     </div>
                   </div>
                 </div>
