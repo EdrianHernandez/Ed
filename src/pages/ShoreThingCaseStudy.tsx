@@ -304,26 +304,12 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-12"
+              className="mt-20 md:mt-32 lg:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 relative items-center"
             >
-              <div className="flex flex-col items-center text-center gap-6 mb-16 md:mb-24 relative z-10">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
+              <div className="lg:col-span-7 relative order-last lg:order-first">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
-                  <span className="text-neutral-500 text-[10px] tracking-[0.3em] uppercase font-bold">Discovery Flow</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
-                </div>
-
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">The Landing Experience</h3>
-
-                <p className="text-neutral-400 leading-relaxed text-base md:text-lg max-w-2xl font-light">Engineered for immediate visual impact. The homepage breaks away from standard booking templates, acting as an immersive gateway that establishes high-end brand trust within seconds.</p>
-              </div>
-
-              <div className="max-w-5xl mx-auto relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[120px] rounded-full pointer-events-none -z-10" />
-
-                <div onClick={() => setSelectedLockup(lockups[0])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[0])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -351,6 +337,22 @@ export function ShoreThingEcosystemShowcase() {
                   </div>
                 </div>
               </div>
+
+              <div className="lg:col-span-5">
+                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-left lg:items-start">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                    <span className="text-neutral-500 text-[10px] tracking-[0.3em] uppercase font-bold">Discovery Flow</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                  </div>
+
+                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">The Landing Experience</h3>
+
+                  <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">Engineered for immediate visual impact. The homepage breaks away from standard booking templates, acting as an immersive gateway that establishes high-end brand trust within seconds.</p>
+                </div>
+              </div>
             </motion.section>
 
             <motion.section
@@ -358,24 +360,26 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-12 mt-20 md:mt-32 lg:mt-40"
+              className="mt-20 md:mt-32 lg:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 relative items-center"
             >
-              <div className="flex flex-col items-center text-center gap-6 mb-16 md:mb-24 relative z-10">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
+              <div className="lg:col-span-5">
+                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-right lg:items-end">
+                  <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[120%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
 
-                <div className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
-                  <span className="text-neutral-500 text-[10px] tracking-[0.3em] uppercase font-bold">Discovery Engine</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                  <div className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                    <span className="text-neutral-500 text-[10px] tracking-[0.3em] uppercase font-bold">Discovery Engine</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                  </div>
+
+                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Visualizing the Coast</h3>
+
+                  <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">A frictionless, highly visual infinite scroll. The Explore engine strips away cluttered search filters, replacing them with a curated, immersive browsing experience that lets the properties speak for themselves.</p>
                 </div>
-
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">Visualizing the Coast</h3>
-
-                <p className="text-neutral-400 leading-relaxed text-base md:text-lg max-w-2xl font-light">A frictionless, highly visual infinite scroll. The Explore engine strips away cluttered search filters, replacing them with a curated, immersive browsing experience that lets the properties speak for themselves.</p>
               </div>
 
-              <div className="max-w-5xl mx-auto relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+              <div className="lg:col-span-7 relative">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
                 <div onClick={() => setSelectedLockup(lockups[1])} className="cursor-pointer lockup-pause-on-hover w-full aspect-[16/10] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
@@ -417,7 +421,7 @@ export function ShoreThingEcosystemShowcase() {
               <div className="lg:col-span-7 relative order-last lg:order-first">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div onClick={() => setSelectedLockup(lockups[2])} className="cursor-pointer lockup-static-lg lockup-pause-on-hover aspect-[16/10] lg:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[2])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -471,7 +475,7 @@ export function ShoreThingEcosystemShowcase() {
               className="mt-20 md:mt-32 lg:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 relative items-center"
             >
               <div className="lg:col-span-5">
-                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-left lg:items-start">
+                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-right lg:items-end">
                   <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[120%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
 
                   <div className="flex items-center gap-3">
@@ -524,26 +528,12 @@ export function ShoreThingEcosystemShowcase() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-12 mt-20 md:mt-32 lg:mt-40"
+              className="mt-20 md:mt-32 lg:mt-40 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 relative items-center"
             >
-              <div className="flex flex-col items-center text-center gap-6 mb-16 md:mb-24 relative z-10">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
+              <div className="lg:col-span-7 relative order-last lg:order-first">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-white/5 blur-[100px] rounded-full pointer-events-none -z-10" />
 
-                <div className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
-                  <span className="text-neutral-500 text-[10px] tracking-[0.3em] uppercase font-bold">The Brand Story</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
-                </div>
-
-                <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter drop-shadow-2xl">Establishing Trust</h3>
-
-                <p className="text-neutral-400 leading-relaxed text-base md:text-lg max-w-2xl font-light">A localized narrative that positions the platform not just as a utility, but as a premium digital concierge for San Juan's finest coastal resorts. It builds immediate credibility through clean typography and immersive photography.</p>
-              </div>
-
-              <div className="max-w-6xl mx-auto relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-white/5 blur-[130px] rounded-full pointer-events-none -z-10" />
-
-                <div onClick={() => setSelectedLockup(lockups[4])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] lg:h-[800px] w-full rounded-3xl border border-white/10 shadow-[0_0_60px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
+                <div onClick={() => setSelectedLockup(lockups[4])} className="cursor-pointer lockup-pause-on-hover aspect-[16/10] w-full rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] bg-neutral-900 overflow-hidden relative">
                   <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-b from-neutral-900 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-28 z-20 pointer-events-none bg-linear-to-t from-neutral-900 to-transparent" />
 
@@ -560,7 +550,7 @@ export function ShoreThingEcosystemShowcase() {
                         decoding="async"
                       />
                       <img
-                        src="/SHORETHING ASSETS/SHORETHING ABOUT FULL.jpg"
+                        src="/SHORETHING ASSETS/SHORETHING ABOUT FULL.png"
                         alt=""
                         aria-hidden="true"
                         className="block w-full h-auto select-none pointer-events-none object-cover"
@@ -569,6 +559,22 @@ export function ShoreThingEcosystemShowcase() {
                       />
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div className="flex flex-col gap-6 relative z-10 text-center items-center lg:text-left lg:items-start">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-white/5 blur-[80px] rounded-full pointer-events-none -z-10"></div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                    <span className="text-neutral-500 text-[10px] tracking-[0.3em] uppercase font-bold">The Brand Story</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+                  </div>
+
+                  <h3 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Establishing Trust</h3>
+
+                  <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">A localized narrative that positions the platform not just as a utility, but as a premium digital concierge for San Juan's finest coastal resorts. It builds immediate credibility through clean typography and immersive photography.</p>
                 </div>
               </div>
             </motion.section>
