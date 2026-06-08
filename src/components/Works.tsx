@@ -35,7 +35,7 @@ const projects = [
     tags: ["UI/UX Redesign"],
     tech: ["Figma"],
     link: "/projects/philhealth",
-    image: null
+    image: "/PHILHEALTH ASSETS/Philhealth Thumbnail.png"
   }
 ];
 

@@ -13,7 +13,7 @@ export function PhilHealthCaseStudy() {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: "-100%", opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-neutral-950 min-h-screen text-white selection:bg-white selection:text-neutral-950"
+      className="bg-neutral-950 min-h-screen overflow-x-hidden text-white selection:bg-white selection:text-neutral-950"
     >
       {/* Sticky Back Button */}
       <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
@@ -168,7 +168,19 @@ export function PhilHealthCaseStudy() {
       </section>
 
       {/* Block 01: The Legacy vs. The Future */}
-      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+        {/* Technical Grid Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div
+            className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+            }}
+          />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
         {/* Section Header */}
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
@@ -181,7 +193,7 @@ export function PhilHealthCaseStudy() {
           <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-center">
           {/* Left Column — The Problem / Legacy Site */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -237,20 +249,20 @@ export function PhilHealthCaseStudy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="flex flex-col gap-6 relative lg:mt-24"
+            className="flex flex-col gap-6 relative"
           >
             {/* Spotlight Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
             <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
-            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">A Frictionless Portal.</h3>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">A Frictionless Access.</h3>
             <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
-              Executed in a rigorous 3-hour design sprint. We stripped away the visual
-              noise, replacing it with a modular, highly accessible bento-grid architecture
-              that guides the user immediately to actionable services.
+              Redesigned from the ground up to prioritize accessibility and intuitive way finding.
+              Complex legacy data is now distilled into clean, approachable UI modules, ensuring users can
+              manage their benefits without feeling overwhelmed.
             </p>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              3-Hour Sprint
+              CITIZEN-FIRST UX
             </span>
             <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
               {/* Browser Chrome */}
@@ -273,10 +285,23 @@ export function PhilHealthCaseStudy() {
             </div>
           </motion.div>
         </div>
+        </div>
       </section>
 
       {/* Block 02: Membership Dashboard */}
-      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+        {/* Technical Grid Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div
+            className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+            }}
+          />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             02
@@ -288,7 +313,7 @@ export function PhilHealthCaseStudy() {
           <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -338,19 +363,17 @@ export function PhilHealthCaseStudy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="flex flex-col gap-6 relative lg:mt-24"
+            className="flex flex-col gap-6 relative"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
             <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
-            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Surfaced at a Glance.</h3>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Empowered Management.</h3>
             <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
-              A streamlined member dashboard that surfaces contribution history,
-              eligibility status, and benefit details at a glance — eliminating
-              the guesswork from healthcare management.
+              A streamlined member dashboard that brings contribution history, eligibility status, and benefit details to the forefront. By utilizing a clean card system, it eliminates the guesswork from healthcare management.
             </p>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Modular Grid
+              DATA TRANSPARENCY
             </span>
             <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
               <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
@@ -371,10 +394,23 @@ export function PhilHealthCaseStudy() {
             </div>
           </motion.div>
         </div>
+        </div>
       </section>
 
       {/* Block 03: Partner Network */}
-      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+        {/* Technical Grid Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div
+            className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+            }}
+          />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             03
@@ -386,7 +422,7 @@ export function PhilHealthCaseStudy() {
           <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -436,19 +472,17 @@ export function PhilHealthCaseStudy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="flex flex-col gap-6 relative lg:mt-24"
+            className="flex flex-col gap-6 relative"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
             <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
-            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Filterable Directory.</h3>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Categorical Precision.</h3>
             <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
-              A filterable, card-based partner directory that lets users search by
-              location, institution type, and accreditation status — connecting
-              Filipinos to the right healthcare partners instantly.
+              We restructured the entire service catalog into a highly scannable, icon-driven interface. By grouping related benefits into distinct visual containers, users can now locate and understand their healthcare options instantly.
             </p>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Filterable
+              INTUITIVE WAYFINDING
             </span>
             <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
               <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
@@ -469,10 +503,23 @@ export function PhilHealthCaseStudy() {
             </div>
           </motion.div>
         </div>
+        </div>
       </section>
 
       {/* Block 04: Service Catalog */}
-      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+        {/* Technical Grid Background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div
+            className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+            }}
+          />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             04
@@ -484,7 +531,7 @@ export function PhilHealthCaseStudy() {
           <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -493,7 +540,7 @@ export function PhilHealthCaseStudy() {
             className="flex flex-col gap-6"
           >
             <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold">The Problem</span>
-            <h3 className="font-montserrat font-bold text-3xl text-neutral-400 tracking-tight">Unstructured.</h3>
+            <h3 className="font-montserrat font-bold text-3xl text-neutral-400 tracking-tight">Structural Chaos.</h3>
             <p className="text-neutral-500 leading-relaxed text-sm md:text-base font-light">
               Services were presented as unstructured text blocks with no visual
               hierarchy or logical grouping, overwhelming users with a wall of
@@ -534,7 +581,7 @@ export function PhilHealthCaseStudy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="flex flex-col gap-6 relative lg:mt-24"
+            className="flex flex-col gap-6 relative"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
             <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
@@ -567,10 +614,55 @@ export function PhilHealthCaseStudy() {
             </div>
           </motion.div>
         </div>
+        </div>
+      </section>
+
+      {/* 5. Award & Recognition */}
+      <section className="relative py-16 sm:py-24 md:py-32 px-6 md:px-12 lg:px-24 w-full mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto w-full"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center relative">
+            
+            {/* The Huge "2ND" Watermark Background */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 font-black text-[8rem] md:text-[12rem] lg:text-[20rem] leading-none pointer-events-none select-none z-0 translate-x-[-15%] lg:translate-x-[-10%] opacity-10 bg-clip-text text-transparent bg-gradient-to-b from-emerald-400/40 to-transparent">
+              2ND
+            </div>
+
+            {/* Left Column: Typography */}
+            <div className="relative z-10 flex flex-col pt-12 md:pt-0">
+              <div className="text-[#888888] font-mono text-xs md:text-sm tracking-widest uppercase mb-6 flex items-center gap-4">
+                <span className="w-8 h-[1px] bg-[#555]"></span>
+                [ AWARD: 2ND PLACE — TECHNOFUSION CHALLENGE ]
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter text-white">VALIDATED BY RESULTS</h2>
+              <p className="text-[#A8A8A8] text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                The PhilHealth redesign was executed in a rigorous 3-hour design sprint and awarded 2nd Place at the Technofusion Challenge. This recognition validates the methodology of stripping cognitive overload from government portals and replacing it with accessible, conversion-driven UI architecture.
+              </p>
+            </div>
+            
+            {/* Right Column: Floating Certificate */}
+            <div className="relative z-10 flex justify-center lg:justify-end w-full">
+              {/* Soft environmental glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none z-0"></div>
+              
+              <img 
+                src="/PHILHEALTH%20ASSETS/TECHNOFUSION_CERT.jpg" 
+                alt="Technofusion Challenge 2nd Place Certificate" 
+                className="w-full max-w-lg lg:max-w-xl h-auto object-cover rounded-xl border border-white/10 shadow-2xl shadow-white/5 relative z-10 grayscale-0 opacity-100 lg:grayscale lg:opacity-70 hover:grayscale-0 hover:opacity-100 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-700 ease-out cursor-pointer"
+                onError={(e) => e.currentTarget.style.opacity = '0'}
+              />
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Final CTA / Prototype Link */}
-      <section className="relative w-full bg-[#050505] py-24 md:py-32 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden">
+      <section className="relative w-full py-24 md:py-32 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden">
         
         {/* Atmospheric Radial Glow Behind Content */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent pointer-events-none z-0"></div>
