@@ -1,0 +1,573 @@
+import { motion } from "motion/react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
+export function PhilHealthCaseStudy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ y: "100%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: "-100%", opacity: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="bg-neutral-950 min-h-screen text-white selection:bg-white selection:text-neutral-950"
+    >
+      {/* Sticky Back Button */}
+      <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
+        <div className="relative">
+          <div className="h-10 w-10 sm:h-12 sm:w-12" />
+          <Link
+            to="/"
+            className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
+            aria-label="Back to Works"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-white/60 group-hover/back:text-white transition-colors duration-300"
+            >
+              <path d="M19 12H5" />
+              <path d="M12 19l-7-7 7-7" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
+      {/* 1. Hero Section */}
+      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">
+        {/* Cinematic Background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/PHILHEALTH ASSETS/PHILHEALTH HERO.jpg"
+            alt=""
+            className="w-full h-full object-cover blur-xl opacity-20 scale-105"
+            style={{ maskImage: "radial-gradient(ellipse at center, black, transparent 75%)", WebkitMaskImage: "radial-gradient(ellipse at center, black, transparent 75%)" }}
+          />
+        </div>
+
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/5 blur-[120px] rounded-full pointer-events-none" />
+
+        {/* Hero Content */}
+        <div className="flex flex-col items-center justify-center w-full z-10 space-y-8">
+          {/* PhilHealth Logo */}
+          <motion.img
+            src="/PHILHEALTH ASSETS/PHILHEALTH LOGO.png"
+            alt="PhilHealth logo"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="h-70 w-auto mb-4 object-contain drop-shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+            onError={(e) => (e.currentTarget as HTMLImageElement).style.opacity = '0'}
+          />
+
+          {/* Title */}
+          <motion.h1
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.35, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-montserrat font-black text-5xl md:text-7xl lg:text-[9rem] text-white tracking-tighter leading-none drop-shadow-2xl text-center"
+          >
+            PHILHEALTH
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 text-neutral-400 text-lg md:text-xl tracking-widest uppercase font-light text-center max-w-2xl mx-auto"
+          >
+            A Civic Tech Redesign for the Modern Filipino.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* 2. Metadata Grid */}
+      <section className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {[
+              { label: "ROLE", value: "Lead UI/UX Designer" },
+              { label: "TIMELINE", value: "2025" },
+              { label: "CONTEXT", value: "Technofusion Challenge" },
+              { label: "RECOGNITION", value: "2nd Place Winner" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="py-8 md:py-12 md:border-r border-white/10 last:border-r-0 md:first:pl-0 pl-0 md:px-8 first:md:pr-8"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">
+                    {item.label}
+                  </span>
+                </div>
+                <span className="text-white font-medium text-sm md:text-base tracking-wide">
+                  {item.value}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Project Overview */}
+      <section className="relative py-24 md:py-32 lg:py-48 px-6 md:px-12 lg:px-24 overflow-hidden">
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[70%] h-[100%] md:h-[80%] bg-white/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
+            {/* Left Column — The Hook */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7 }}
+              className="md:col-span-5 border-l border-white/10 pl-5 md:pl-8"
+            >
+              <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">
+                Rebuilding civic trust through design.
+              </h2>
+            </motion.div>
+
+            {/* Right Column — The Objective */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="md:col-span-7 flex items-center"
+            >
+              <p className="text-neutral-400 text-base md:text-lg lg:text-xl font-light leading-relaxed text-pretty">
+                Government portals are notoriously complex and visually disjointed.
+                The objective for the Technofusion 2025 challenge was to completely
+                overhaul the PhilHealth digital experience. The redesign strips away
+                cognitive load, prioritizes accessibility, and introduces a clean,
+                modern architecture that makes managing healthcare benefits
+                frictionless for every Filipino.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Block 01: The Legacy vs. The Future */}
+      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+        {/* Section Header */}
+        <div className="relative mb-16 md:mb-24">
+          <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
+            01
+          </span>
+          <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold block mb-4">Block 01</span>
+          <h2 className="font-montserrat font-black text-3xl md:text-5xl text-white tracking-tighter">
+            The Legacy vs. The Future
+          </h2>
+          <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start">
+          {/* Left Column — The Problem / Legacy Site */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col gap-6"
+          >
+            <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold">The Problem</span>
+            <h3 className="font-montserrat font-bold text-3xl text-neutral-400 tracking-tight">Cognitive Overload.</h3>
+            <p className="text-neutral-500 leading-relaxed text-sm md:text-base font-light">
+              The legacy portal was dense, unapproachable, and structurally disjointed.
+              Finding critical health contribution data required navigating through walls
+              of text and outdated navigation patterns, creating massive friction for the
+              average citizen.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-500/20 bg-red-500/5 text-[10px] font-bold tracking-widest uppercase text-red-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+              Cluttered
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 mt-2 bg-neutral-900">
+              {/* Browser Chrome */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph</span>
+                </div>
+              </div>
+              {/* Image viewport */}
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD LANDING PAGE.png" alt="Legacy PhilHealth Portal" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD LANDING PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Vertical Divider with VS Badge */}
+          <div className="hidden lg:flex relative flex-col items-center justify-center">
+            <div className="w-px h-full bg-white/10" />
+            <span className="absolute bg-neutral-950 border border-white/10 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-neutral-500">
+              VS
+            </span>
+          </div>
+
+          {/* Right Column — The Solution / Redesign */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col gap-6 relative lg:mt-24"
+          >
+            {/* Spotlight Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+            <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">A Frictionless Portal.</h3>
+            <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
+              Executed in a rigorous 3-hour design sprint. We stripped away the visual
+              noise, replacing it with a modular, highly accessible bento-grid architecture
+              that guides the user immediately to actionable services.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              3-Hour Sprint
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
+              {/* Browser Chrome */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph</span>
+                </div>
+              </div>
+              {/* Image viewport */}
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH LANDING PAGE.png" alt="Redesigned PhilHealth Landing Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH LANDING PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Block 02: Membership Dashboard */}
+      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+        <div className="relative mb-16 md:mb-24">
+          <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
+            02
+          </span>
+          <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold block mb-4">Block 02</span>
+          <h2 className="font-montserrat font-black text-3xl md:text-5xl text-white tracking-tighter">
+            Membership Dashboard
+          </h2>
+          <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col gap-6"
+          >
+            <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold">The Problem</span>
+            <h3 className="font-montserrat font-bold text-3xl text-neutral-400 tracking-tight">Buried Data.</h3>
+            <p className="text-neutral-500 leading-relaxed text-sm md:text-base font-light">
+              The legacy membership portal buried member data behind dense text walls
+              and inconsistent navigation, forcing citizens to dig through layers of
+              bureaucracy just to check their contribution status.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-500/20 bg-red-500/5 text-[10px] font-bold tracking-widest uppercase text-red-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+              Cluttered
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 mt-2 bg-neutral-900">
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph/members</span>
+                </div>
+              </div>
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD MEMBERS PAGE.png" alt="Legacy Members Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD MEMBERS PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="hidden lg:flex relative flex-col items-center justify-center">
+            <div className="w-px h-full bg-white/10" />
+            <span className="absolute bg-neutral-950 border border-white/10 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-neutral-500">
+              VS
+            </span>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col gap-6 relative lg:mt-24"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+            <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Surfaced at a Glance.</h3>
+            <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
+              A streamlined member dashboard that surfaces contribution history,
+              eligibility status, and benefit details at a glance — eliminating
+              the guesswork from healthcare management.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Modular Grid
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph/members</span>
+                </div>
+              </div>
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH MEMBERS PAGE.png" alt="Redesigned Members Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH MEMBERS PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Block 03: Partner Network */}
+      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+        <div className="relative mb-16 md:mb-24">
+          <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
+            03
+          </span>
+          <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold block mb-4">Block 03</span>
+          <h2 className="font-montserrat font-black text-3xl md:text-5xl text-white tracking-tighter">
+            Partner Network
+          </h2>
+          <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col gap-6"
+          >
+            <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold">The Problem</span>
+            <h3 className="font-montserrat font-bold text-3xl text-neutral-400 tracking-tight">Disjointed.</h3>
+            <p className="text-neutral-500 leading-relaxed text-sm md:text-base font-light">
+              The partner directory pages were disjointed and lacked searchability,
+              making it difficult for citizens to find accredited healthcare
+              institutions and employers across the Philippines.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-500/20 bg-red-500/5 text-[10px] font-bold tracking-widest uppercase text-red-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+              Disjointed
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 mt-2 bg-neutral-900">
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph/partners</span>
+                </div>
+              </div>
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD PARTNERS PAGE.png" alt="Legacy Partners Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD PARTNERS PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="hidden lg:flex relative flex-col items-center justify-center">
+            <div className="w-px h-full bg-white/10" />
+            <span className="absolute bg-neutral-950 border border-white/10 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-neutral-500">
+              VS
+            </span>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col gap-6 relative lg:mt-24"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+            <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Filterable Directory.</h3>
+            <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
+              A filterable, card-based partner directory that lets users search by
+              location, institution type, and accreditation status — connecting
+              Filipinos to the right healthcare partners instantly.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Filterable
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph/partners</span>
+                </div>
+              </div>
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH PARTNERS PAGE.png" alt="Redesigned Partners Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH PARTNERS PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Block 04: Service Catalog */}
+      <section className="mt-32 md:mt-48 w-full max-w-[1400px] mx-auto px-6 relative">
+        <div className="relative mb-16 md:mb-24">
+          <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
+            04
+          </span>
+          <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold block mb-4">Block 04</span>
+          <h2 className="font-montserrat font-black text-3xl md:text-5xl text-white tracking-tighter">
+            Service Catalog
+          </h2>
+          <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_1px_7fr] gap-12 lg:gap-16 items-start relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col gap-6"
+          >
+            <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold">The Problem</span>
+            <h3 className="font-montserrat font-bold text-3xl text-neutral-400 tracking-tight">Unstructured.</h3>
+            <p className="text-neutral-500 leading-relaxed text-sm md:text-base font-light">
+              Services were presented as unstructured text blocks with no visual
+              hierarchy or logical grouping, overwhelming users with a wall of
+              information when trying to access basic PhilHealth offerings.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-red-500/20 bg-red-500/5 text-[10px] font-bold tracking-widest uppercase text-red-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+              Unstructured
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 mt-2 bg-neutral-900">
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph/services</span>
+                </div>
+              </div>
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD SERVICES PAGE.png" alt="Legacy Services Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH OLD SERVICES PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="hidden lg:flex relative flex-col items-center justify-center">
+            <div className="w-px h-full bg-white/10" />
+            <span className="absolute bg-neutral-950 border border-white/10 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-neutral-500">
+              VS
+            </span>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col gap-6 relative lg:mt-24"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+            <span className="text-emerald-400/80 text-[10px] tracking-[0.3em] uppercase font-bold">The Solution</span>
+            <h3 className="font-montserrat font-black text-4xl md:text-5xl text-white tracking-tighter drop-shadow-lg">Categorized at a Tap.</h3>
+            <p className="text-neutral-300 leading-relaxed text-base md:text-lg font-light">
+              A bento-grid service catalog that categorizes offerings by type, with
+              clear CTAs and progressive disclosure — turning a wall of text into
+              an intuitive, scannable interface.
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold tracking-widest uppercase text-emerald-400/80 self-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Bento Grid
+            </span>
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(16,185,129,0.05)] mt-2 bg-neutral-900">
+              <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="flex-1 mx-4 h-5 rounded-md bg-neutral-800/50 flex items-center px-3">
+                  <span className="text-[10px] text-neutral-600 font-mono">philhealth.gov.ph/services</span>
+                </div>
+              </div>
+              <div className="relative h-[400px] md:h-[600px] overflow-hidden">
+                <div className="absolute top-0 left-0 w-full" style={{ animation: 'scrollUp 35s linear infinite' }}>
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH SERVICES PAGE.png" alt="Redesigned Services Page" className="w-full block" />
+                  <img src="/PHILHEALTH ASSETS/PHILHEALTH SERVICES PAGE.png" alt="" className="w-full block" aria-hidden="true" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent pointer-events-none z-10" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </motion.div>
+  );
+}

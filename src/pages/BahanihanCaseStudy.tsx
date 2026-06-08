@@ -195,83 +195,94 @@ const BahanihanCaseStudy = () => {
         </div>
       </div>
 
-      {/* Content Wrapper */}
-      <div className="relative z-20 flex flex-col min-h-screen px-6 md:px-12 lg:px-24">
-        
-        {/* Centered Hero Content */}
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          
-          <div className="flex flex-col items-center text-center max-w-4xl">
-            
-            {/* Project Logo */}
-            <motion.img 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              src="/BAHANIHAN ASSETS/BAHANIHAN LOGO.png" 
-              alt="Bahanihan Logo"
-              className="h-55 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
-            />
+      {/* Centered Hero Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 md:px-12 lg:px-24">
+        <div className="flex flex-col items-center text-center max-w-4xl">
+          {/* Project Logo */}
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            src="/BAHANIHAN ASSETS/BAHANIHAN LOGO.png" 
+            alt="Bahanihan Logo"
+            className="h-55 w-auto mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+          />
 
-            {/* Unified Montserrat Title */}
-            <motion.div className="overflow-hidden py-4 pb-2">
-              <motion.h1 
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl md:text-7xl lg:text-[10rem] font-black tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] text-white leading-none"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
+          {/* Unified Montserrat Title */}
+          <motion.div className="overflow-hidden py-4 pb-2">
+            <motion.h1 
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-5xl md:text-7xl lg:text-[10rem] font-black tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] text-white leading-none"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              BAHANIHAN
+            </motion.h1>
+          </motion.div>
+
+          {/* Cinematic Tagline */}
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-neutral-400 uppercase text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] mt-8 mb-16 md:mb-20"
+          >
+            BAYANIHAN SA AKSYON, AGARAN SA PAGTULONG
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Metadata Grid */}
+      <section className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {[
+              { label: "ROLE", value: "UI/UX Designer" },
+              { label: "PLATFORM", value: "Desktop & Mobile OS" },
+              { label: "CONTEXT", value: "Disaster Response Coordination" },
+              { label: "TYPE", value: "Commissioned Project" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="py-8 md:py-12 md:border-r border-white/10 last:border-r-0 md:first:pl-0 pl-0 md:px-8 first:md:pr-8"
               >
-                BAHANIHAN
-              </motion.h1>
-            </motion.div>
-
-            {/* Cinematic Tagline */}
-            <motion.p 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-400 uppercase text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] mt-8 mb-16 md:mb-20"
-            >
-              BAYANIHAN SA AKSYON, AGARAN SA PAGTULONG
-            </motion.p>
-
-            {/* Metadata: Stacked mobile, row on tablet+ */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-6 md:flex-row md:gap-12 "
-            >
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">Role</span>
-                <span className="text-sm md:text-base text-white/90 font-medium tracking-wide">UI/UX DESIGNER</span>
-              </div>
-              
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">Platform</span>
-                <span className="text-sm md:text-base text-white/90 font-medium tracking-wide">DESKTOP & MOBILE OS</span>
-              </div>
-              
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-xs font-semibold tracking-widest text-white/40 uppercase">Focus</span>
-                <span className="text-sm md:text-base text-white/90 font-medium tracking-wide">DISASTER RESPONSE COORDINATION</span>
-              </div>
-            </motion.div>
-            
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">
+                    {item.label}
+                  </span>
+                </div>
+                <span className="text-white font-medium text-sm md:text-base tracking-wide">
+                  {item.value}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </section>
+
+      {/* Content Wrapper */}
+      <div className="relative z-20 flex flex-col px-6 md:px-12 lg:px-24">
 
         {/* The Brief Section */}
-        <section className="max-w-7xl mx-auto w-full py-24 md:py-32">
-          <span className="text-neutral-600 tracking-widest text-[10px] font-semibold uppercase mb-8 block">[ THE BRIEF ]</span>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-            <div className="lg:col-span-5">
-              <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">
-                Bridging the gap between command and ground zero.
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7 lg:border-l lg:border-white/10 lg:pl-12 flex flex-col gap-16">
+        <section className="relative py-24 md:py-32 lg:py-48 overflow-hidden">
+          {/* Ambient Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[70%] h-[100%] md:h-[80%] bg-white/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto relative z-10">
+            <span className="text-neutral-600 tracking-widest text-[10px] font-semibold uppercase mb-8 block">[ THE BRIEF ]</span>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
+              <div className="md:col-span-5 border-l border-white/10 pl-5 md:pl-8">
+                <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">
+                  Bridging the gap between command and ground zero.
+                </h2>
+              </div>
+              <div className="md:col-span-7 flex items-center">
               <div>
                 <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-4 flex items-center gap-4">
                   <span>The Problem</span>
@@ -292,7 +303,8 @@ const BahanihanCaseStudy = () => {
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Ecosystem Showcase Section */}
         <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-16 md:py-20 bg-[#030305] overflow-hidden">

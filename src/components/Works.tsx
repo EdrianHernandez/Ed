@@ -34,7 +34,7 @@ const projects = [
     description: "Redesigned the PhilHealth website for Technofusion 2025 at Batangas State University, winning 2nd Place",
     tags: ["UI/UX Redesign"],
     tech: ["Figma"],
-    link: "#",
+    link: "/projects/philhealth",
     image: null
   }
 ];
@@ -236,8 +236,11 @@ export function Works() {
                 transition={{ duration: 0.25 }}
                 className="absolute inset-0 flex flex-col p-7 pointer-events-none"
               >
-                <span className="text-5xl font-bold text-white/15 font-display select-none">{getNumber(i)}</span>
-                <div className="flex-1 flex items-center justify-center">
+                {project.image && (
+                  <img src={project.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.15] pointer-events-none" />
+                )}
+                <span className="text-5xl font-bold text-white/15 font-display select-none relative z-10">{getNumber(i)}</span>
+                <div className="flex-1 flex items-center justify-center relative z-10">
                   <span className="-rotate-90 whitespace-nowrap text-xl font-bold uppercase tracking-[0.15em] text-white/50 select-none">
                     {project.title}
                   </span>
@@ -254,8 +257,8 @@ export function Works() {
                 {/* Background image */}
                 {project.image && (
                   <div className="absolute inset-0 z-0">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-30" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#111114] via-[#111114]/90 to-[#111114]/60" />
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-50" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#111114]/100 via-[#111114]/60 to-[#111114]/40" />
                   </div>
                 )}
 

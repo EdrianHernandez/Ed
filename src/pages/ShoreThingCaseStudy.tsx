@@ -265,7 +265,7 @@ export function ShoreThingEcosystemShowcase() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
   return (
-    <section className="relative bg-[#030305] py-20 md:py-32 lg:py-40 text-white overflow-hidden">
+    <section className="relative bg-[#030305] pt-0 pb-20 md:pb-32 lg:pb-40 text-white overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-size-[40px_40px]"
@@ -278,24 +278,26 @@ export function ShoreThingEcosystemShowcase() {
 
       <div className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-250 w-250 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/2 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 md:px-12 lg:px-24 z-10">
-        <div className="space-y-40 md:space-y-48">
-          <section className="relative w-full max-w-[1400px] mx-auto py-16 md:py-24 lg:py-32">
+      {/* Brief Section - Full Width Breakout */}
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] py-24 md:py-32 lg:py-48 overflow-hidden">
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[70%] h-[100%] md:h-[80%] bg-white/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-16 relative z-10 items-center">
-              <div className="lg:col-span-6 text-center lg:text-left">
-                <span className="block text-neutral-600 text-[10px] tracking-[0.2em] uppercase mb-4 md:mb-6 lg:mb-8">[ THE BRIEF ]</span>
-                <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Digitizing the luxury of San Juan&apos;s coastline.</h2>
-              </div>
-
-              <div className="lg:col-span-5 lg:col-start-8 text-center lg:text-left">
-                <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-3 md:mb-4 lg:mb-6">THE OBJECTIVE</h3>
-                <p className="text-neutral-400 leading-relaxed text-base md:text-lg font-light">Architect an immersive, frictionless web application exclusively for San Juan&apos;s elite resorts. The goal was to translate high-fidelity property imagery into an effortless digital journey—converting inspiration directly into confirmed bookings without cognitive overload.</p>
-              </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          <span className="block text-neutral-600 text-[10px] tracking-[0.2em] uppercase mb-4 md:mb-6 lg:mb-8">[ THE BRIEF ]</span>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-center">
+            <div className="md:col-span-5 border-l border-white/10 pl-5 md:pl-8">
+              <h2 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">Digitizing the luxury of San Juan&apos;s coastline.</h2>
             </div>
-          </section>
 
-         
+            <div className="md:col-span-7 flex items-center">
+              <p className="text-neutral-400 leading-relaxed text-base md:text-lg lg:text-xl font-light text-pretty">Architect an immersive, frictionless web application exclusively for San Juan&apos;s elite resorts. The goal was to translate high-fidelity property imagery into an effortless digital journey—converting inspiration directly into confirmed bookings without cognitive overload.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="relative mx-auto max-w-7xl px-6 md:px-12 lg:px-24 z-10">
         <div className="space-y-24 md:space-y-32 lg:space-y-40">
             <motion.section
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -637,7 +639,6 @@ export function ShoreThingEcosystemShowcase() {
             </span>
           </motion.div>
         </motion.section>
-      </div>
 
       <AnimatePresence>
         {selectedImage && (
@@ -746,36 +747,40 @@ export default function ShoreThingCaseStudy() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start w-full gap-6 sm:gap-6 md:gap-12 lg:gap-24 mt-4 px-4 sm:px-0"
-          >
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.35)]" />
-                <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">Role</span>
-              </div>
-              <span className="text-white font-medium text-xs sm:text-sm md:text-base tracking-wide uppercase">Lead UI/UX Designer</span>
-            </div>
 
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.35)]" />
-                <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">Focus</span>
-              </div>
-              <span className="text-white font-medium text-xs sm:text-sm md:text-base tracking-wide uppercase">Luxury Booking Flow Design</span>
-            </div>
+        </div>
+      </section>
 
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.35)]" />
-                <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">Context</span>
-              </div>
-              <span className="text-white font-medium text-xs sm:text-sm md:text-base tracking-wide uppercase">San Juan, Batangas Hospitality Brand</span>
-            </div>
-          </motion.div>
+      {/* Metadata Grid */}
+      <section className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {[
+              { label: "ROLE", value: "Lead UI/UX Designer" },
+              { label: "FOCUS", value: "Luxury Booking Flow Design" },
+              { label: "CONTEXT", value: "San Juan, Batangas Hospitality Brand" },
+              { label: "TYPE", value: "Commissioned Project" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="py-8 md:py-12 md:border-r border-white/10 last:border-r-0 md:first:pl-0 pl-0 md:px-8 first:md:pr-8"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">
+                    {item.label}
+                  </span>
+                </div>
+                <span className="text-white font-medium text-sm md:text-base tracking-wide">
+                  {item.value}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

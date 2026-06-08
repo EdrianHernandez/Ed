@@ -82,6 +82,11 @@
   100% { transform: translateX(200%) skewX(-15deg); }
 }
 
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
 @keyframes gradient-shift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }

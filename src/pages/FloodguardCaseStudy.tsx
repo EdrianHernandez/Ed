@@ -77,40 +77,40 @@ export function FloodguardCaseStudy() {
             </motion.div>
           </div>
           
-          {/* The Metadata Re-Architecture */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start w-full gap-8 sm:gap-6 md:gap-16 lg:gap-24 mt-4 px-4 sm:px-0"
-          >
-            {/* Metadata Item 1 */}
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
-                <span className="text-[#666666] font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">Role</span>
-              </div>
-              <span className="text-[#FBFBFB] font-medium text-xs sm:text-sm md:text-base tracking-wide uppercase">Lead UI/UX Designer</span>
-            </div>
 
-            {/* Metadata Item 2 */}
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
-                <span className="text-[#666666] font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">Tech Focus</span>
-              </div>
-              <span className="text-[#FBFBFB] font-medium text-xs sm:text-sm md:text-base tracking-wide uppercase">AI/ML Data Visualization</span>
-            </div>
+        </div>
+      </section>
 
-            {/* Metadata Item 3 */}
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1 md:space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
-                <span className="text-[#666666] font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">Context</span>
-              </div>
-              <span className="text-[#FBFBFB] font-medium text-xs sm:text-sm md:text-base tracking-wide uppercase">1st Place, UPLB Warframes</span>
-            </div>
-          </motion.div>
+      {/* Metadata Grid */}
+      <section className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {[
+              { label: "ROLE", value: "Lead UI/UX Designer" },
+              { label: "TECH FOCUS", value: "AI/ML Data Visualization" },
+              { label: "CONTEXT", value: "UPLB Warframes Competition Entry" },
+              { label: "AWARDS", value: "1st Place Winner" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="py-8 md:py-12 md:border-r border-white/10 last:border-r-0 md:first:pl-0 pl-0 md:px-8 first:md:pr-8"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span className="text-neutral-500 font-mono text-[10px] md:text-xs tracking-widest uppercase font-semibold">
+                    {item.label}
+                  </span>
+                </div>
+                <span className="text-white font-medium text-sm md:text-base tracking-wide">
+                  {item.value}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -145,33 +145,38 @@ export function FloodguardCaseStudy() {
       </div>
 
       {/* 2. The Brief (Finding the Chaos) */}
-      <section className="py-16 sm:py-24 md:py-32 lg:py-48 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.7 }}
-            className="md:col-span-5 border-l border-[#222222] pl-5 md:pl-8"
-          >
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 md:mb-6 tracking-wide text-[#E0E0E0]">THE PROBLEM</h2>
-            <p className="text-[#A8A8A8] text-base sm:text-lg md:text-xl font-light leading-relaxed text-pretty">
-              Typhoons do not wait for preparedness. In the Philippines, natural disasters routinely strip communities of their infrastructure. The fatal flaw is rarely a lack of data, but a collapse in its distribution: communities struggle relentlessly with fragmented alerts, delayed responses, and a void of real-time intelligence.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ delay: 0.15, duration: 0.7 }}
-            className="md:col-span-7 border-l border-[#222222] pl-5 md:pl-8 mt-4 md:mt-0"
-          >
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 md:mb-6 tracking-wide text-[#E0E0E0]">THE CHALLENGE</h2>
-            <p className="text-[#A8A8A8] text-base sm:text-lg md:text-xl font-light leading-relaxed text-pretty">
-              Transforming raw predictive data into survival currency. The imperative was to conceptualize a web application prototype that didn't just display AI/ML flood risk forecasts, but digested them into immediate, actionable directives. We had to design an interface where complex meteorological algorithms met human urgency—equipping communities to prepare, navigate, and survive high-stakes environmental crises.
-            </p>
-          </motion.div>
+      <section className="relative py-16 sm:py-24 md:py-32 lg:py-48 px-6 md:px-12 lg:px-24 overflow-hidden">
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[70%] h-[100%] md:h-[80%] bg-white/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7 }}
+              className="md:col-span-5 border-l border-white/10 pl-5 md:pl-8"
+            >
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 md:mb-6 tracking-wide text-[#E0E0E0]">THE PROBLEM</h2>
+              <p className="text-[#A8A8A8] text-base sm:text-lg md:text-xl font-light leading-relaxed text-pretty">
+                Typhoons do not wait for preparedness. In the Philippines, natural disasters routinely strip communities of their infrastructure. The fatal flaw is rarely a lack of data, but a collapse in its distribution: communities struggle relentlessly with fragmented alerts, delayed responses, and a void of real-time intelligence.
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ delay: 0.15, duration: 0.7 }}
+              className="md:col-span-7 border-l border-white/10 pl-5 md:pl-8 mt-4 md:mt-0"
+            >
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 md:mb-6 tracking-wide text-[#E0E0E0]">THE CHALLENGE</h2>
+              <p className="text-[#A8A8A8] text-base sm:text-lg md:text-xl font-light leading-relaxed text-pretty">
+                Transforming raw predictive data into survival currency. The imperative was to conceptualize a web application prototype that didn't just display AI/ML flood risk forecasts, but digested them into immediate, actionable directives. We had to design an interface where complex meteorological algorithms met human urgency—equipping communities to prepare, navigate, and survive high-stakes environmental crises.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
