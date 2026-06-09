@@ -168,7 +168,7 @@ export function PhilHealthCaseStudy() {
       </section>
 
       {/* Block 01: The Legacy vs. The Future */}
-      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-14 md:py-24 lg:py-32">
         {/* Technical Grid Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div
@@ -180,8 +180,25 @@ export function PhilHealthCaseStudy() {
           />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
-        {/* Section Header */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+        {/* Overall Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16 md:mb-24"
+        >
+          <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase font-bold block mb-4">
+            Before & After
+          </span>
+          <h2 className="font-montserrat font-black text-3xl md:text-5xl lg:text-6xl text-white tracking-tighter leading-[1.1]">
+            Redesign Breakdown
+          </h2>
+          <div className="mt-6 h-px w-24 mx-auto bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        </motion.div>
+
+        {/* Block 01 Header */}
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             01
@@ -289,7 +306,7 @@ export function PhilHealthCaseStudy() {
       </section>
 
       {/* Block 02: Membership Dashboard */}
-      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-14 md:py-24 lg:py-32">
         {/* Technical Grid Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div
@@ -301,7 +318,7 @@ export function PhilHealthCaseStudy() {
           />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             02
@@ -398,7 +415,7 @@ export function PhilHealthCaseStudy() {
       </section>
 
       {/* Block 03: Partner Network */}
-      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-14 md:py-24 lg:py-32">
         {/* Technical Grid Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div
@@ -410,7 +427,7 @@ export function PhilHealthCaseStudy() {
           />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             03
@@ -507,7 +524,7 @@ export function PhilHealthCaseStudy() {
       </section>
 
       {/* Block 04: Service Catalog */}
-      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-32 md:py-48">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#030305] overflow-hidden py-14 md:py-24 lg:py-32">
         {/* Technical Grid Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div
@@ -519,7 +536,7 @@ export function PhilHealthCaseStudy() {
           />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-20 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         <div className="relative mb-16 md:mb-24">
           <span className="absolute -top-8 md:-top-12 left-0 text-[8rem] md:text-[12rem] font-montserrat font-black text-white/[0.02] leading-none select-none pointer-events-none">
             04
@@ -691,7 +708,7 @@ export function PhilHealthCaseStudy() {
           </p>
 
           <a 
-            href="https://www.figma.com/proto/[PLACEHOLDER]" 
+            href="https://www.figma.com/proto/iURNTJGbCmGnqxzO9yxNVA/Practice?node-id=1-2&t=vteGH0fdjSyO868w-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&fbclid=IwY2xjawSUg6ZleHRuA2FlbQIxMABicmlkETJtZ1NrNnpiYmdVNzJVakxLc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtHaCkyKFxDghTmSnDIDSCrQeNplsrqS0zCX1X6ByHyqZ06vSJD1qJdi2IOJ_aem_EXWAaMzv_Xj_MZ8FmCv08Q" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group mt-10 md:mt-12 px-6 sm:px-8 py-3.5 sm:py-4 w-full max-w-[280px] sm:max-w-max rounded-full bg-black/50 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 transition-all duration-500 ease-out hover:ring-white/40 hover:bg-white/10 hover:shadow-[0_0_40px_0px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95"
