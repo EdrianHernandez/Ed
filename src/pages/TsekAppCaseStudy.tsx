@@ -70,9 +70,9 @@ export function TsekAppCaseStudy() {
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.35, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-montserrat font-black text-5xl md:text-7xl lg:text-[9rem] text-white tracking-tighter leading-none drop-shadow-2xl text-center relative z-10"
+            className="font-montserrat text-5xl md:text-7xl lg:text-[9rem] text-white tracking-tighter leading-none drop-shadow-2xl text-center relative z-10"
           >
-            TSEKAPP
+            <span className="font-[800]">TSEK</span><span className="font-[200]">APP</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}

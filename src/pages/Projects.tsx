@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "../lib/utils";
+import { NavBar } from "../components/NavBar";
 
 const allProjects = [
   {
@@ -38,7 +39,7 @@ const allProjects = [
     description: "Mobile-first clinical triaging and preventative health system for Naga City",
     tags: ["UI/UX Design", "Health Tech"],
     link: "/projects/tsekapp",
-    image: "/TSEKAPP%20ASSETS/TSEKAPP%20Thumbnail.png"
+    image: "/TSEKAPP ASSETS/TSEKAPP Thumbnail.png"
   }
 ];
 
@@ -92,40 +93,50 @@ export function Projects() {
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       className="pb-24 min-h-screen bg-[#0a0a0c]"
     >
-      <div className="pt-8 sm:pt-12 md:pt-24 px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
+      <NavBar />
+      <div className="pt-32 sm:pt-36 md:pt-44 px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10 sm:mb-16 md:mb-24"
         >
-          <div className="flex flex-wrap items-center justify-between gap-y-4">
-            <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
-              <Link 
-                to="/" 
-                className="group w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors duration-500 shrink-0"
+          <div className="flex flex-wrap items-end justify-between gap-y-4">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-2 mb-3 sm:mb-4"
               >
-                <ArrowLeft size={18} className="text-[#737373] group-hover:text-white group-hover:-translate-x-0.5 transition-all duration-500" />
-              </Link>
-
-              <div>
-                <motion.h1 
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]"
+                <Link
+                  to="/"
+                  className="font-mono text-[0.6rem] sm:text-[0.65rem] md:text-xs text-[#737373] uppercase tracking-[0.2em] hover:text-white transition-colors duration-500"
                 >
+                  Home
+                </Link>
+                <ChevronRight size={10} className="text-white/20" />
+                <span className="font-mono text-[0.6rem] sm:text-[0.65rem] md:text-xs text-white/50 uppercase tracking-[0.2em]">
                   Archive
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[#737373] text-xs sm:text-sm md:text-lg font-light mt-2 sm:mt-3 md:mt-4"
-                >
-                  A collection of my featured design work
-                </motion.p>
-              </div>
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]"
+              >
+                Archive
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[#737373] text-xs sm:text-sm md:text-lg font-light mt-2 sm:mt-3 md:mt-4"
+              >
+                A collection of my featured design work
+              </motion.p>
             </div>
 
             <motion.span
