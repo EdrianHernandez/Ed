@@ -58,24 +58,21 @@ export function TsekAppCaseStudy() {
         </div>
         <div className="bg-teal-500/5 blur-[130px] rounded-full absolute w-[60%] h-[60%] pointer-events-none -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="flex flex-col items-center justify-center w-full z-10 space-y-6">
-          <motion.div
+          <motion.img
+            src="/TSEKAPP%20ASSETS/TSEKAPP%20LOGO.png"
+            alt="TsekApp Logo"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-500/20 bg-teal-500/5 backdrop-blur-md mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-teal-400">
-              1st Naga City Mayoral Hackathon • Health Category
-            </span>
-          </motion.div>
+            className="w-36 md:w-44 lg:w-52 h-auto mb-8 drop-shadow-[0_0_30px_rgba(45,212,191,0.15)]"
+          />
           <motion.h1
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.35, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="font-montserrat font-black text-5xl md:text-7xl lg:text-[9rem] text-white tracking-tighter leading-none drop-shadow-2xl text-center relative z-10"
           >
-            TSEKAPP.
+            TSEKAPP
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -83,7 +80,7 @@ export function TsekAppCaseStudy() {
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 text-neutral-400 text-lg md:text-xl tracking-widest uppercase font-light text-center max-w-3xl mx-auto"
           >
-            Mobile-First Clinical Triaging & Community Health Intelligence.
+            From symptom to treatment in one seamless flow.
           </motion.p>
         </div>
       </section>
@@ -358,9 +355,10 @@ export function TsekAppCaseStudy() {
           </p>
 
           <a
-            href="#"
+            href="https://www.figma.com/proto/WFY6wzoC12N7VedegEva8X/TSEKAPP-for-NAGA-APP?node-id=0-1&t=dPCTzlZvhBwcU5kh-1"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => { e.preventDefault(); window.open("https://www.figma.com/proto/WFY6wzoC12N7VedegEva8X/TSEKAPP-for-NAGA-APP?node-id=0-1&t=dPCTzlZvhBwcU5kh-1", "_blank", "noopener,noreferrer"); }}
             className="group mt-10 md:mt-12 px-6 sm:px-8 py-3.5 sm:py-4 w-full max-w-[280px] sm:max-w-max rounded-full bg-black/50 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 transition-all duration-500 ease-out hover:ring-white/40 hover:bg-white/10 hover:shadow-[0_0_40px_0px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95"
           >
             <svg className="w-5 h-5 transition-transform duration-500 group-hover:scale-110" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
