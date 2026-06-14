@@ -332,57 +332,7 @@ export function TsekAppCaseStudy() {
       />
 
       {/* ============================== */}
-      {/* 5. Hackathon Recognition         */}
-      {/* ============================== */}
-      <section className="relative py-16 sm:py-24 md:py-32 px-6 md:px-12 lg:px-24 w-full mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto w-full"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center relative">
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 font-black text-[6rem] md:text-[10rem] lg:text-[16rem] leading-none pointer-events-none select-none z-0 translate-x-[-15%] lg:translate-x-[-10%] opacity-10 bg-clip-text text-transparent bg-gradient-to-b from-teal-400/40 to-transparent">
-              HEALTH
-            </div>
-            <div className="relative z-10 flex flex-col pt-12 md:pt-0">
-              <div className="text-[#888888] font-mono text-xs md:text-sm tracking-widest uppercase mb-6 flex items-center gap-4">
-                <span className="w-8 h-[1px] bg-[#555]"></span>
-                [ 1ST NAGA CITY MAYORAL HACKATHON — HEALTH CATEGORY ]
-              </div>
-              <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter text-white">BUILT FOR CIVIC IMPACT</h2>
-              <p className="text-[#A8A8A8] text-lg md:text-xl font-light leading-relaxed max-w-xl">
-                Developed under the time pressure of the 1st Naga City Mayoral Hackathon,
-                TsekApp was built to demonstrate how a smart city super app can integrate
-                health intelligence directly into the civic experience. The project was
-                conceived, designed, and prototyped in a rapid sprint — proving that
-                meaningful health tech doesn't require months of development to deliver value.
-              </p>
-            </div>
-            <div className="relative z-10 flex justify-center lg:justify-end w-full">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-teal-500/5 rounded-full blur-[80px] pointer-events-none z-0"></div>
-              <div className="relative z-10 flex flex-col items-center gap-8">
-                <img
-                  src="/TSEKAPP%20ASSETS/TSEKAPP%20LOGO.png"
-                  alt="TsekApp Logo"
-                  className="w-48 h-auto object-contain drop-shadow-[0_0_30px_rgba(45,212,191,0.15)] grayscale opacity-80 hover:grayscale-0 hover:opacity-100 hover:-translate-y-2 hover:scale-105 transition-all duration-700 ease-out"
-                  onError={(e) => (e.currentTarget as HTMLImageElement).style.opacity = '0'}
-                />
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-500/20 bg-teal-500/5 backdrop-blur-md">
-                  <span className="w-2 h-2 rounded-full bg-teal-400" />
-                  <span className="text-xs font-bold tracking-[0.15em] uppercase text-teal-400">
-                    Health Innovation • 2025
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ============================== */}
-      {/* 6. CTA / Figma Prototype         */}
+      {/* 5. CTA / Figma Prototype         */}
       {/* ============================== */}
       <section className="relative w-full py-24 md:py-32 px-6 md:px-12 flex flex-col items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent pointer-events-none z-0"></div>
