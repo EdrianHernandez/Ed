@@ -713,8 +713,8 @@ function EcosystemTimeline() {
       description: "A guided checklist captures symptoms in plain language — bilingual, no medical jargon. Users tap through intuitive options to explain what they're experiencing.",
       icon: Stethoscope,
       color: "teal",
-      image: "/TSEKAPP%20ASSETS/TSEKAPP%20LANDING%20PAGE.png",
-      imageLabel: "Landing Page",
+      image: "/TSEKAPP%20ASSETS/TSEKAPP%20Symptoms%20Check%20-%20Step%201.png",
+      imageLabel: "Symptom Check",
       side: "left" as const,
     },
     {
@@ -723,8 +723,8 @@ function EcosystemTimeline() {
       description: "AI triage engine analyzes inputs and returns confidence-scored conditions with clear care recommendations — turning ambiguity into actionable next steps.",
       icon: Brain,
       color: "teal",
-      image: "/TSEKAPP%20ASSETS/TSEKAPP%20Symptoms%20Check%20-%20Step%201.png",
-      imageLabel: "Symptom Check",
+      image: "/TSEKAPP%20ASSETS/TSEKAPP%20RESULTS%20LIST%20PAGE.png",
+      imageLabel: "Results List",
       side: "right" as const,
     },
     {
