@@ -18,6 +18,7 @@ import { FloodguardCaseStudy } from "./pages/FloodguardCaseStudy";
 import BahanihanCaseStudy from "./pages/BahanihanCaseStudy"; 
 import ShoreThingCaseStudy from "./pages/ShoreThingCaseStudy";
 import { PhilHealthCaseStudy } from "./pages/PhilHealthCaseStudy";
+import { TsekAppCaseStudy } from "./pages/TsekAppCaseStudy";
 
 function Home() {
   return (
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/projects/bahanihan" element={<BahanihanCaseStudy />} />
           <Route path="/projects/shorething" element={<ShoreThingCaseStudy />} />
           <Route path="/projects/philhealth" element={<PhilHealthCaseStudy />} />
+          <Route path="/projects/tsekapp" element={<TsekAppCaseStudy />} />
         </Routes>
         <Footer />
       </main>

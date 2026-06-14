@@ -32,6 +32,13 @@ const allProjects = [
     tags: ["UI/UX Redesign"],
     link: "/projects/philhealth",
     image: "/PHILHEALTH ASSETS/Philhealth Thumbnail.png"
+  },
+  {
+    title: "TsekApp",
+    description: "Mobile-first clinical triaging and preventative health system for Naga City",
+    tags: ["UI/UX Design", "Health Tech"],
+    link: "/projects/tsekapp",
+    image: "/TSEKAPP ASSETS/TSEKAPP HERO.jpg"
   }
 ];
 
@@ -52,6 +59,14 @@ function TitleFont({ title, className }: { title: string; className?: string }) 
     return (
       <h3 className={cn("font-serif font-bold tracking-tight uppercase", className)}>
         {title}
+      </h3>
+    );
+  }
+  if (title === "TsekApp") {
+    return (
+      <h3 className={cn("font-montserrat font-bold tracking-tight", className)}>
+        <span className="font-[800]">TSEK</span>
+        <span className="font-[200]">APP</span>
       </h3>
     );
   }

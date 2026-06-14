@@ -22,20 +22,20 @@ const projects = [
     image: "/SHORETHING ASSETS/Shorething Thumbnail.png",
   },
   {
+    title: "TsekApp",
+    description: "Mobile-first clinical triaging and preventative health system for Naga City",
+    tags: ["UI/UX Design", "Health Tech"],
+    tech: ["Figma"],
+    link: "/projects/tsekapp",
+    image: "/TSEKAPP ASSETS/TSEKAPP HERO.jpg"
+  },
+  {
     title: "Bahanihan",
     description: "Community disaster response command center with live data",
     tags: ["UI/UX Design", "Community Platform"],
     tech: ["Figma"],
     link: "/projects/bahanihan",
     image: "/BAHANIHAN ASSETS/Bahanihan Thumbnail.png"
-  },
-  {
-    title: "PhilHealth",
-    description: "Redesigned the PhilHealth website for Technofusion 2025 at Batangas State University, winning 2nd Place",
-    tags: ["UI/UX Redesign"],
-    tech: ["Figma"],
-    link: "/projects/philhealth",
-    image: "/PHILHEALTH ASSETS/Philhealth Thumbnail.png"
   }
 ];
 
@@ -56,6 +56,14 @@ function TitleFont({ title, className }: { title: string; className?: string }) 
     return (
       <h3 className={cn("font-serif font-bold tracking-tight uppercase", className)}>
         {title}
+      </h3>
+    );
+  }
+  if (title === "TsekApp") {
+    return (
+      <h3 className={cn("font-montserrat font-bold tracking-tight", className)}>
+        <span className="font-[800]">TSEK</span>
+        <span className="font-[200]">APP</span>
       </h3>
     );
   }
