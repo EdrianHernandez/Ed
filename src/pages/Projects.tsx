@@ -38,7 +38,7 @@ const allProjects = [
     description: "Mobile-first clinical triaging and preventative health system for Naga City",
     tags: ["UI/UX Design", "Health Tech"],
     link: "/projects/tsekapp",
-    image: "/TSEKAPP ASSETS/TSEKAPP HERO.jpg"
+    image: "/TSEKAPP%20ASSETS/TSEKAPP%20Thumbnail.png"
   }
 ];
 

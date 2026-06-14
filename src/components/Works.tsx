@@ -27,7 +27,7 @@ const projects = [
     tags: ["UI/UX Design", "Health Tech"],
     tech: ["Figma"],
     link: "/projects/tsekapp",
-    image: "/TSEKAPP ASSETS/TSEKAPP HERO.jpg"
+    image: "/TSEKAPP ASSETS/TSEKAPP Thumbnail.png"
   },
   {
     title: "Bahanihan",
