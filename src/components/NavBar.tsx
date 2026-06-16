@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
@@ -59,7 +60,7 @@ export function NavBar() {
 
         {/* Right Side: Navigation Links & Mobile Toggle */}
         <div className="flex items-center">
-          <nav className="hidden md:flex space-x-10 lg:space-x-14">
+          <nav className="hidden lg:flex space-x-10 lg:space-x-14">
             {navLinks.map((link, i) => (
               <motion.div
                 key={link.name}
@@ -69,6 +70,11 @@ export function NavBar() {
               >
                 <a
                   href={link.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const id = link.path.replace("/#", "");
+                    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                  }}
                   className="group flex items-center space-x-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] transition-all duration-500 hover:text-white"
                 >
                   <span className="text-[#525252] font-semibold group-hover:text-white/60 transition-colors duration-500">
@@ -90,53 +96,70 @@ export function NavBar() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-[#a3a3a3] hover:text-white transition-colors duration-300 z-50 p-2 -mr-2"
+            className="lg:hidden text-[#a3a3a3] hover:text-white transition-colors duration-300 z-50 p-2 -mr-2"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-[#0a0a0c] flex flex-col justify-center items-center px-6"
-          >
-            {/* Background elements for mobile menu */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-[80px]" />
-            </div>
+      {/* Mobile Menu Overlay — portaled to body to escape header's transform stacking context */}
+      {createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[60] flex flex-col justify-center items-center px-6"
+              style={{ backgroundColor: "#0a0a0c" }}
+            >
+              {/* Background elements for mobile menu */}
+              <div className="absolute inset-0 pointer-events-none opacity-20">
+                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-[80px]" />
+              </div>
 
-            <nav className="flex flex-col space-y-10 w-full max-w-sm">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.name}
-                  href={link.path}
-                  onClick={() => setIsOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex flex-col items-center relative"
-                >
-                  <span className="font-mono text-xs text-[#525252] mb-2 font-semibold uppercase tracking-[0.25em]">
-                    {link.num} //
-                  </span>
-                  <span className="text-3xl font-display font-medium text-[#e2e2e2] group-hover:text-white transition-colors duration-300 overflow-hidden relative">
-                    {link.name}
-                    <span className="absolute left-0 bottom-0 w-full h-px bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
-                  </span>
-                </motion.a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Close button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-6 right-6 text-[#a3a3a3] hover:text-white transition-colors duration-300 z-10 p-2"
+              >
+                <X size={24} />
+              </button>
+
+              <nav className="flex flex-col space-y-10 w-full max-w-sm">
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      const id = link.path.replace("/#", "");
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="group flex flex-col items-center relative"
+                  >
+                    <span className="font-mono text-xs text-[#525252] mb-2 font-semibold uppercase tracking-[0.25em]">
+                      {link.num} //
+                    </span>
+                    <span className="text-3xl font-display font-medium text-[#e2e2e2] group-hover:text-white transition-colors duration-300 overflow-hidden relative">
+                      {link.name}
+                      <span className="absolute left-0 bottom-0 w-full h-px bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+                    </span>
+                  </motion.a>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </motion.header>
   );
 }
