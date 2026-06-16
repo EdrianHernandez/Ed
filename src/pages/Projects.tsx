@@ -99,7 +99,7 @@ export function Projects() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 sm:mb-16 md:mb-24"
+          className="mb-6 sm:mb-8 md:mb-10"
         >
           <div className="flex flex-wrap items-end justify-between gap-y-4">
             <div>
@@ -121,14 +121,17 @@ export function Projects() {
                 </span>
               </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]"
-              >
-                Archive
-              </motion.h1>
+              <div className="relative">
+                <div className="absolute -top-1/2 left-0 w-[60%] h-[200%] bg-white/[0.03] blur-[80px] rounded-full pointer-events-none" />
+                <motion.h1
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative font-display text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]"
+                >
+                  Archive
+                </motion.h1>
+              </div>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -149,6 +152,9 @@ export function Projects() {
             </motion.span>
           </div>
         </motion.div>
+
+        {/* Separator */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-8" />
 
         <div className="flex flex-col gap-3">
           {allProjects.map((project, i) => {
