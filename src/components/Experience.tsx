@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 
 export function Experience() {
   return (
@@ -59,7 +60,7 @@ export function Experience() {
           </div>
 
           <div className="space-y-6 md:space-y-8">
-            <div className="group p-6 md:p-8 rounded-[1.5rem] bg-[#0a0a0c] border border-white/5 hover:border-white/20 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <Link to="/projects/floodguard" className="block group p-6 md:p-8 rounded-[1.5rem] bg-[#0a0a0c] border border-white/5 hover:border-white/20 hover:bg-white/[0.03] hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]">
               <div className="flex items-start justify-between mb-4 md:mb-6">
                 <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-white text-[0.65rem] md:text-xs font-mono uppercase tracking-widest font-semibold">1st Place</span>
                 <span className="text-[#525252] text-[0.65rem] md:text-xs font-mono font-semibold uppercase tracking-widest">2024 //</span>
@@ -67,9 +68,9 @@ export function Experience() {
               <h3 className="font-display text-xl md:text-2xl font-bold mb-1 md:mb-2 text-white">Warframes Competition</h3>
               <p className="text-[#a3a3a3] font-mono text-[0.7rem] md:text-xs mb-3 md:mb-4 uppercase tracking-widest">42nd Computer Science Week, UPLB</p>
               <p className="text-[#8a8a8a] text-sm md:text-base font-light text-pretty leading-relaxed">Awarded for FLOODGUARD, cementing the interface as a paragon of high-stakes utility and aesthetic mastery.</p>
-            </div>
+            </Link>
 
-            <div className="group p-6 md:p-8 rounded-[1.5rem] bg-[#0a0a0c] border border-white/5 hover:border-white/20 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <Link to="/projects/philhealth" className="block group p-6 md:p-8 rounded-[1.5rem] bg-[#0a0a0c] border border-white/5 hover:border-white/20 hover:bg-white/[0.03] hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]">
               <div className="flex items-start justify-between mb-4 md:mb-6">
                 <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-white text-[0.65rem] md:text-xs font-mono uppercase tracking-widest font-semibold">2nd Place</span>
                 <span className="text-[#525252] text-[0.65rem] md:text-xs font-mono font-semibold uppercase tracking-widest">2025 //</span>
@@ -77,7 +78,7 @@ export function Experience() {
               <h3 className="font-display text-xl md:text-2xl font-bold mb-1 md:mb-2 text-white">UI/UX Redesign Challenge</h3>
               <p className="text-[#a3a3a3] font-mono text-[0.7rem] md:text-xs mb-3 md:mb-4 uppercase tracking-widest">Technofusion 2025, BatStateU</p>
               <p className="text-[#8a8a8a] text-sm md:text-base font-light text-pretty leading-relaxed">Acknowledged for transforming rigorous systemic constraints into a fluid, user-first design language.</p>
-            </div>
+            </Link>
           </div>
         </motion.div>
 
