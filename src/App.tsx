@@ -5,6 +5,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
+import { SplashScreen } from "./components/SplashScreen";
 import { Hero } from "./components/Hero";
 import { Works } from "./components/Works";
 import { Experience } from "./components/Experience";
@@ -39,6 +40,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <main className="bg-background text-foreground min-h-screen font-sans pt-0">
+        <SplashScreen />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
