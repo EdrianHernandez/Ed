@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const processes = [
   {
@@ -53,6 +53,15 @@ function ProcessCard({ step, index }: { step: typeof processes[0]; index: number
 export function Process() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -72,6 +81,45 @@ export function Process() {
     );
     setActiveIndex(newIndex);
   });
+
+  const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
+  if (isMobile) {
+    return (
+      <section id="process" className="relative bg-[#0a0a0c]">
+        <div className="relative flex flex-col items-center px-5 py-24 gap-2">
+          {/* Ambient glow */}
+          <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] -translate-y-1/2 bg-gradient-to-tr from-[#ffffff]/[0.03] to-[#a3a3a3]/[0.02] rounded-full blur-[120px] pointer-events-none" />
+
+          {/* Section Header */}
+          <span className="font-mono text-xs text-[#525252] font-semibold uppercase tracking-[0.25em] mb-4 block">
+            03 // Process
+          </span>
+          <h2 className="font-display text-4xl font-bold tracking-tighter text-white leading-[1.1] mb-8">
+            PROCESS
+          </h2>
+
+          {processes.map((step, index) => (
+            <div key={step.num} className="w-full max-w-[480px] mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              >
+                <ProcessCard step={step} index={index} />
+              </motion.div>
+              {index < processes.length - 1 && (
+                <div className="flex justify-center py-2">
+                  <div className="w-px h-8 bg-gradient-to-b from-white/15 to-transparent" />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -104,7 +152,7 @@ export function Process() {
 
         {/* Scroll hint (fades out as you scroll) */}
         <motion.div
-          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+          style={{ opacity: scrollHintOpacity }}
           className="absolute bottom-8 md:bottom-12 right-6 md:right-12 lg:right-24 flex items-center gap-2"
         >
           <span className="font-mono text-[0.6rem] md:text-[0.65rem] text-white/30 uppercase tracking-[0.2em]">
