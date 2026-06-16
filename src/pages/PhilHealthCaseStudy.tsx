@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavBar } from "../components/NavBar";
 
 export function PhilHealthCaseStudy() {
   useEffect(() => {
@@ -15,33 +15,7 @@ export function PhilHealthCaseStudy() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="bg-neutral-950 min-h-screen overflow-x-hidden text-white selection:bg-white selection:text-neutral-950"
     >
-      {/* Sticky Back Button */}
-      <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
-        <div className="relative">
-          <div className="h-10 w-10 sm:h-12 sm:w-12" />
-          <Link
-            to="/"
-            className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
-            aria-label="Back to Works"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white/60 group-hover/back:text-white transition-colors duration-300"
-            >
-              <path d="M19 12H5" />
-              <path d="M12 19l-7-7 7-7" />
-            </svg>
-          </Link>
-        </div>
-      </div>
+      <NavBar />
 
       {/* 1. Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">

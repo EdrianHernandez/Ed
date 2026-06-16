@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect, useRef } from 'react';
+import { NavBar } from "../components/NavBar";
 
 const BahanihanCaseStudy = () => {
   interface ScreenshotData {
@@ -139,6 +139,7 @@ const BahanihanCaseStudy = () => {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30"
     >
+      <NavBar />
       {/* Background Visuals: Dual-platform framing */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         
@@ -165,35 +166,6 @@ const BahanihanCaseStudy = () => {
       {/* Gradient Overlay: Blends background images into canvas */}
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent pointer-events-none" />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950/60 via-transparent to-neutral-950/60 pointer-events-none" />
-
-      {/* Sticky Back Button — hidden, slides in on hover */}
-      <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
-        <div className="relative">
-          {/* Hover zone — always at viewport edge */}
-          <div className="h-10 w-10 sm:h-12 sm:w-12" />
-          {/* Button — slides in from left */}
-          <Link
-            to="/"
-            className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
-            aria-label="Back to Works"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white/60 group-hover/back:text-white transition-colors duration-300"
-            >
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </Link>
-        </div>
-      </div>
 
       {/* Centered Hero Content */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 md:px-12 lg:px-24">
@@ -282,7 +254,7 @@ const BahanihanCaseStudy = () => {
                   Bridging the gap between command and ground zero.
                 </h2>
               </div>
-              <div className="md:col-span-7 flex items-center">
+              <div className="md:col-span-7 flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-16">
               <div>
                 <h3 className="font-montserrat font-bold text-xs tracking-[0.2em] text-neutral-300 uppercase mb-4 flex items-center gap-4">
                   <span>The Problem</span>

@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { NavBar } from "../components/NavBar";
 
 export function FloodguardCaseStudy() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,6 +30,7 @@ export function FloodguardCaseStudy() {
       ref={containerRef}
       className="bg-[#050505] min-h-screen text-[#FBFBFB] font-sans selection:bg-[#FBFBFB] selection:text-[#050505]"
     >
+      <NavBar />
       {/* 1. Case Study Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">
         {/* Cinematic UI Background */}
@@ -113,36 +114,6 @@ export function FloodguardCaseStudy() {
           </div>
         </div>
       </section>
-
-      {/* Sticky Back Button — hidden, slides in on hover */}
-      <div className="fixed top-6 left-0 md:top-12 md:left-0 z-50 group/back">
-        <div className="relative">
-          {/* Hover zone — always at viewport edge */}
-          <div className="h-10 w-10 sm:h-12 sm:w-12" />
-          {/* Button — slides in from left */}
-          <Link
-            to="/"
-            className="absolute top-0 left-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 -translate-x-full group-hover/back:translate-x-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
-            aria-label="Back to Works"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white/60 group-hover/back:text-white transition-colors duration-300"
-            >
-              <path d="M19 12H5" />
-              <path d="M12 19l-7-7 7-7" />
-            </svg>
-          </Link>
-        </div>
-      </div>
 
       {/* 2. The Brief (Finding the Chaos) */}
       <section className="relative py-16 sm:py-24 md:py-32 lg:py-48 px-6 md:px-12 lg:px-24 overflow-hidden">
