@@ -168,7 +168,7 @@ const BahanihanCaseStudy = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950/60 via-transparent to-neutral-950/60 pointer-events-none" />
 
       {/* Centered Hero Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 md:px-12 lg:px-24">
+      <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-24 md:pt-32 overflow-hidden">
         <div className="flex flex-col items-center text-center max-w-4xl">
           {/* Project Logo */}
           <motion.img 
@@ -186,8 +186,7 @@ const BahanihanCaseStudy = () => {
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-7xl lg:text-[10rem] font-black tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] text-white leading-none"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              className="font-montserrat font-black text-5xl md:text-7xl lg:text-[9rem] tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] text-white leading-none"
             >
               BAHANIHAN
             </motion.h1>
@@ -203,7 +202,7 @@ const BahanihanCaseStudy = () => {
             BAYANIHAN SA AKSYON, AGARAN SA PAGTULONG
           </motion.p>
         </div>
-      </div>
+      </section>
 
       {/* Metadata Grid */}
       <section className="border-t border-white/10">
