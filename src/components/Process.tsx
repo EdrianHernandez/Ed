@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from "motion/react";
-import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { useRef, useState } from "react";
 
 const processes = [
   {
@@ -24,128 +24,101 @@ const processes = [
   }
 ];
 
-function ProcessCard({ step, index }: { step: typeof processes[0], index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const [isHovering, setIsHovering] = useState(false);
-
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
+function ProcessCard({ step, index }: { step: typeof processes[0]; index: number }) {
   return (
-    <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 40, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-15%" }}
-      transition={{ duration: 0.9, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-      className="group relative flex flex-col md:flex-row items-start -ml-4 md:-ml-12 p-4 md:p-8 rounded-[2rem] overflow-hidden"
-    >
-      {/* Background Hover Effect - Spotlight */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 -z-10 rounded-[2rem] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              600px circle at ${mouseX}px ${mouseY}px,
-              rgba(255,255,255,0.04),
-              transparent 40%
-            )
-          `,
-        }}
-      />
-      
-      {/* Ambient Brushed Silver Overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-white/[0.01]" />
-      
-      {/* Subtle Silver Edge Glow */}
-      <div className="absolute inset-0 pointer-events-none rounded-[2rem] border border-transparent group-hover:border-white/10 transition-colors duration-700 shadow-[inset_0_0_0_1px_transparent] group-hover:shadow-[inset_0_0_20px_rgba(255,255,255,0.02)]" />
-
-      {/* Step Number */}
-      <div className="relative pt-1 mb-3 md:mb-0 flex-[0_0_auto] md:flex-[0_0_6rem]">
-        <span className="font-display text-2xl md:text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-[#a3a3a3] to-[#525252] drop-shadow-sm select-none transition-all duration-700 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:from-white group-hover:to-white">
-          {step.num}<span className="text-[#525252] group-hover:text-white/60 transition-colors duration-700 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">.</span>
+    <div className="min-w-[75vw] sm:min-w-[60vw] md:min-w-[420px] lg:min-w-[480px] flex-shrink-0 flex items-center justify-center py-12 md:py-16 px-4 md:px-8 lg:px-12">
+      <div className="relative w-full h-full p-8 md:p-10 lg:p-12 rounded-[1.5rem] bg-[#0a0a0c]/20 backdrop-blur-md border border-white/5 group hover:bg-[#0a0a0c]/85 hover:border-white/10 transition-all duration-500 overflow-hidden">
+        {/* Large faded background number */}
+        <span className="absolute top-6 right-6 md:top-8 md:right-8 text-[6rem] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-montserrat font-black text-white/[0.025] leading-none select-none pointer-events-none group-hover:text-white/[0.05] transition-colors duration-700">
+          {step.num}
         </span>
-      </div>
-      
-      {/* Content */}
-      <div className="flex-1">
-        <h3 className="font-display text-lg md:text-2xl leading-tight text-white font-bold mb-3 md:mb-6 tracking-tight transition-colors duration-700">
+
+        {/* Title */}
+        <h3 className="relative font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1] mb-5 md:mb-6 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-500">
           {step.title}
         </h3>
-        <p className="font-sans text-sm md:text-base text-[#737373] font-light leading-relaxed max-w-2xl transition-all duration-700 group-hover:text-white group-hover:drop-shadow-[0_0_1px_rgba(255,255,255,0.2)]">
+
+        {/* Description */}
+        <p className="relative text-[#636363] text-sm md:text-base font-light leading-relaxed max-w-md group-hover:text-[#8a8a8a] transition-colors duration-500">
           {step.description}
         </p>
+
+        {/* Bottom accent line */}
+        <div className="relative mt-8 md:mt-10 w-0 h-px bg-gradient-to-r from-white/40 to-transparent group-hover:w-20 transition-all duration-700" />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function Process() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"],
+    target: sectionRef,
+    offset: ["start start", "end 90%"],
   });
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["2%", "-100%"]
+  );
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const newIndex = Math.min(
+      processes.length - 1,
+      Math.floor(latest * processes.length)
+    );
+    setActiveIndex(newIndex);
+  });
 
   return (
-    <section id="process" className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-[#0a0a0c] relative overflow-hidden">
-      {/* Background ambient radial glow (Cool Silver-Grey) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-[#ffffff]/5 to-[#a3a3a3]/5 rounded-full blur-[150px] pointer-events-none z-0" />
+    <section
+      id="process"
+      ref={sectionRef}
+      className="relative h-[300vh] bg-[#0a0a0c]"
+    >
+      {/* Sticky viewport container */}
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
 
-      {/* Grid Pattern Pattern */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)`,
-          backgroundSize: '4rem 4rem',
-          maskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 100%)'
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto relative z-10" ref={containerRef}>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 md:mb-20 pl-0 md:pl-12"
-        >
-          <span className="font-mono text-xs md:text-sm text-[#525252] font-semibold uppercase tracking-[0.25em] mb-4 md:mb-6 block">
-            03 // Process
+        {/* Background METHODOLOGY watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <span className="text-[20vw] sm:text-[12vw] md:text-[10vw] font-montserrat font-black text-white/[0.05] whitespace-none select-none tracking-tighter leading-none">
+            PROCESS
           </span>
-          <h2 className="font-display text-3xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-none">
-            Engineered Aesthetics
-          </h2>
+        </div>
+
+        {/* Ambient glow */}
+        <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] -translate-y-1/2 bg-gradient-to-tr from-[#ffffff]/[0.03] to-[#a3a3a3]/[0.02] rounded-full blur-[150px] pointer-events-none" />
+
+        {/* Horizontal Card Track */}
+        <motion.div
+          style={{ x }}
+          className="flex items-stretch pl-6 md:pl-12 lg:pl-24 pr-[30vw] md:pr-[20vw]"
+        >
+          {processes.map((step, index) => (
+            <ProcessCard key={step.num} step={step} index={index} />
+          ))}
         </motion.div>
 
-        <div className="relative pl-6 md:pl-24">
-          {/* Static Track Line */}
-          <div className="absolute left-[0px] md:left-[4px] top-4 bottom-12 w-[1px] bg-white/[0.05]" />
-          
-          {/* Animated Draw Line - Sleek Silver */}
-          <motion.div 
-            className="absolute left-[0px] md:left-[4px] top-4 w-[2px] bg-gradient-to-b from-white via-[#a3a3a3] to-transparent shadow-[0_0_12px_rgba(255,255,255,0.4)] z-10"
-            style={{ height: lineHeight }}
-          />
-
-          <div className="space-y-6 md:space-y-12">
-            {processes.map((step, index) => (
-              <ProcessCard key={step.num} step={step} index={index} />
-            ))}
-          </div>
-        </div>
+        {/* Scroll hint (fades out as you scroll) */}
+        <motion.div
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+          className="absolute bottom-8 md:bottom-12 right-6 md:right-12 lg:right-24 flex items-center gap-2"
+        >
+          <span className="font-mono text-[0.6rem] md:text-[0.65rem] text-white/30 uppercase tracking-[0.2em]">
+            Scroll
+          </span>
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/30">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
