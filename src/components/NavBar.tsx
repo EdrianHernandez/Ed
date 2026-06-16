@@ -50,11 +50,10 @@ export function NavBar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Link to="/" className="text-3xl lg:text-4xl font-display font-bold tracking-tighter select-none flex items-baseline relative group">
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-              Ed
+          <Link to="/" className="text-3xl lg:text-3xl font-montserrat font-extrabold tracking-[-0.04em] select-none hover:scale-105 transition-transform duration-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]">
+              ED
             </span>
-            <span className="text-[#e2e2e2] drop-shadow-[0_0_10px_rgba(255,255,255,0.6)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] transition-all duration-500">.</span>
           </Link>
         </motion.div>
 
