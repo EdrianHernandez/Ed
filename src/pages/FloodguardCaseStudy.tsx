@@ -369,7 +369,7 @@ export function FloodguardCaseStudy() {
               <img src="/FLOODGUARD%20ASSETS/ANALYTICS.png" alt="Demographic Impact Analysis" className="w-full h-auto object-cover relative z-10" onError={(e) => e.currentTarget.style.opacity = '0'} />
               <span className="absolute text-[#333] font-mono text-[10px] sm:text-xs md:text-sm text-center">Image required: /public/ANALYTICS.png</span>
             </div>
-            <div className="lg:col-span-4 flex flex-col justify-center px-4 sm:px-6 lg:px-0">
+            <div className="lg:col-span-4 flex flex-col justify-center items-center lg:items-start text-center lg:text-left px-4 sm:px-6 lg:px-0">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white mb-1 md:mb-6">Demographic Impact Analysis</h3>
               <p className="text-[#A8A8A8] text-sm sm:text-base md:text-lg font-light leading-relaxed">
                 Complex charts, circular graphs, and demographic impact datasets are unified under a highly disciplined dark-mode aesthetic. This precise data hierarchy allows macroscopic emergency information to remain highly legible and profoundly urgent without ever causing cognitive overload.
