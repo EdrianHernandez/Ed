@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { NavBar } from "../components/NavBar";
+import { NextProjectButton } from "../components/NextProjectButton";
 
 export function PhilHealthCaseStudy() {
   useEffect(() => {
@@ -716,6 +717,10 @@ export function PhilHealthCaseStudy() {
             END OF CASE STUDY
           </span>
         </motion.div>
+
+        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-16 md:mt-24">
+          <NextProjectButton title="Bahanihan" path="/projects/bahanihan" direction="previous" />
+        </div>
       </section>
     </motion.div>
   );

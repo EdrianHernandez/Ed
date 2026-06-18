@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { useEffect, useState, useRef } from "react";
 import { NavBar } from "../components/NavBar";
+import { NextProjectButton } from "../components/NextProjectButton";
 import { Stethoscope, Brain, Pill, UserRound, ClipboardList } from "lucide-react";
 
 export function TsekAppCaseStudy() {
@@ -358,6 +359,11 @@ export function TsekAppCaseStudy() {
             END OF CASE STUDY
           </span>
         </motion.div>
+
+        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between mt-16 md:mt-24">
+          <NextProjectButton title="ShoreThing" path="/projects/shorething" direction="previous" />
+          <NextProjectButton title="Bahanihan" path="/projects/bahanihan" direction="next" />
+        </div>
       </section>
     </motion.div>
   );

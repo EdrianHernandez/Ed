@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect, useRef } from 'react';
 import { NavBar } from "../components/NavBar";
+import { NextProjectButton } from "../components/NextProjectButton";
 
 const BahanihanCaseStudy = () => {
   interface ScreenshotData {
@@ -638,6 +639,11 @@ const BahanihanCaseStudy = () => {
             END OF CASE STUDY
           </span>
         </motion.div>
+
+        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between mt-16 md:mt-24">
+          <NextProjectButton title="TsekApp" path="/projects/tsekapp" direction="previous" />
+          <NextProjectButton title="PhilHealth" path="/projects/philhealth" direction="next" />
+        </div>
       </section>
 
     </motion.div>

@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { NavBar } from "../components/NavBar";
+import { NextProjectButton } from "../components/NextProjectButton";
 import { cn } from "../lib/utils";
 
 type EcosystemImage = {
@@ -884,6 +885,11 @@ export default function ShoreThingCaseStudy() {
             END OF CASE STUDY
           </span>
         </motion.div>
+
+        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between mt-16 md:mt-24">
+          <NextProjectButton title="Floodguard" path="/projects/floodguard" direction="previous" />
+          <NextProjectButton title="TsekApp" path="/projects/tsekapp" direction="next" />
+        </div>
       </section>
 
     </motion.div>

@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { NavBar } from "../components/NavBar";
+import { NextProjectButton } from "../components/NextProjectButton";
 
 export function FloodguardCaseStudy() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -487,6 +488,10 @@ export function FloodguardCaseStudy() {
             END OF CASE STUDY
           </span>
         </motion.div>
+
+        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-16 md:mt-24">
+          <NextProjectButton title="ShoreThing" path="/projects/shorething" direction="next" />
+        </div>
       </section>
     </motion.div>
   );
