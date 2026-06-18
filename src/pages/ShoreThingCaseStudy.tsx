@@ -886,9 +886,9 @@ export default function ShoreThingCaseStudy() {
           </span>
         </motion.div>
 
-        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between mt-16 md:mt-24">
-          <NextProjectButton title="Floodguard" path="/projects/floodguard" direction="previous" />
-          <NextProjectButton title="TsekApp" path="/projects/tsekapp" direction="next" />
+        <div className="relative z-10 w-full flex flex-row items-center justify-center gap-6 sm:gap-10 mt-16 md:mt-24">
+          <NextProjectButton path="/projects/floodguard" direction="previous" />
+          <NextProjectButton path="/projects/tsekapp" direction="next" />
         </div>
       </section>
 

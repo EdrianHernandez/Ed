@@ -640,9 +640,9 @@ const BahanihanCaseStudy = () => {
           </span>
         </motion.div>
 
-        <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between mt-16 md:mt-24">
-          <NextProjectButton title="TsekApp" path="/projects/tsekapp" direction="previous" />
-          <NextProjectButton title="PhilHealth" path="/projects/philhealth" direction="next" />
+        <div className="relative z-10 w-full flex flex-row items-center justify-center gap-6 sm:gap-10 mt-16 md:mt-24">
+          <NextProjectButton path="/projects/tsekapp" direction="previous" />
+          <NextProjectButton path="/projects/philhealth" direction="next" />
         </div>
       </section>
 
