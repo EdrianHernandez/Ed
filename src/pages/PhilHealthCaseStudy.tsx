@@ -719,7 +719,7 @@ export function PhilHealthCaseStudy() {
         </motion.div>
 
         <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-16 md:mt-24">
-          <NextProjectButton path="/projects/bahanihan" direction="previous" />
+          <NextProjectButton path="/projects/bahanihan" direction="previous" projectName="Bahanihan" />
         </div>
       </section>
     </motion.div>

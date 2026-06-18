@@ -490,7 +490,7 @@ export function FloodguardCaseStudy() {
         </motion.div>
 
         <div className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-center gap-4 mt-16 md:mt-24">
-          <NextProjectButton path="/projects/shorething" direction="next" />
+          <NextProjectButton path="/projects/shorething" direction="next" projectName="ShoreThing" />
         </div>
       </section>
     </motion.div>

@@ -360,9 +360,9 @@ export function TsekAppCaseStudy() {
           </span>
         </motion.div>
 
-        <div className="relative z-10 w-full flex flex-row items-center justify-center gap-6 sm:gap-10 mt-16 md:mt-24">
-          <NextProjectButton path="/projects/shorething" direction="previous" />
-          <NextProjectButton path="/projects/bahanihan" direction="next" />
+        <div className="relative z-10 w-full flex flex-row items-center justify-between gap-5 mt-16 md:mt-24">
+          <NextProjectButton path="/projects/shorething" direction="previous" projectName="ShoreThing" />
+          <NextProjectButton path="/projects/bahanihan" direction="next" projectName="Bahanihan" />
         </div>
       </section>
     </motion.div>

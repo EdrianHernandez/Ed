@@ -135,8 +135,13 @@ export function Works() {
             <motion.div
               key={project.title}
               layout
-              onMouseEnter={() => setHoveredCard(project.title)}
-              onMouseLeave={() => setHoveredCard(null)}
+              onClick={() => {
+                if (isExpanded) {
+                  navigate(project.link);
+                } else {
+                  setHoveredCard(project.title);
+                }
+              }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -149,7 +154,13 @@ export function Works() {
               style={{ background: "rgba(255,255,255,0.03)" }}
             >
               {/* Collapsed Header */}
-              <div className="flex items-center gap-4 p-5">
+              <div
+                className="flex items-center gap-4 p-5"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setHoveredCard(isExpanded ? null : project.title);
+                }}
+              >
                 <span className="text-2xl font-bold text-white/20 font-display">{getNumber(i)}</span>
                 <TitleFont title={project.title} className="text-lg text-white/90 flex-1" />
                 <motion.span
@@ -188,7 +199,7 @@ export function Works() {
                       <p className="text-[#a3a3a3] text-sm leading-relaxed font-light line-clamp-3 mb-4 text-pretty">
                         {project.description}
                       </p>
-                      <Link to={project.link} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
+                      <Link to={project.link} onClick={(e) => e.stopPropagation()} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
                         <span>View Project</span>
                         <ArrowUpRight size={14} />
                       </Link>
