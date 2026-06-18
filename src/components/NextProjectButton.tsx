@@ -16,7 +16,7 @@ export function NextProjectButton({ path, direction, projectName }: NextProjectB
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="relative z-10 w-full md:w-auto"
+      className="relative z-10 w-auto"
     >
       <Link
         to={path}
