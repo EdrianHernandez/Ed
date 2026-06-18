@@ -243,9 +243,6 @@ const BahanihanCaseStudy = () => {
 
         {/* The Brief Section */}
         <section className="relative py-24 md:py-32 lg:py-48 overflow-hidden">
-          {/* Ambient Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[70%] h-[100%] md:h-[80%] bg-white/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
-
           <div className="max-w-7xl mx-auto relative z-10">
             <span className="text-neutral-600 tracking-widest text-[10px] font-semibold uppercase mb-8 block">[ THE BRIEF ]</span>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
