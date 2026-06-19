@@ -140,7 +140,7 @@ const BahanihanCaseStudy = () => {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30"
     >
-      <NavBar />
+      <NavBar variant="case-study" prevLink={{ path: "/projects/tsekapp", name: "TsekApp" }} nextLink={{ path: "/projects/philhealth", name: "PhilHealth" }} />
       {/* Background Visuals: Dual-platform framing */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         

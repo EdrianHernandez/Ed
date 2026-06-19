@@ -21,6 +21,13 @@ const allProjects = [
     image: "/SHORETHING ASSETS/Shorething Thumbnail.png",
   },
   {
+    title: "TsekApp",
+    description: "Mobile-first clinical triaging and preventative health system for Naga City",
+    tags: ["UI/UX Design", "Health Tech"],
+    link: "/projects/tsekapp",
+    image: "/TSEKAPP ASSETS/TSEKAPP Thumbnail.png"
+  },
+  {
     title: "Bahanihan",
     description: "Community disaster response command center with live data",
     tags: ["UI/UX Design", "Community Platform"],
@@ -33,13 +40,6 @@ const allProjects = [
     tags: ["UI/UX Redesign"],
     link: "/projects/philhealth",
     image: "/PHILHEALTH ASSETS/Philhealth Thumbnail.png"
-  },
-  {
-    title: "TsekApp",
-    description: "Mobile-first clinical triaging and preventative health system for Naga City",
-    tags: ["UI/UX Design", "Health Tech"],
-    link: "/projects/tsekapp",
-    image: "/TSEKAPP ASSETS/TSEKAPP Thumbnail.png"
   }
 ];
 

@@ -16,7 +16,7 @@ export function PhilHealthCaseStudy() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="bg-neutral-950 min-h-screen overflow-x-hidden text-white selection:bg-white selection:text-neutral-950"
     >
-      <NavBar />
+      <NavBar variant="case-study" prevLink={{ path: "/projects/bahanihan", name: "Bahanihan" }} />
 
       {/* 1. Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">

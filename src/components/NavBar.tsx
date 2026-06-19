@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, ArrowLeft, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { name: "Work", path: "/#work", num: "01" },
@@ -11,7 +11,15 @@ const navLinks = [
   { name: "Connect", path: "/#connect", num: "04" },
 ];
 
-export function NavBar() {
+interface NavBarProps {
+  variant?: "home" | "case-study";
+  prevLink?: { path: string; name: string };
+  nextLink?: { path: string; name: string };
+}
+
+export function NavBar({ variant = "home", prevLink, nextLink }: NavBarProps) {
+  const isCaseStudy = variant === "case-study";
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,66 +53,141 @@ export function NavBar() {
       }`}
     >
       <div className="flex items-center justify-between px-6 md:px-12 lg:px-24">
-        {/* Left Side: Scaled Technical Logo */}
+        {/* Left Side: Logo or Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Link to="/" className="text-3xl lg:text-3xl font-montserrat font-extrabold tracking-[-0.04em] select-none hover:scale-105 transition-transform duration-300">
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]">
-              ED
-            </span>
-          </Link>
+          {isCaseStudy ? (
+            <AnimatePresence>
+              {scrolled && (
+                <motion.button
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={() => navigate("/projects")}
+                  className="group flex items-center gap-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 px-3 py-2 sm:px-4 sm:py-2 rounded-full transition-all duration-500 hover:text-white"
+                >
+                  <ArrowLeft size={14} className="transition-transform duration-500 group-hover:-translate-x-1" />
+                  <span className="hidden sm:block">Back</span>
+                </motion.button>
+              )}
+            </AnimatePresence>
+          ) : (
+            <Link to="/" className="text-3xl lg:text-3xl font-montserrat font-extrabold tracking-[-0.04em] select-none hover:scale-105 transition-transform duration-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]">
+                ED
+              </span>
+            </Link>
+          )}
         </motion.div>
 
         {/* Right Side: Navigation Links & Mobile Toggle */}
-        <div className="flex items-center">
-          <nav className="hidden lg:flex space-x-10 lg:space-x-14">
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <a
-                  href={link.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const id = link.path.replace("/#", "");
-                    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="group flex items-center space-x-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] transition-all duration-500 hover:text-white"
+        <div className="flex items-center gap-4 lg:gap-6">
+          {isCaseStudy ? (
+            <>
+              {/* Case Study: All Work + Prev/Next */}
+              <AnimatePresence>
+                {scrolled && (
+                  <motion.nav
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex items-center gap-3 sm:gap-6"
+                  >
+                {prevLink && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      to={prevLink.path}
+                      className="group flex items-center space-x-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] transition-all duration-500 hover:text-white"
+                    >
+                      <ArrowLeft size={14} className="transition-transform duration-500 group-hover:-translate-x-1" />
+                      <span className="relative font-medium overflow-hidden">
+                        {prevLink.name}
+                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+                      </span>
+                    </Link>
+                  </motion.div>
+                )}
+
+                {nextLink && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      to={nextLink.path}
+                      className="group flex items-center space-x-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] transition-all duration-500 hover:text-white"
+                    >
+                      <span className="relative font-medium overflow-hidden">
+                        {nextLink.name}
+                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+                      </span>
+                      <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-1" />
+                    </Link>
+                  </motion.div>
+                )}
+              </motion.nav>
+                )}
+              </AnimatePresence>
+            </>
+          ) : (
+            /* Home: Section Links */
+            <nav className="hidden lg:flex space-x-10 lg:space-x-14">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <span className="text-[#525252] font-semibold group-hover:text-white/60 transition-colors duration-500">
-                    {link.num} <span className="opacity-50">//</span>
-                  </span>
-                  <span className="relative font-medium overflow-hidden">
-                    {link.name}
-                    {/* Subtle underline hover effect */}
-                    <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
-                  </span>
-                </a>
-              </motion.div>
-            ))}
-          </nav>
+                  <a
+                    href={link.path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const id = link.path.replace("/#", "");
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="group flex items-center space-x-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] transition-all duration-500 hover:text-white"
+                  >
+                    <span className="text-[#525252] font-semibold group-hover:text-white/60 transition-colors duration-500">
+                      {link.num} <span className="opacity-50">//</span>
+                    </span>
+                    <span className="relative font-medium overflow-hidden">
+                      {link.name}
+                      <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+                    </span>
+                  </a>
+                </motion.div>
+              ))}
+            </nav>
+          )}
 
           {/* Mobile Menu Toggle */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-[#a3a3a3] hover:text-white transition-colors duration-300 z-50 p-2 -mr-2"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          {!isCaseStudy && (
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden text-[#a3a3a3] hover:text-white transition-colors duration-300 z-50 p-2 -mr-2"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          )}
         </div>
       </div>
 
       {/* Mobile Menu Overlay — portaled to body to escape header's transform stacking context */}
-      {createPortal(
+      {!isCaseStudy && createPortal(
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -129,6 +212,7 @@ export function NavBar() {
               </button>
 
               <nav className="flex flex-col space-y-10 w-full max-w-sm">
+                {/* Home Mobile: Section Links */}
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={link.name}

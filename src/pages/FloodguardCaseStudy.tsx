@@ -31,7 +31,7 @@ export function FloodguardCaseStudy() {
       ref={containerRef}
       className="bg-[#050505] min-h-screen text-[#FBFBFB] font-sans selection:bg-[#FBFBFB] selection:text-[#050505]"
     >
-      <NavBar />
+      <NavBar variant="case-study" nextLink={{ path: "/projects/shorething", name: "ShoreThing" }} />
       {/* 1. Case Study Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 overflow-hidden">
         {/* Cinematic UI Background */}

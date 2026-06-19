@@ -729,7 +729,7 @@ export default function ShoreThingCaseStudy() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="relative min-h-screen bg-neutral-950 overflow-hidden text-white font-sans selection:bg-white/30"
     >
-      <NavBar />
+      <NavBar variant="case-study" prevLink={{ path: "/projects/floodguard", name: "Floodguard" }} nextLink={{ path: "/projects/tsekapp", name: "TsekApp" }} />
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-8 md:px-12 overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden bg-neutral-950">
           <div className="absolute inset-[-8%] bg-neutral-950">
