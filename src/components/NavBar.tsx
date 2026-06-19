@@ -154,7 +154,12 @@ export function NavBar({ variant = "home", prevLink, nextLink }: NavBarProps) {
                     onClick={(e) => {
                       e.preventDefault();
                       const id = link.path.replace("/#", "");
-                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      const el = document.getElementById(id);
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        navigate(link.path);
+                      }
                     }}
                     className="group flex items-center space-x-2 font-mono text-[0.7rem] lg:text-xs text-[#a3a3a3] uppercase tracking-[0.25em] transition-all duration-500 hover:text-white"
                   >
@@ -221,7 +226,12 @@ export function NavBar({ variant = "home", prevLink, nextLink }: NavBarProps) {
                       e.preventDefault();
                       setIsOpen(false);
                       const id = link.path.replace("/#", "");
-                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      const el = document.getElementById(id);
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        navigate(link.path);
+                      }
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

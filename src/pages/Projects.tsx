@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { NavBar } from "../components/NavBar";
 
@@ -80,6 +80,7 @@ function TitleFont({ title, className }: { title: string; className?: string }) 
 
 export function Projects() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -94,7 +95,7 @@ export function Projects() {
       className="pb-24 min-h-screen bg-[#0a0a0c]"
     >
       <NavBar />
-      <div className="pt-32 sm:pt-36 md:pt-44 px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
+      <div className="pt-32 sm:pt-36 md:pt-44 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -126,8 +127,11 @@ export function Projects() {
                 <motion.h1
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative font-display text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#e2e2e2] to-[#737373]"
+                  transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative font-display text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-[length:200%_200%] animate-gradient-shift drop-shadow-[0_0_40px_rgba(255,255,255,0.12)]"
+                  style={{
+                    backgroundImage: "linear-gradient(90deg, #ffffff 0%, #c0c0c0 25%, #e8e8e8 50%, #a0a0a0 75%, #ffffff 100%)",
+                  }}
                 >
                   Archive
                 </motion.h1>
@@ -135,7 +139,7 @@ export function Projects() {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.6, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="text-[#737373] text-xs sm:text-sm md:text-lg font-light mt-2 sm:mt-3 md:mt-4"
               >
                 A collection of my featured design work
@@ -156,7 +160,96 @@ export function Projects() {
         {/* Separator */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-8" />
 
-        <div className="flex flex-col gap-3">
+        {/* Mobile & Tablet: Simplified Click-to-Expand */}
+        <div className="lg:hidden flex flex-col gap-3">
+          {allProjects.map((project, i) => {
+            const isExpanded = hoveredCard === project.title;
+            return (
+              <motion.div
+                key={project.title}
+                layout
+                onClick={() => {
+                  if (isExpanded) {
+                    navigate(project.link);
+                  } else {
+                    setHoveredCard(project.title);
+                  }
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  layout: { duration: 0.4, type: "spring", bounce: 0.1 },
+                  opacity: { duration: 0.5, delay: i * 0.1 },
+                  y: { duration: 0.5, delay: i * 0.1 }
+                }}
+                className="relative overflow-hidden rounded-2xl cursor-pointer"
+                style={{ background: "rgba(255,255,255,0.03)" }}
+              >
+                {/* Collapsed Header */}
+                <div
+                  className="flex items-center gap-4 p-5"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setHoveredCard(isExpanded ? null : project.title);
+                  }}
+                >
+                  <span className="text-2xl font-bold text-white/20 font-display">{getNumber(i)}</span>
+                  <TitleFont title={project.title} className="text-lg text-white/90 flex-1" />
+                  <motion.span
+                    animate={{ rotate: isExpanded ? 90 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-white/30 text-xl"
+                  >
+                    ›
+                  </motion.span>
+                </div>
+
+                {/* Expanded Content */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 pt-0">
+                        {project.image && (
+                          <div className="relative w-full h-40 rounded-xl overflow-hidden mb-4">
+                            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                          </div>
+                        )}
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="bg-white/10 backdrop-blur-sm text-white/70 text-[10px] md:text-xs font-medium px-2.5 py-1 rounded-full border border-white/10">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <p className="text-[#a3a3a3] text-sm leading-relaxed font-light line-clamp-3 mb-4 text-pretty">
+                          {project.description}
+                        </p>
+                        <Link to={project.link} onClick={(e) => e.stopPropagation()} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
+                          <span>View Project</span>
+                          <ArrowUpRight size={14} />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Border */}
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: Hover-based Accordion with Background Images */}
+        <div className="hidden lg:flex flex-col gap-3">
           {allProjects.map((project, i) => {
             const isExpanded = hoveredCard === project.title;
             return (
