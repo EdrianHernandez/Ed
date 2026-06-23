@@ -851,7 +851,7 @@ export default function ShoreThingCaseStudy() {
           </p>
 
           <a 
-            href="https://www.figma.com/proto/[PLACEHOLDER]" 
+            href="https://www.figma.com/proto/Eh5A715EDMdiPZm0fGOaOt/ShoreThing-Website?node-id=22-244&p=f&t=pFosQAIdiPDIIvSg-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=22%3A244" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group mt-10 md:mt-12 px-6 sm:px-8 py-3.5 sm:py-4 w-full max-w-[280px] sm:max-w-max rounded-full bg-black/50 backdrop-blur-xl ring-1 ring-white/10 shadow-[0_0_30px_-5px_rgba(255,255,255,0.05)] flex items-center justify-center gap-3 transition-all duration-500 ease-out hover:ring-white/40 hover:bg-white/10 hover:shadow-[0_0_40px_0px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95"
