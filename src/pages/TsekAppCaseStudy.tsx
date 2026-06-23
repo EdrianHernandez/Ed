@@ -176,7 +176,7 @@ export function TsekAppCaseStudy() {
         title="Landing Page"
         screens={[
           "/TSEKAPP%20ASSETS/TSEKAPP%20LANDING%20PAGE.png",
-          "/TSEKAPP%20ASSETS/TSEKAPP%20Symptoms%20Check%20-%20Step%201.png",
+          "/TSEKAPP%20ASSETS/TSEKAPP%20TSEKAPP%20HEALTH%20INSIGHTS.png",
           "/TSEKAPP%20ASSETS/TSEKAPP%20DETAILED%20ARTICLE.png",
         ]}
         screenLabels={["Landing Page", "Health Insights", "Detailed Article"]}
