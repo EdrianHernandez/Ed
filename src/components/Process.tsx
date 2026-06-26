@@ -86,7 +86,7 @@ export function Process() {
 
   if (isMobile) {
     return (
-      <section id="process" className="relative bg-[#0a0a0c]">
+      <section id="process" className="relative bg-[#0a0a0c] overflow-hidden">
         <div className="relative flex flex-col items-center px-5 py-24 gap-2">
           {/* Ambient glow */}
           <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] -translate-y-1/2 bg-gradient-to-tr from-[#ffffff]/[0.03] to-[#a3a3a3]/[0.02] rounded-full blur-[120px] pointer-events-none" />

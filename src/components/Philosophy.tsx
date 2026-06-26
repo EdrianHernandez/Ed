@@ -23,7 +23,7 @@ export function Philosophy() {
           <div className="absolute inset-0 border border-white/10 rounded-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:border-white/30" />
         </motion.div>
 
-        <div className="flex flex-col space-y-4 sm:space-y-4 md:space-y-6 lg:space-y-8 w-full items-center">
+        <div className="flex flex-col space-y-4 sm:space-y-4 md:space-y-6 lg:space-y-8 w-full items-center overflow-hidden">
           {lines.map((line, i) => (
             <motion.div
               key={i}
